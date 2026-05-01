@@ -24,7 +24,7 @@ const isWhatsApp = href.includes('wa.me');
 const dataTracking = isWhatsApp ? 'click-whatsapp' : trackingId;
 
 const base =
-  'inline-flex items-center justify-center font-display font-bold uppercase transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary border-2 border-foreground active:translate-x-1 active:translate-y-1 active:shadow-none';
+  'inline-flex items-center justify-center font-display font-bold uppercase text-label tracking-widest transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary border-2 border-foreground active:translate-x-1 active:translate-y-1 active:shadow-none';
 
 const variants: Record<string, string> = {
   primary:   'bg-foreground text-primary-foreground hover:bg-foreground/90 shadow-[4px_4px_0px_0px_rgba(255,77,0,1)]',

@@ -15,11 +15,5 @@ export default defineConfig({
   integrations: [
     tailwind(),
     react(),
-    sitemap({
-      filter: (page) =>
-        !page.includes('/links') &&
-        !page.includes('/politica-de-privacidade') &&
-        !page.includes('/404'),
-    }),
   ],
 });
