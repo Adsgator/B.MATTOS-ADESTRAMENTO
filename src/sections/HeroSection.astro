@@ -10,9 +10,13 @@ const wppUrl =
 
 <section
   id="hero"
-  class="bg-background pt-24 pb-12 xl:pt-32 xl:pb-24 px-5 xl:px-12 overflow-hidden relative"
+  class="bg-background pt-24 pb-0 xl:pt-32 xl:pb-0 px-5 xl:px-12 relative"
 >
+  <!-- Dot pattern background -->
   <div class="absolute inset-0 opacity-[0.03] pointer-events-none select-none" style="background-image: radial-gradient(circle, currentColor 1px, transparent 1px); background-size: 32px 32px;"></div>
+
+  <!-- Accent glow behind image area -->
+  <div class="hidden xl:block absolute right-0 top-1/2 -translate-y-1/3 w-[500px] h-[500px] bg-accent/5 rounded-full blur-[120px] pointer-events-none"></div>
 
   <div class="max-w-content mx-auto relative z-10">
     <div class="flex flex-col gap-12 xl:gap-20">
@@ -30,12 +34,28 @@ const wppUrl =
         </div>
       </div>
 
-      <div class="flex flex-col xl:grid xl:grid-cols-[1fr_400px] gap-12 xl:items-start">
-        <div class="flex flex-col gap-6 xl:max-w-[600px]">
+      <div class="flex flex-col xl:grid xl:grid-cols-[1fr_420px] gap-12 xl:items-end">
+        <div class="flex flex-col gap-6 xl:max-w-[600px] xl:pb-24">
           <p class="font-display text-h3 text-foreground/80 uppercase">
             Ajuste sua comunicação e recupere <br class="hidden xl:block"/>
             a clareza na convivência com o seu cão.
           </p>
+
+          <!-- Mobile-only image -->
+          <div class="hero-image-animate block xl:hidden relative my-4 group cursor-crosshair">
+            <Image
+              src={heroImage}
+              alt="Beatriz Mattos em treinamento com American Bully"
+              width={600}
+              height={600}
+              loading="eager"
+              format="webp"
+              class="w-full max-w-[320px] mx-auto drop-shadow-xl grayscale contrast-125 brightness-90 group-hover:grayscale-0 transition-all duration-700 img-fade-bottom"
+            />
+            <div class="absolute bottom-4 left-4 bg-foreground text-accent px-4 py-2 font-display text-label tracking-[0.2em] border-2 border-accent shadow-card">
+              MENTORIA INDIVIDUAL
+            </div>
+          </div>
           
           <p class="font-sans text-body-lg text-muted-foreground">
             A mentoria individual foca no ponto central que é a sua postura como condutor do cão. Através de uma análise técnica e personalizada identificamos as falhas na sua comunicação que geram desobediência e insegurança.
@@ -45,7 +65,7 @@ const wppUrl =
             Desenvolva a clareza técnica para lidar com o seu cão no dia a dia construindo resultados consistentes e independência real.
           </p>
 
-          <div class="flex flex-col sm:flex-row items-center gap-8 mt-4">
+          <div id="hero-ctas" class="flex flex-col sm:flex-row items-center gap-8 mt-4">
             <Button
               label="QUERO LIDERAR MEU CÃO"
               href={wppUrl}
@@ -55,33 +75,86 @@ const wppUrl =
               newTab={true}
               class="px-12 py-6 tracking-widest shadow-card"
             />
-            <a href="#como-funciona" class="inline-flex items-center justify-center font-display text-body-lg tracking-widest hover:text-accent transition-colors underline underline-offset-8">
+            <a href="#como-funciona" class="inline-flex items-center justify-center font-display text-body-lg tracking-widest hover:text-accent transition-colors underline underline-offset-8 leading-none">
               VER MEU MÉTODO
             </a>
           </div>
         </div>
 
-        <div class="relative group">
-          <div class="absolute -inset-4 border-4 border-foreground -z-10 translate-x-4 translate-y-4 transition-transform group-hover:translate-x-2 group-hover:translate-y-2"></div>
-          <div class="overflow-hidden border-2 border-foreground">
-            <Image
-              src={heroImage}
-              alt="Beatriz Mattos em treinamento"
-              width={800}
-              height={1000}
-              loading="eager"
-              format="webp"
-              class="w-full grayscale contrast-125 brightness-90 hover:grayscale-0 transition-all duration-700 cursor-crosshair scale-105 group-hover:scale-100"
-            />
-          </div>
-          <div class="absolute bottom-4 left-4 bg-foreground text-primary-foreground px-4 py-2 font-display text-label tracking-[0.2em] border-2 border-white">
-            SESSÃO DE MENTORIA
+        <!-- Floating hero image — overflows section bottom (Desktop only) -->
+        <div id="hero-image-wrapper" class="hero-image-animate hidden xl:block relative xl:mb-[-80px] xl:-mr-4 z-20 group cursor-crosshair">
+          <!-- Shadow anchor / ground effect -->
+          <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[60%] h-[20px] bg-foreground/8 rounded-[50%] blur-xl pointer-events-none hero-shadow"></div>
+          
+          <Image
+            src={heroImage}
+            alt="Beatriz Mattos em treinamento com American Bully"
+            width={840}
+            height={840}
+            loading="eager"
+            format="webp"
+            class="w-full max-w-[380px] mx-auto xl:max-w-[420px] drop-shadow-2xl grayscale contrast-125 brightness-90 group-hover:grayscale-0 transition-all duration-700 img-fade-bottom"
+          />
+
+          <!-- Badge label -->
+          <div class="absolute bottom-16 xl:bottom-[110px] left-4 xl:left-0 bg-foreground text-accent px-5 py-3 font-display text-label tracking-[0.2em] border-2 border-accent shadow-card">
+            MENTORIA INDIVIDUAL
           </div>
         </div>
       </div>
     </div>
   </div>
+
+  <!-- Bottom gradient fade into next section -->
+  <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent pointer-events-none z-30"></div>
 </section>
+
+<style>
+  /* Ensure the overflow is visible beyond the hero section */
+  #hero {
+    overflow: visible !important;
+  }
+
+  /* Fade mask for the image bottom */
+  .img-fade-bottom {
+    mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+  }
+
+  /* Subtle floating animation */
+  @keyframes heroFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  #hero-image-wrapper {
+    animation: heroFloat 6s ease-in-out infinite;
+    animation-play-state: paused;
+  }
+
+  /* Only float on desktop for performance */
+  @media (min-width: 1280px) {
+    #hero-image-wrapper {
+      animation-play-state: running;
+    }
+  }
+
+  /* Shadow pulses with float */
+  @keyframes shadowPulse {
+    0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.1; }
+    50% { transform: translateX(-50%) scale(0.9); opacity: 0.06; }
+  }
+
+  .hero-shadow {
+    animation: shadowPulse 6s ease-in-out infinite;
+  }
+
+  @media (min-width: 1280px) {
+    .hero-shadow {
+      animation-play-state: running;
+    }
+  }
+</style>
 
 <script>
   import gsap from 'gsap';
@@ -94,8 +167,7 @@ const wppUrl =
     tl.from('#hero h1', { y: 30, duration: 0.7, ease: 'power3.out' })
       .from('#hero .font-hand', { scale: 0, rotation: 10, duration: 0.5, ease: 'back.out(1.7)' }, '-=0.3')
       .from('#hero p', { y: 15, duration: 0.5, stagger: 0.1, ease: 'power2.out' }, '-=0.3')
-      .from('#btn-cta-hero', { y: 15, duration: 0.4, ease: 'power2.out' }, '-=0.2')
-      .from('#hero a[href="#como-funciona"]', { y: 15, duration: 0.4, ease: 'power2.out' }, '-=0.3')
-      .from('#hero .group', { x: 20, duration: 0.8, ease: 'power3.out' }, '-=0.8');
+      .from('#hero-ctas', { y: 20, opacity: 0, duration: 0.6, ease: 'power3.out' }, '-=0.3')
+      .from('.hero-image-animate', { y: 60, opacity: 0, scale: 0.95, duration: 1, ease: 'power3.out' }, '-=0.8');
   });
 </script>
