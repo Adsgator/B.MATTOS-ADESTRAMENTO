@@ -6,12 +6,10 @@ import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
-import vercel from '@astrojs/vercel/serverless';
 
 export default defineConfig({
-  output: 'hybrid',
+  output: 'static', // nunca 'server' ou 'hybrid'
   site: 'https://beatrizmattos.com.br',
-  adapter: vercel(),
   integrations: [
     tailwind(),
     react(),

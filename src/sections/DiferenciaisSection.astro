@@ -88,13 +88,13 @@ const items = [
     gsap.registerPlugin(ScrollTrigger);
 
     gsap.from('.dif-text > *', {
-      x: -50, duration: 0.8, stagger: 0.2, ease: 'power3.out',
-      scrollTrigger: { trigger: '.dif-text', start: 'top 70%' }
+      opacity: 0, x: -20, duration: 0.5, stagger: 0.08, ease: 'power2.out',
+      scrollTrigger: { trigger: '.dif-text', start: 'top 95%' }
     });
 
     gsap.from('.dif-text + div', {
-      scale: 0.9, x: 50, duration: 1, ease: 'expo.out',
-      scrollTrigger: { trigger: '.dif-text', start: 'top 70%' }
+      opacity: 0, scale: 0.98, x: 20, duration: 0.7, ease: 'power3.out',
+      scrollTrigger: { trigger: '.dif-text', start: 'top 95%' }
     });
   }
 </script>

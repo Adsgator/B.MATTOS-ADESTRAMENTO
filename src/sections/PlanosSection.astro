@@ -115,3 +115,23 @@ const listaPlanos = [
     </div>
   </div>
 </section>
+<script>
+  import gsap from 'gsap';
+  import ScrollTrigger from 'gsap/ScrollTrigger';
+
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    gsap.registerPlugin(ScrollTrigger);
+
+    gsap.from('#planos .max-w-content > div', {
+      opacity: 0,
+      y: 20,
+      duration: 0.6,
+      stagger: 0.1,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: '#planos',
+        start: 'top 95%',
+      },
+    });
+  }
+</script>

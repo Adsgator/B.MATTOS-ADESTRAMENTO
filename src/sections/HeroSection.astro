@@ -45,7 +45,7 @@ const wppUrl =
             Desenvolva a clareza técnica para lidar com o seu cão no dia a dia construindo resultados consistentes e independência real.
           </p>
 
-          <div class="flex flex-col sm:flex-row gap-6 mt-4">
+          <div class="flex flex-col sm:flex-row items-center gap-8 mt-4">
             <Button
               label="QUERO LIDERAR MEU CÃO"
               href={wppUrl}
@@ -90,11 +90,12 @@ const wppUrl =
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
     const tl = gsap.timeline();
-    
-    tl.from('h1', { x: -50, duration: 1, ease: 'expo.out' })
-      .from('.font-hand', { scale: 0, rotation: 10, duration: 0.8, ease: 'back.out(1.7)' }, '-=0.4')
-      .from('p', { y: 30, duration: 0.8, stagger: 0.2, ease: 'power3.out' }, '-=0.6')
-      .from('#btn-cta-hero, .underline', { scale: 0.9, duration: 0.6, ease: 'power2.out' }, '-=0.4')
-      .from('.group', { x: 50, duration: 1.2, ease: 'expo.out' }, '-=1');
+
+    tl.from('#hero h1', { y: 30, duration: 0.7, ease: 'power3.out' })
+      .from('#hero .font-hand', { scale: 0, rotation: 10, duration: 0.5, ease: 'back.out(1.7)' }, '-=0.3')
+      .from('#hero p', { y: 15, duration: 0.5, stagger: 0.1, ease: 'power2.out' }, '-=0.3')
+      .from('#btn-cta-hero', { y: 15, duration: 0.4, ease: 'power2.out' }, '-=0.2')
+      .from('#hero a[href="#como-funciona"]', { y: 15, duration: 0.4, ease: 'power2.out' }, '-=0.3')
+      .from('#hero .group', { x: 20, duration: 0.8, ease: 'power3.out' }, '-=0.8');
   });
 </script>

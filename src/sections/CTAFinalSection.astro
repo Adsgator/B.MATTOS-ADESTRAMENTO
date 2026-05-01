@@ -32,14 +32,6 @@ const wppUrl =
         newTab={true}
         class="px-16 py-6 text-h3 tracking-[0.2em] border-2 border-foreground"
       />
-      
-      <!-- Elemento Caveat -->
-      <span
-        class="absolute -top-12 -right-20 font-hand text-[3rem] text-accent opacity-90 rotate-[10deg] select-none pointer-events-none hidden md:inline-block whitespace-nowrap"
-        aria-hidden="true"
-      >
-        Liderança começa aqui ↘
-      </span>
     </div>
 
     <p class="font-display text-label text-accent tracking-[0.3em] mt-8 uppercase font-bold">
@@ -57,13 +49,13 @@ const wppUrl =
 
     gsap.from('#cta-final h2, #cta-final p, #cta-final .relative', {
       opacity: 0,
-      y: 40,
-      duration: 1,
-      stagger: 0.2,
-      ease: 'expo.out',
+      y: 20,
+      duration: 0.5,
+      stagger: 0.08,
+      ease: 'power2.out',
       scrollTrigger: {
         trigger: '#cta-final',
-        start: 'top 70%',
+        start: 'top 95%',
       },
     });
   }

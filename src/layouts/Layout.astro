@@ -332,22 +332,28 @@ const schema = {
     gsap.registerPlugin(ScrollTrigger);
 
     const lenis = new Lenis({
-      duration: 1.0,
-      lerp: 0.1,
+      duration: 1.2,
+      lerp: 0.12, // Um pouco mais rápido/responsivo
       smoothWheel: true,
       wheelMultiplier: 1,
     });
 
     lenis.on('scroll', ScrollTrigger.update);
     gsap.ticker.add((time: number) => { lenis.raf(time * 1000); });
+    gsap.ticker.lagSmoothing(0); // Evita pulos em animações
 
     // Header logic
     const header = document.getElementById('main-header');
     let lastScrollY = 0;
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+    // Refresh ScrollTrigger after a short delay to ensure everything is in place
+    window.addEventListener('load', () => {
+      ScrollTrigger.refresh();
+    });
+
     ScrollTrigger.create({
-      start: 100,
+      start: 50, // Começa a mudar o header mais cedo
       end: 'max',
       onUpdate: (self) => {
         const currentY = self.scroll();
