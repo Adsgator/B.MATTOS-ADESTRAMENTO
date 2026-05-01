@@ -120,6 +120,24 @@ const OFFSET   = { y: 30 }
 
 ---
 
+## MODO DE AJUSTE FINO (ATIVO)
+
+> O design está aprovado. A partir de agora, qualquer alteração deve ser
+> **cirúrgica** — apenas o que o usuário solicitar explicitamente.
+
+### Regras obrigatórias:
+
+1. **Altere SOMENTE o que foi pedido.** Não "aproveite" para corrigir, melhorar ou refatorar nada ao redor.
+2. **Preserve o design atual.** Fontes, cores, espaçamentos, tamanhos, animações, layout e copy estão aprovados. Não toque neles a menos que seja solicitado.
+3. **Não altere `tailwind.config.js`** sem pedido explícito — os tokens de design estão travados.
+4. **Não altere componentes compartilhados** (`Button.astro`, `Layout.astro`, etc.) a menos que o pedido seja especificamente sobre eles. Mudança em componente global afeta todas as páginas.
+5. **Não adicione nem remova dependências** sem pedido explícito.
+6. **Escopo mínimo.** Se o pedido é sobre um botão, mexa apenas naquele botão. Se é sobre uma seção, mexa apenas naquela seção. Nunca extrapole.
+7. **Antes de editar, confirme** o que vai mudar se houver ambiguidade. Na dúvida, pergunte.
+8. **Teste visual.** Após cada alteração, verifique no browser (desktop e mobile) se nada ao redor quebrou.
+
+---
+
 ## PROIBIÇÕES
 
 - ❌ HEX hardcoded no código
