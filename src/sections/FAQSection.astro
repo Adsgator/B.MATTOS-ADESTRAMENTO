@@ -45,7 +45,7 @@ const faqs = [
       {faqs.map((faq, index) => (
         <div class="border-b-4 border-foreground overflow-hidden faq-item group">
           <button
-            class="w-full flex items-center justify-between p-8 text-left transition-colors hover:bg-background focus:outline-none"
+            class="w-full flex items-center justify-between p-8 text-left transition-colors hover:bg-white/20 aria-expanded:bg-white/40 focus:outline-none group/btn"
             aria-expanded="false"
           >
             <span class="font-display text-h3 tracking-widest text-foreground group-hover:text-accent transition-colors">
@@ -56,7 +56,7 @@ const faqs = [
             </span>
           </button>
           <div
-            class="max-h-0 overflow-hidden transition-all duration-500 ease-in-out bg-background"
+            class="max-h-0 overflow-hidden transition-all duration-500 ease-in-out bg-white/40"
             role="region"
           >
             <div class="p-8 pt-0 font-sans text-body-lg text-muted-foreground max-w-narrow">

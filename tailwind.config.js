@@ -37,6 +37,7 @@ module.exports = {
         'body':    ['1rem',                         { lineHeight: '1.6' }],
         'small':   ['0.8125rem',                    { lineHeight: '1.5' }],
         'label':   ['0.75rem',                      { lineHeight: '1', letterSpacing: '0.1em' }],
+        'cta':     ['2rem',                         { lineHeight: '1', letterSpacing: '0.05em' }],
         'hand-lg': ['2.25rem',                      { lineHeight: '1' }],
       },
       spacing: {
