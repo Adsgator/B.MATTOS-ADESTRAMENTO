@@ -1,0 +1,104 @@
+---
+// src/sections/FAQSection.astro
+import SectionHeader from '../components/SectionHeader.astro';
+
+const faqs = [
+  {
+    pergunta: 'COMO FUNCIONA A MENTORIA ONLINE?',
+    resposta: 'A mentoria foca em capacitar VOCÊ para treinar o seu cão. Através de vídeo chamadas, eu te ensino a ler o animal, ajustar sua postura e agir com precisão. O resultado acontece na sua rotina diária, onde a comunicação realmente importa.',
+  },
+  {
+    pergunta: 'VOU RECEBER UM CURSO GRAVADO?',
+    resposta: 'Não. O acompanhamento é 100% individual e ao vivo. Cada sessão é personalizada para o seu cenário específico, analisando o comportamento do seu cão e a sua evolução técnica como condutor.',
+  },
+  {
+    pergunta: 'HÁ SUPORTE ENTRE OS ENCONTROS?',
+    resposta: 'Sim. Você terá um canal direto comigo via WhatsApp para tirar dúvidas e enviar vídeos dos seus treinos. Isso garante que as correções sejam feitas no momento certo, acelerando o aprendizado.',
+  },
+  {
+    pergunta: 'QUAL É O TEMPO DE COMPROMISSO?',
+    resposta: 'Trabalhamos com um ciclo inicial de 30 dias para garantir que o método seja aplicado corretamente. O foco é a sua evolução técnica e a construção de resultados consistentes a médio e longo prazo.',
+  },
+  {
+    pergunta: 'VOCÊ ATENDE ADESTRADORES PROFISSIONAIS?',
+    resposta: 'Sim. Ofereço suporte para profissionais que buscam refinamento técnico, segurança em casos complexos e uma visão estratégica sobre o treinamento K9 e comportamento canino.',
+  },
+];
+---
+
+<section
+  id="faq"
+  class="bg-surface py-section px-5 xl:px-12 border-b-2 border-foreground"
+  aria-labelledby="faq-title"
+>
+  <div class="max-w-content mx-auto">
+    <div class="max-w-narrow mb-16">
+      <SectionHeader
+        label="DÚVIDAS"
+        title="O QUE VOCÊ PRECISA SABER ANTES DE ME CHAMAR."
+        subtitle="Eu não perco meu tempo e não quero que você perca o seu. Aqui estão as respostas para as perguntas que mais recebo."
+      />
+    </div>
+
+    <!-- Accordion Brutalista -->
+    <div class="flex flex-col border-t-4 border-foreground">
+      {faqs.map((faq, index) => (
+        <div class="border-b-4 border-foreground overflow-hidden faq-item group">
+          <button
+            class="w-full flex items-center justify-between p-8 text-left transition-colors hover:bg-background focus:outline-none"
+            aria-expanded="false"
+          >
+            <span class="font-display text-h3 tracking-widest text-foreground group-hover:text-accent transition-colors">
+              {faq.pergunta}
+            </span>
+            <span class="text-accent font-display text-h1 leading-none transition-transform duration-300 transform group-aria-expanded:rotate-45">
+              +
+            </span>
+          </button>
+          <div
+            class="max-h-0 overflow-hidden transition-all duration-500 ease-in-out bg-background"
+            role="region"
+          >
+            <div class="p-8 pt-0 font-sans text-body-lg text-muted-foreground max-w-narrow">
+              {faq.resposta}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  const faqItems = document.querySelectorAll('.faq-item');
+
+  faqItems.forEach((item) => {
+    const button = item.querySelector('button');
+    const content = item.querySelector('div[role="region"]');
+    const icon = item.querySelector('.transition-transform');
+
+    button?.addEventListener('click', () => {
+      const isExpanded = button.getAttribute('aria-expanded') === 'true';
+      
+      // Close all others
+      faqItems.forEach((otherItem) => {
+        const otherButton = otherItem.querySelector('button');
+        const otherContent = otherItem.querySelector('div[role="region"]');
+        const otherIcon = otherItem.querySelector('.transition-transform');
+        
+        if (otherButton && otherContent) {
+          otherButton.setAttribute('aria-expanded', 'false');
+          (otherContent as HTMLElement).style.maxHeight = '0';
+          otherIcon?.classList.remove('rotate-45');
+        }
+      });
+
+      // Toggle current
+      if (!isExpanded) {
+        button.setAttribute('aria-expanded', 'true');
+        (content as HTMLElement).style.maxHeight = content?.scrollHeight + 'px';
+        icon?.classList.add('rotate-45');
+      }
+    });
+  });
+</script>

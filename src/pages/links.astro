@@ -1,0 +1,128 @@
+---
+// src/pages/links.astro
+export const prerender = true;
+
+import { Image } from 'astro:assets';
+import logo from '../assets/logo.svg';
+import avatarLinks from '../assets/images/profissional-retrato.webp'; // Usando o mesmo retrato como fallback
+import Button from '../components/Button.astro';
+import Icon from '../components/Icon.astro';
+
+const wppUrl =
+  'https://wa.me/5511918952921?text=Ol%C3%A1%2C%20Beatriz!%20Vi%20o%20site%20e%20quero%20saber%20mais%20sobre%20a%20mentoria.%20Seguem%20minhas%20informa%C3%A7%C3%B5es%3A%20Ra%C3%A7a%3A%20%7C%20Idade%20do%20c%C3%A3o%3A%20%7C%20Principal%20problema%20comportamental%3A%20%7C%20Hist%C3%B3rico%20de%20adestramento%3A%20%7C%20Estou%20disposto%20a%20mudar%20a%20rotina%3A';
+
+const links = [
+  {
+    label: '💬 Falar no WhatsApp',
+    href: wppUrl,
+    variant: 'accent',
+    trackingId: 'links-wpp',
+    newTab: true,
+  },
+  {
+    label: '🌐 Acessar o site',
+    href: '/',
+    variant: 'secondary',
+    trackingId: 'links-home',
+  },
+  {
+    label: '📸 Instagram @abeak9',
+    href: 'https://instagram.com/abeak9',
+    variant: 'secondary',
+    trackingId: 'links-insta',
+    newTab: true,
+  },
+  {
+    label: '🎵 TikTok @abeak9',
+    href: 'https://tiktok.com/@abeak9',
+    variant: 'secondary',
+    trackingId: 'links-tiktok',
+    newTab: true,
+  },
+];
+---
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Beatriz Mattos | Links</title>
+  <meta name="description" content="Links oficiais de Beatriz Mattos Adestradora." />
+  <meta name="robots" content="noindex" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+</head>
+<body class="bg-background text-foreground antialiased min-h-screen flex flex-col items-center justify-start pt-16 px-5 pb-12">
+  
+  <div class="w-full max-w-[480px] mx-auto flex flex-col items-center gap-8">
+    <!-- Logo -->
+    <a href="/" aria-label="Beatriz Mattos Adestradora">
+      <Image src={logo} alt="Beatriz Mattos Adestradora" height={40} loading="eager" />
+    </a>
+
+    <!-- Avatar -->
+    <div class="relative">
+      <Image
+        src={avatarLinks}
+        alt="Foto de Beatriz Mattos, adestradora"
+        width={96}
+        height={96}
+        loading="eager"
+        class="rounded-full object-cover border-2 border-border shadow-card"
+      />
+    </div>
+
+    <!-- Tagline -->
+    <p class="font-sans text-body text-muted-foreground text-center max-w-[280px]">
+      Treina pessoas antes de treinar cães.
+    </p>
+
+    <!-- Botões -->
+    <nav class="w-full flex flex-col gap-4 links-container">
+      {links.map((link, i) => (
+        <div class="link-item opacity-0 translate-y-4">
+          <Button
+            label={link.label}
+            href={link.href}
+            variant={link.variant as any}
+            trackingId={link.trackingId}
+            section="links-page"
+            newTab={link.newTab}
+            class="w-full py-4"
+          />
+        </div>
+      ))}
+    </nav>
+
+    <!-- Redes -->
+    <div class="mt-4 flex gap-6">
+      <a href="mailto:abeamattosk9@gmail.com" class="text-muted-foreground hover:text-accent transition-colors" aria-label="Enviar e-mail">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+        </svg>
+      </a>
+    </div>
+
+    <!-- Footer -->
+    <footer class="mt-auto pt-12 text-center">
+      <p class="font-sans text-small text-muted-foreground opacity-60">
+        © {new Date().getFullYear()} Beatriz Mattos
+      </p>
+    </footer>
+  </div>
+
+  <script>
+    import gsap from 'gsap';
+    
+    document.addEventListener('DOMContentLoaded', () => {
+      gsap.to('.link-item', {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        stagger: 0.1,
+        ease: 'power2.out',
+      });
+    });
+  </script>
+</body>
+</html>

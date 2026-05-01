@@ -1,0 +1,25 @@
+// astro.config.mjs
+// NOTA: output 'hybrid' permite páginas estáticas + endpoint serverless /api/contato.
+// Todas as páginas têm export const prerender = true — comportamento idêntico a 'static'.
+// Somente src/pages/api/contato.ts é serverless (necessário para Resend funcionar).
+import { defineConfig } from 'astro/config';
+import tailwind from '@astrojs/tailwind';
+import react from '@astrojs/react';
+import sitemap from '@astrojs/sitemap';
+import vercel from '@astrojs/vercel/serverless';
+
+export default defineConfig({
+  output: 'hybrid',
+  site: 'https://beatrizmattos.com.br',
+  adapter: vercel(),
+  integrations: [
+    tailwind(),
+    react(),
+    sitemap({
+      filter: (page) =>
+        !page.includes('/links') &&
+        !page.includes('/politica-de-privacidade') &&
+        !page.includes('/404'),
+    }),
+  ],
+});

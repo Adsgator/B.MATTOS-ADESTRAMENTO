@@ -1,0 +1,29 @@
+---
+// src/pages/index.astro
+export const prerender = true;
+
+import Layout from '../layouts/Layout.astro';
+import HeroSection from '../sections/HeroSection.astro';
+import ServicosSection from '../sections/ServicosSection.astro';
+import ComoFuncionaSection from '../sections/ComoFuncionaSection.astro';
+import DiferenciaisSection from '../sections/DiferenciaisSection.astro';
+import PlanosSection from '../sections/PlanosSection.astro';
+import FAQSection from '../sections/FAQSection.astro';
+import ContatoSection from '../sections/ContatoSection.astro';
+import CTAFinalSection from '../sections/CTAFinalSection.astro';
+---
+
+<Layout
+  title="Beatriz Mattos | Mentoria Individual de Adestramento Online"
+  description="Seu cão não responde porque a base de comunicação está errada. Mentoria online individual com Beatriz Mattos. Entenda como funciona e fale agora."
+  canonicalUrl="https://beatrizmattos.com.br"
+>
+  <HeroSection />
+  <ServicosSection />
+  <ComoFuncionaSection />
+  <DiferenciaisSection />
+  <PlanosSection />
+  <FAQSection />
+  <ContatoSection />
+  <CTAFinalSection />
+</Layout>

@@ -1,0 +1,19 @@
+---
+// src/components/FeatureCard.astro
+import Icon from './Icon.astro';
+
+interface Props {
+  icon: string;
+  title: string;
+  description: string;
+  class?: string;
+}
+const { icon, title, description, class: extraClass = '' } = Astro.props;
+---
+<div class={`bg-background border border-border rounded-card p-6 shadow-card ${extraClass}`}>
+  <div class="mb-4 text-accent h-6 w-6">
+    <Icon name={icon} size={24} class="h-6 w-6" />
+  </div>
+  <h3 class="font-sans text-body font-semibold text-foreground mb-2">{title}</h3>
+  <p class="font-sans text-body text-muted-foreground">{description}</p>
+</div>

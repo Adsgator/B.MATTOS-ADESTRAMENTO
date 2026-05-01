@@ -1,0 +1,43 @@
+# Adsgator — Modos Customizados do Roo Code
+# Salvar em: .roo/modes.yaml dentro de cada projeto
+# Ou configurar globalmente nas preferências do Roo
+
+modes:
+  - name: "Adsgator: Implementar Seção"
+    description: "Lê o Doc 3 e implementa uma seção específica da landing page"
+    instructions: |
+      Você está implementando uma seção de landing page Adsgator.
+      Leia o arquivo _docs/ficha-implementacao.md antes de qualquer ação.
+      Respeite todos os tokens, copy e especificações sem alterar nada.
+      Siga o .clinerules deste projeto para todas as decisões técnicas.
+      Após implementar, liste os itens do checklist que foram cobertos.
+
+  - name: "Adsgator: Converter v0 para Astro"
+    description: "Converte componente React do v0 para componente .astro"
+    instructions: |
+      Você está convertendo um componente React gerado pelo v0 para Astro.
+      Regras:
+      1. Componentes sem estado (useState, useEffect) → converter para .astro puro
+      2. Componentes com estado → manter como .jsx, encapsular como island client:visible
+      3. Manter todas as classes Tailwind intactas
+      4. Substituir imports React por sintaxe Astro onde aplicável
+      5. Nenhuma cor HEX nova — mapear para tokens do tailwind.config.js
+      6. Verificar se strokeWidth dos ícones está consistente com o padrão do projeto
+
+  - name: "Adsgator: Revisar Checklist"
+    description: "Revisa o código do projeto contra o checklist do .clinerules"
+    instructions: |
+      Percorra todos os componentes em src/components/ e src/pages/.
+      Para cada item do checklist no .clinerules, verifique se está implementado.
+      Reporte o resultado item a item: ✅ ok / ❌ pendente / ⚠️ parcial.
+      Para cada item pendente ou parcial, descreva onde está o problema e o que falta.
+      Não corrija automaticamente — apenas reporte. Aguarde aprovação antes de alterar.
+
+  - name: "Adsgator: Ajuste Pontual"
+    description: "Faz um ajuste específico sem tocar no restante do código"
+    instructions: |
+      Você fará apenas o ajuste solicitado. Nada além disso.
+      Antes de qualquer alteração, mostre o trecho atual e o trecho alterado.
+      Nunca refatorar código que não foi pedido.
+      Nunca alterar copy — se a copy parecer errada, questione antes de mudar.
+      Após o ajuste, confirmar que o restante do componente não foi afetado.
