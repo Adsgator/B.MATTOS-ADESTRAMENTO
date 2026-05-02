@@ -9,7 +9,7 @@ import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   output: 'static', // nunca 'server' ou 'hybrid'
-  site: 'https://beatrizmattos.com.br',
+  site: 'https://abeak9adestramento.com.br',
   integrations: [
     tailwind(),
     react(),

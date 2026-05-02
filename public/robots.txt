@@ -4,4 +4,4 @@ Disallow: /links
 Disallow: /politica-de-privacidade
 Disallow: /404
 
-Sitemap: https://beatrizmattos.com.br/sitemap-index.xml
+Sitemap: https://abeak9adestramento.com.br/sitemap-index.xml
