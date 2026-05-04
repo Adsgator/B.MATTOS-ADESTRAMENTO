@@ -99,11 +99,11 @@ const passos = [
     const cards = document.querySelectorAll('.step-card');
     
     cards.forEach((card, i) => {
-      if (i === cards.length - 1) return; // Não anima o último do stack da mesma forma
-
+      // Anima o card atual quando o próximo card se aproxima/sobrepõe
       gsap.to(card, {
-        scale: 0.95 - (i * 0.01),
-        opacity: 0.8,
+        scale: 1, // Mantém escala em 1 para não desalinhar as bordas laterais
+        opacity: 0.5,
+        transformOrigin: "top center",
         scrollTrigger: {
           trigger: card,
           start: `top ${120 + (i * 24)}px`,
