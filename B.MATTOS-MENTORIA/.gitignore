@@ -69,3 +69,4 @@ $RECYCLE.BIN/
 *.cert
 
 .vercel
+.env*.local
