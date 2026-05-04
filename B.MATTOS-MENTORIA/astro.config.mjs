@@ -6,14 +6,14 @@ import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
-import node from '@astrojs/node';
+import vercel from '@astrojs/vercel/serverless';
 
 export default defineConfig({
   output: 'hybrid',
   site: 'https://mentoria.abeak9adestramento.com.br',
+  adapter: vercel(),
   integrations: [
     tailwind(),
     react(),
-    node({ mode: 'standalone' }),
   ],
 });
