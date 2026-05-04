@@ -45,7 +45,7 @@ export default function CookieBanner({ gtmId: _gtmId }: Props) {
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: -50 }}
-          className="fixed bottom-6 left-6 right-6 z-[999] md:left-auto md:max-w-sm bg-background border-4 border-foreground p-8 shadow-[8px_8px_0px_0px_rgba(26,29,35,1)]"
+          className="fixed bottom-6 left-6 right-6 z-[100] md:left-auto md:max-w-sm bg-background border-4 border-foreground p-8 shadow-[8px_8px_0px_0px_rgba(26,29,35,1)]"
         >
           <p className="font-sans text-small font-bold text-foreground mb-6 uppercase tracking-wider">
             CONTROLE DE COOKIES. <br />

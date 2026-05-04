@@ -1,16 +1,29 @@
 // src/pages/api/contato.ts
 import type { APIRoute } from 'astro';
-import { Resend } from 'resend';
+import nodemailer from 'nodemailer';
 
 export const prerender = false;
 
 export const POST: APIRoute = async ({ request }) => {
-  const resendKey = import.meta.env.RESEND_API_KEY;
+  const smtpHost = import.meta.env.SMTP_HOST;
+  const smtpPort = import.meta.env.SMTP_PORT;
+  const smtpUser = import.meta.env.SMTP_USER;
+  const smtpPass = import.meta.env.SMTP_PASS;
 
-  if (!resendKey) {
-    console.error('RESEND_API_KEY não configurada.');
+  if (!smtpHost || !smtpPort || !smtpUser || !smtpPass) {
+    console.error('Variáveis de ambiente SMTP não configuradas.');
     return new Response(JSON.stringify({ error: 'Configuração do servidor incompleta.' }), { status: 500 });
   }
+
+  const transporter = nodemailer.createTransport({
+    host: smtpHost,
+    port: Number(smtpPort),
+    secure: Number(smtpPort) === 465, // true for 465, false for other ports
+    auth: {
+      user: smtpUser,
+      pass: smtpPass,
+    },
+  });
 
   try {
     const body = await request.json();
@@ -26,9 +39,7 @@ export const POST: APIRoute = async ({ request }) => {
       return new Response(JSON.stringify({ error: 'Campos obrigatórios faltando.' }), { status: 400 });
     }
 
-    const resend = new Resend(resendKey);
-
-    const { error } = await resend.emails.send({
+    const info = await transporter.sendMail({
       from: 'Site Beatriz Mattos <contato@abeak9adestramento.com.br>',
       to: ['lucasapsimoes@gmail.com'],
       subject: `Novo Contato: ${nome}`,
@@ -44,14 +55,16 @@ export const POST: APIRoute = async ({ request }) => {
       `,
     });
 
-    if (error) {
-      console.error('Erro Resend:', error);
-      return new Response(JSON.stringify({ error: 'Erro ao enviar e-mail.' }), { status: 500 });
-    }
+    console.log('E-mail enviado: %s', info.messageId);
 
     return new Response(JSON.stringify({ message: 'Sucesso' }), { status: 200 });
-  } catch (e) {
-    console.error('Erro API:', e);
-    return new Response(JSON.stringify({ error: 'Erro interno no servidor.' }), { status: 500 });
+  } catch (e: unknown) {
+    if (e instanceof Error) {
+      console.error('Erro ao enviar e-mail com Nodemailer:', e.message);
+      return new Response(JSON.stringify({ error: 'Erro ao enviar e-mail.' }), { status: 500 });
+    } else {
+      console.error('Erro desconhecido ao enviar e-mail:', e);
+      return new Response(JSON.stringify({ error: 'Erro interno no servidor.' }), { status: 500 });
+    }
   }
 };

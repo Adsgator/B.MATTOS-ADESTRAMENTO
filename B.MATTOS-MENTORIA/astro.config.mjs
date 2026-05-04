@@ -6,12 +6,14 @@ import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
+import node from '@astrojs/node';
 
 export default defineConfig({
-  output: 'static', // nunca 'server' ou 'hybrid'
+  output: 'hybrid',
   site: 'https://mentoria.abeak9adestramento.com.br',
   integrations: [
     tailwind(),
     react(),
+    node({ mode: 'standalone' }),
   ],
 });
