@@ -2,65 +2,47 @@
 // src/pages/404.astro
 export const prerender = true;
 
+import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
 import logo from '../assets/logo.svg';
 import Button from '../components/Button.astro';
 
-import '@fontsource/dm-serif-display';
-import '@fontsource-variable/inter';
+const pageTitle = "404 . Página não encontrada | Beatriz Mattos";
+const pageDescription = "Ops! Parece que você se perdeu. A página que você procura não existe.";
 
 const wppUrl =
-  'https://wa.me/5511918952921?text=Ol%C3%A1%2C%20Beatriz!%20Vi%20o%20site%20e%20quero%20saber%20mais%20sobre%20a%20mentoria.%20Seguem%20minhas%20informa%C3%A7%C3%B5es%3A%20Ra%C3%A7a%3A%20%7C%20Idade%20do%20c%C3%A3o%3A%20%7C%20Principal%20problema%20comportamental%3A%20%7C%20Hist%C3%B3rico%20de%20adestramento%3A%20%7C%20Estou%20disposto%20a%20mudar%20a%20rotina%3A';
+  'https://wa.me/5511918952921?text=Ol%C3%A1%2C%20Beatriz!%20Vi%20o%20site%20e%20quero%20saber%20mais%20sobre%20a%20mentoria.%20Seguem%20minhas%20informa%C3%A7%C3%B5es%3A%20Ra%C3%A7a%3A%20%7C%20Idade%20do%20c%C3%A3o%3A%20%7C%20Principal%20problema%20comportamental%3A%20%7C%20Hist%C3%B3rico%20de%20adestramento%3A%20%7C%20Estou%20disposto%20a%20mudar%20a%C2%A0rotina%3A';
 ---
 
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>404 . Página não encontrada | Beatriz Mattos</title>
-  <meta name="robots" content="noindex" />
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-</head>
-<body class="bg-background text-foreground antialiased min-h-screen flex flex-col items-center justify-center px-5 text-center relative overflow-hidden">
-  
-  <!-- Numeral decorativo -->
-  <div class="num-404 font-serif text-[30vw] text-foreground opacity-[0.04] absolute inset-0 flex items-center justify-center pointer-events-none select-none leading-none z-0">
-    404
-  </div>
-
-  <div class="relative z-10 flex flex-col items-center gap-8 max-w-md">
-    <a href="/" aria-label="Voltar ao início">
-      <Image src={logo} alt="Beatriz Mattos Adestradora" height={32} loading="eager" class="h-8 w-auto" />
-    </a>
-
-    <div class="flex flex-col gap-4">
-      <h1 class="font-serif text-h2 text-foreground">Esse endereço não existe.</h1>
-      <p class="font-sans text-body text-muted-foreground">
-        Mas o que você procura, está aqui.
-      </p>
+<Layout title={pageTitle} description={pageDescription} robots="noindex" canonicalUrl="https://mentoria.abeak9adestramento.com.br/404" hideNavLinks={true}>
+  <main class="relative z-10 flex flex-col items-center justify-center text-center py-section-mobile-py xl:py-section px-5 max-w-content mx-auto min-h-[70vh]">
+    <!-- Numeral decorativo -->
+    <div class="num-404 font-display text-[30vw] text-foreground opacity-[0.04] absolute inset-0 flex items-center justify-center pointer-events-none select-none leading-none z-0">
+      404
     </div>
 
-    <div class="flex flex-col sm:flex-row gap-4 mt-6 w-full">
-      <Button
-        label="Voltar ao início"
-        href="/"
-        variant="primary"
-        trackingId="btn-404-home"
-        section="404"
-        class="flex-1 py-4"
-      />
-      <Button
-        label="Falar no WhatsApp"
-        href={wppUrl}
-        variant="secondary"
-        trackingId="btn-404-wpp"
-        section="404"
-        newTab={true}
-        class="flex-1 py-4"
-      />
+    <div class="relative z-10 flex flex-col items-center gap-8 max-w-md">
+
+
+      <div class="flex flex-col gap-4">
+        <h1 class="font-display text-h2 text-foreground">Esse endereço não existe.</h1>
+        <p class="font-sans text-body text-muted-foreground">
+          Mas o que você procura, está aqui.
+        </p>
+      </div>
+
+      <div class="mt-6 w-full max-w-xs mx-auto">
+        <Button
+          label="Voltar ao início"
+          href="/"
+          variant="primary"
+          trackingId="btn-404-home"
+          section="404"
+          class="w-full py-4"
+        />
+      </div>
     </div>
-  </div>
+  </main>
 
   <script>
     import gsap from 'gsap';
@@ -75,5 +57,4 @@ const wppUrl =
       });
     });
   </script>
-</body>
-</html>
+</Layout>

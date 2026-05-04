@@ -2,52 +2,29 @@
 // src/pages/politica-de-privacidade.astro
 export const prerender = true;
 
-import { Image } from 'astro:assets';
-import logo from '../assets/logo.svg';
+import Layout from '../layouts/Layout.astro';
 
-import '@fontsource/dm-serif-display';
-import '@fontsource-variable/inter';
+const pageTitle = "Política de Privacidade | Beatriz Mattos";
+const pageDescription = "Política de Privacidade e Termos de Uso de Beatriz Mattos Adestradora.";
 ---
 
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Política de Privacidade | Beatriz Mattos</title>
-  <meta name="description" content="Política de Privacidade e Termos de Uso de Beatriz Mattos Adestradora." />
-  <meta name="robots" content="noindex, follow" />
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-</head>
-<body class="bg-background text-foreground antialiased min-h-screen">
-  
-  <header class="border-b border-border py-6 px-5">
-    <div class="max-w-narrow mx-auto flex items-center justify-between">
-      <a href="/" aria-label="Voltar para o início">
-        <Image src={logo} alt="Beatriz Mattos Adestradora" height={28} class="h-7 w-auto" />
-      </a>
-      <a href="/" class="font-sans text-small text-muted-foreground hover:text-accent transition-colors">
-        ← Voltar ao site
-      </a>
-    </div>
-  </header>
-
-  <main class="max-w-narrow mx-auto py-16 px-5">
-    <article class="prose prose-slate max-w-none">
+<Layout title={pageTitle} description={pageDescription} canonicalUrl="https://mentoria.abeak9adestramento.com.br/politica-de-privacidade" hideNavLinks={true}>
+  <main class="max-w-narrow mx-auto py-16 px-5 xl:max-w-content xl:py-section">
+    <article class="prose prose-slate max-w-none dark:prose-invert">
       <section id="privacidade" class="mb-16">
-        <h1 class="font-serif text-h2 mb-8">Política de Privacidade</h1>
+        <h1 class="font-display text-h2 mb-8">Política de Privacidade</h1>
         
         <div class="space-y-6 font-sans text-body leading-relaxed text-foreground/80">
           <p>
             Esta Política de Privacidade descreve como Beatriz Mattos ("nós", "nosso") coleta, utiliza e protege as informações fornecidas por você ao utilizar este site.
           </p>
 
-          <h3 class="font-bold text-foreground text-h3 mt-8">1. Coleta de Informações</h3>
+          <h3 class="font-display text-h3 mt-8">1. Coleta de Informações</h3>
           <p>
             Coletamos informações que você nos fornece diretamente através do formulário de contato ou via WhatsApp, incluindo: Nome completo, número de WhatsApp, raça e idade do cão, e descrições de comportamento animal.
           </p>
 
-          <h3 class="font-bold text-foreground text-h3 mt-8">2. Uso das Informações</h3>
+          <h3 class="font-display text-h3 mt-8">2. Uso das Informações</h3>
           <p>
             As informações coletadas são utilizadas exclusivamente para:
           </p>
@@ -57,17 +34,17 @@ import '@fontsource-variable/inter';
             <li>Melhorar a qualidade dos nossos serviços e do conteúdo do site.</li>
           </ul>
 
-          <h3 class="font-bold text-foreground text-h3 mt-8">3. Cookies e Rastreamento</h3>
+          <h3 class="font-display text-h3 mt-8">3. Cookies e Rastreamento</h3>
           <p>
             Utilizamos o Google Tag Manager e o Google Analytics para coletar dados de acesso anonimizados, como páginas visitadas e origem do tráfego. Você pode gerenciar seu consentimento através do banner de cookies exibido no site.
           </p>
 
-          <h3 class="font-bold text-foreground text-h3 mt-8">4. Compartilhamento de Dados</h3>
+          <h3 class="font-display text-h3 mt-8">4. Compartilhamento de Dados</h3>
           <p>
             Não vendemos ou alugamos seus dados pessoais. Compartilhamos informações apenas com provedores de serviços essenciais para o nosso atendimento (Google Workspace, WhatsApp, Resend) conforme necessário para a prestação do serviço.
           </p>
 
-          <h3 class="font-bold text-foreground text-h3 mt-8">5. Seus Direitos (LGPD)</h3>
+          <h3 class="font-display text-h3 mt-8">5. Seus Direitos (LGPD)</h3>
           <p>
             De acordo com a Lei Geral de Proteção de Dados (LGPD), você tem o direito de acessar, corrigir ou solicitar a exclusão de seus dados a qualquer momento. Para exercer esses direitos, entre em contato através do e-mail: <a href="mailto:abeamattosk9@gmail.com" class="text-accent underline">abeamattosk9@gmail.com</a>.
           </p>
@@ -77,25 +54,25 @@ import '@fontsource-variable/inter';
       <hr class="border-border mb-16" />
 
       <section id="termos">
-        <h2 class="font-serif text-h2 mb-8">Termos de Uso</h2>
+        <h2 class="font-display text-h2 mb-8">Termos de Uso</h2>
         
         <div class="space-y-6 font-sans text-body leading-relaxed text-foreground/80">
-          <h3 class="font-bold text-foreground text-h3 mt-8">1. Objeto</h3>
+          <h3 class="font-display text-h3 mt-8">1. Objeto</h3>
           <p>
             Este site apresenta os serviços de mentoria de adestramento online oferecidos por Beatriz Mattos. A contratação do serviço implica na aceitação das condições comerciais e pedagógicas descritas.
           </p>
 
-          <h3 class="font-bold text-foreground text-h3 mt-8">2. Condições do Serviço</h3>
+          <h3 class="font-display text-h3 mt-8">2. Condições do Serviço</h3>
           <p>
-            A mentoria exige um compromisso mínimo de 30 dias. O cancelamento do serviço deve ser comunicado com aviso prévio de 30 dias. Os resultados dependem diretamente da aplicação consistente das orientações técnicas pelo cliente.
+            A mentoria exige um compromisso mínimo de 30 dias. O cancelamento do serviço deve ser comunicado com aviso prévio de 30 dias. Os resultados dependem diretamente da aplicação consistente das orientações técnicas pelo cliente.'''
           </p>
 
-          <h3 class="font-bold text-foreground text-h3 mt-8">3. Responsabilidades</h3>
+          <h3 class="font-display text-h3 mt-8">3. Responsabilidades</h3>
           <p>
             Beatriz Mattos se compromete a entregar a técnica e o suporte conforme o plano contratado. O cliente é responsável pela segurança e integridade física do cão e das pessoas envolvidas durante a execução dos treinos sugeridos.
           </p>
 
-          <h3 class="font-bold text-foreground text-h3 mt-8">4. Contato</h3>
+          <h3 class="font-display text-h3 mt-8">4. Contato</h3>
           <p>
             Dúvidas sobre estes termos podem ser enviadas para <a href="mailto:abeamattosk9@gmail.com" class="text-accent underline">abeamattosk9@gmail.com</a>.
           </p>
@@ -103,11 +80,4 @@ import '@fontsource-variable/inter';
       </section>
     </article>
   </main>
-
-  <footer class="border-t border-border py-12 px-5 text-center">
-    <p class="font-sans text-small text-muted-foreground opacity-60">
-      © {new Date().getFullYear()} Beatriz Mattos.
-    </p>
-  </footer>
-</body>
-</html>
+</Layout>
