@@ -62,7 +62,7 @@ export default function MobileMenu({ links, ctaLabel, ctaHref }: Props) {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: '100%' }}
             transition={{ type: 'tween', duration: 0.3, ease: 'circOut' }}
-            className="fixed inset-0 z-[60] bg-foreground flex flex-col p-8 border-l-8 border-accent"
+            className="fixed inset-0 z-[60] bg-background flex flex-col p-8 border-l-8 border-accent"
           >
             <button
               ref={closeButtonRef}
