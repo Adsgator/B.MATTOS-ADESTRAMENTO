@@ -11,6 +11,7 @@ import logo from '../assets/logo.svg';
 import logoBranca from '../assets/logo-branca.svg';
 import StickyCTA from '../components/StickyCTA.astro';
 import assinatura from '../assets/assinatura-adsgator-fundo-escuro.svg';
+import heroPreload from '../assets/images/hero-principal.webp';
 
 import '@fontsource/anton';
 import '@fontsource/bebas-neue';
@@ -89,7 +90,7 @@ const schema = {
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
 
   <!-- Performance: preload hero image -->
-  <link rel="preload" href="/assets/images/hero-principal.webp" as="image" fetchpriority="high" />
+  <!-- <link rel="preload" href={heroPreload.src} as="image" fetchpriority="high" /> -->
 
   <!-- Schema.org JSON-LD -->
   <script type="application/ld+json" set:html={JSON.stringify(schema)} />

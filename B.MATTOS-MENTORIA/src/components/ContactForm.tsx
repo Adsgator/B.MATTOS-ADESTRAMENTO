@@ -57,22 +57,55 @@ export default function ContactForm({ whatsappFallback }: Props) {
   };
 
   const handleSubmit = async () => {
-    if (form.website) return;
+    if (form.website) return; // Honeypot check
     if (!validate()) return;
 
     setStatus('loading');
+    const resultElement = document.getElementById('result');
+    if (resultElement) {
+      resultElement.classList.remove('hidden');
+      resultElement.textContent = "Enviando análise...";
+      resultElement.classList.add('text-orange-500'); // Usando a cor laranja do tema atual
+    }
+
     try {
-      const res = await fetch('/api/contato', {
+      const formElement = document.getElementById('contact-form') as HTMLFormElement;
+      const formData = new FormData(formElement);
+      const object = Object.fromEntries(formData);
+      const json = JSON.stringify(object);
+
+      const res = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: json
       });
-      if (res.ok) {
-        setStatus('success');
+
+      const web3formsJson = await res.json(); // Renomeado para evitar conflito com 'json'
+
+      if (res.status === 200) {
+        if (resultElement) {
+          resultElement.textContent = "Enviado com sucesso! Entraremos em contato.";
+          resultElement.classList.replace('text-orange-500', 'text-green-600');
+        }
+        setForm(emptyForm); // Resetar formulário
+        setStatus('success'); // Manter o status para a tela de sucesso
       } else {
+        console.error("Web3Forms error:", web3formsJson);
+        if (resultElement) {
+          resultElement.textContent = "Erro ao enviar. Tente pelo WhatsApp.";
+          resultElement.classList.replace('text-orange-500', 'text-red-600');
+        }
         setStatus('error');
       }
-    } catch {
+    } catch (error) {
+      console.error("Fetch error:", error);
+      if (resultElement) {
+        resultElement.textContent = "Erro de conexão. Tente pelo WhatsApp.";
+        resultElement.classList.replace('text-orange-500', 'text-red-600');
+      }
       setStatus('error');
     }
   };
@@ -99,7 +132,9 @@ export default function ContactForm({ whatsappFallback }: Props) {
   }
 
   return (
-    <div className="flex flex-col gap-8">
+    <form id="contact-form" onSubmit={e => { e.preventDefault(); handleSubmit(); }} className="flex flex-col gap-8">
+      <input type="hidden" name="access_key" value={import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY} />
+      <input type="hidden" name="subject" value="Novo Contato - Avaliação de Mentoria" />
       <input
         name="website"
         value={form.website}
@@ -218,6 +253,8 @@ export default function ContactForm({ whatsappFallback }: Props) {
         </div>
       </div>
 
+      <p id="result" className="text-center text-sm font-bold mt-4 hidden"></p>
+
       <button
         onClick={handleSubmit}
         disabled={status === 'loading'}
@@ -240,6 +277,6 @@ export default function ContactForm({ whatsappFallback }: Props) {
         __html: `
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
       `}} />
-    </div>
+    </form>
   );
 }
