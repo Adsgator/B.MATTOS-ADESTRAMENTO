@@ -4,7 +4,7 @@ import SectionHeader from '../components/SectionHeader.astro';
 import Button from '../components/Button.astro';
 
 const wppUrl =
-  'https://wa.me/5511918952921?text=Ol%C3%A1%2C%20Beatriz!%20Vi%20o%20site%20e%20quero%20saber%20mais%20sobre%20a%20mentoria.%20Seguem%20minhas%20informa%C3%A7%C3%B5es%3A%20Ra%C3%A7a%3A%20%7C%20Idade%20do%20c%C3%A3o%3A%20%7C%20Principal%20problema%20comportamental%3A%20%7C%20Hist%C3%B3rico%20de%20adestramento%3A%20%7C%20Estou%20disposto%20a%20mudar%20a%20rotina%3A';
+  'https://wa.me/5511918952921?text=Oi%2C%20vi%20voc%C3%AA%20no%20Google%20e%20gostaria%20de%20saber%20mais%20sobre%20a%20mentoria%20de%20adestramento.';
 
 const listaPlanos = [
   {
@@ -13,7 +13,6 @@ const listaPlanos = [
     sessao: '01 SESSÃO POR SEMANA',
     preco: '697',
     desc: 'Foco em correção pontual e base de comunicação.',
-    itens: ['Análise de 1 vídeo por semana', 'Suporte WhatsApp comercial', 'Encontros individuais'],
   },
   {
     id: 'padrao',
@@ -22,7 +21,6 @@ const listaPlanos = [
     preco: '747',
     highlight: true,
     desc: 'Ideal para casos de reatividade e rotina complexa.',
-    itens: ['Análise de 3 vídeos por semana', 'Suporte WhatsApp prioridade', 'Ajuste de rotina diária'],
   },
   {
     id: 'intensivo',
@@ -30,14 +28,13 @@ const listaPlanos = [
     sessao: '03 SESSÕES POR SEMANA',
     preco: '897',
     desc: 'Para quem quer resultado máximo no menor tempo.',
-    itens: ['Análise ilimitada de vídeos', 'Acesso direto 24h (urgência)', 'Formação de condutor'],
   },
 ];
 ---
 
 <section
   id="planos"
-  class="bg-foreground py-section px-5 xl:px-12 border-y-8 border-accent relative"
+  class="bg-foreground py-section-mobile-py xl:py-section px-5 xl:px-12 border-y-8 border-accent relative"
 >
   <div class="max-w-content mx-auto relative z-10">
     <div class="text-white text-center mb-16">
@@ -50,15 +47,11 @@ const listaPlanos = [
     </div>
 
     <!-- Cards -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <div class="grid grid-cols-1 xl:grid-cols-3 gap-8">
       {listaPlanos.map((plano) => (
-        <div class={`relative flex flex-col bg-background border-4 p-8 xl:p-10 ${plano.highlight ? 'border-accent scale-105 z-20 shadow-[10px_10px_0px_0px_rgba(255,77,0,1)]' : 'border-white/10 hover:border-white transition-colors'}`}>
+        <div class={`relative flex flex-col bg-background border-4 p-8 xl:p-10 ${plano.highlight ? 'border-accent' : 'border-white/10 hover:border-white transition-colors'}`}>
           
-          {plano.highlight && (
-            <div class="absolute -top-6 left-1/2 -translate-x-1/2 bg-accent text-white font-display text-label tracking-widest px-4 py-2 border-2 border-foreground whitespace-nowrap">
-              MAIS PROCURADO
-            </div>
-          )}
+
 
           <div class="mb-8">
             <h3 class="font-display text-h3 text-foreground opacity-50 tracking-widest uppercase mb-1">{plano.nome}</h3>
@@ -68,23 +61,17 @@ const listaPlanos = [
           <div class="mb-8">
             <div class="flex items-baseline gap-1">
               <span class="font-display text-h3 text-foreground opacity-40">R$</span>
-              <span class="font-display text-[4rem] leading-none text-foreground">{plano.preco}</span>
+              <span class="font-display text-display leading-none text-foreground">{plano.preco}</span>
               <span class="font-display text-h3 text-muted-foreground uppercase ml-2"> por mês</span>
             </div>
           </div>
+
+
 
           <div class="flex-grow flex flex-col gap-6">
             <p class="font-sans text-body-lg font-bold text-foreground">
               {plano.desc}
             </p>
-            <ul class="flex flex-col gap-4">
-              {plano.itens.map(item => (
-                <li class="flex items-start gap-3 font-sans text-body text-muted-foreground">
-                  <span class="w-2.5 h-2.5 bg-accent mt-1 shrink-0"></span>
-                  <span class="leading-tight">{item}</span>
-                </li>
-              ))}
-            </ul>
           </div>
 
           <div class="mt-12">
@@ -97,6 +84,7 @@ const listaPlanos = [
               newTab={true}
               class="w-full py-4 text-h3 tracking-[0.1em]"
             />
+          </div>
           </div>
         </div>
       ))}

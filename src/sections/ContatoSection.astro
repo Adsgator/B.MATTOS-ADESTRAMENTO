@@ -2,11 +2,13 @@
 // src/sections/ContatoSection.astro
 import SectionHeader from '../components/SectionHeader.astro';
 import ContactForm from '../components/ContactForm';
+
+const wppUrl = 'https://wa.me/5511918952921?text=Oi%2C%20vi%20voc%C3%AA%20no%20Google%20e%20gostaria%20de%20saber%20mais%20sobre%20a%20mentoria%20de%20adestramento.';
 ---
 
 <section
   id="contato"
-  class="bg-background py-section px-5 xl:px-12 relative border-b-2 border-foreground"
+  class="bg-background py-section-mobile-py xl:py-section px-5 xl:px-12 relative border-b-2 border-foreground"
   aria-labelledby="contato-title"
 >
   <!-- Grid Decorativo -->
@@ -37,7 +39,7 @@ import ContactForm from '../components/ContactForm';
       </div>
 
       <div class="bg-background border-4 border-foreground p-8 shadow-[12px_12px_0px_0px_rgba(26,29,35,1)]">
-        <ContactForm client:load />
+        <ContactForm client:load whatsappFallback={wppUrl} />
       </div>
     </div>
   </div>

@@ -28,7 +28,7 @@ const passos = [
 
 <section
   id="como-funciona"
-  class="bg-background py-section px-5 xl:px-12 border-b-2 border-foreground"
+  class="bg-background py-section-mobile-py xl:py-section px-5 xl:px-12 border-b-2 border-foreground"
 >
   <div class="max-w-content mx-auto">
     <div class="grid grid-cols-1 xl:grid-cols-[1fr_1.5fr] gap-12 xl:gap-20">
@@ -53,7 +53,7 @@ const passos = [
             class="sticky bg-surface border-2 border-foreground p-8 xl:p-12 mb-20 shadow-[4px_4px_0px_0px_rgba(26,29,35,1)] transition-transform duration-500 step-card"
             style={`top: ${120 + (index * 24)}px; z-index: ${index + 1};`}
           >
-            <span class="font-display text-[6rem] text-foreground opacity-5 absolute right-8 top-4 pointer-events-none select-none">
+            <span class="font-display text-display text-foreground opacity-5 absolute right-8 top-4 pointer-events-none select-none">
               {p.num}
             </span>
             <div class="flex items-baseline gap-4 mb-4">
@@ -68,8 +68,8 @@ const passos = [
 
         <!-- Autonomia (Card Final que fecha o stack) -->
         <div 
-          class="sticky bg-foreground text-white p-10 xl:p-14 border-4 border-foreground shadow-[8px_8px_0px_0px_rgba(255,77,0,1)] z-[10]"
-          style={`top: ${120 + (passos.length * 24)}px;`}
+          class="sticky bg-foreground text-white p-10 xl:p-14 border-4 border-foreground shadow-[8px_8px_0px_0px_rgba(255,77,0,1)] z-[10] mb-20"
+          style="top: 120px;"
         >
           <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#FF4D00_1px,transparent_1px)] [background-size:20px_20px]"></div>
           <h3 class="font-display text-display text-accent mb-6 relative z-10 leading-none">AUTONOMIA</h3>

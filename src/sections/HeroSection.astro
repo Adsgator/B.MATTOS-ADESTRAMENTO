@@ -3,14 +3,15 @@
 import { Image } from 'astro:assets';
 import Button from '../components/Button.astro';
 import heroImage from '../assets/images/hero-principal.webp';
+import heroImageMobile from '../assets/images/hero-principal-mobile.webp';
 
 const wppUrl =
-  'https://wa.me/5511918952921?text=Ol%C3%A1%2C%20Beatriz!%20Vi%20o%20site%20e%20quero%20saber%20mais%20sobre%20a%20mentoria.%20Seguem%20minhas%20informa%C3%A7%C3%B5es%3A%20Ra%C3%A7a%3A%20%7C%20Idade%20do%20c%C3%A3o%3A%20%7C%20Principal%20problema%20comportamental%3A%20%7C%20Hist%C3%B3rico%20de%20adestramento%3A%20%7C%20Estou%20disposto%20a%20mudar%20a%20rotina%3A';
+  'https://wa.me/5511918952921?text=Oi%2C%20vi%20voc%C3%AA%20no%20Google%20e%20gostaria%20de%20saber%20mais%20sobre%20a%20mentoria%20de%20adestramento.';
 ---
 
 <section
   id="hero"
-  class="bg-background pt-40 pb-20 xl:pt-44 xl:pb-0 px-5 xl:px-12 relative"
+  class="bg-background pt-[10rem] pb-section-mobile-py xl:pt-[14rem] xl:pb-section px-5 xl:px-12 relative"
 >
   <!-- Dot pattern background -->
   <div class="absolute inset-0 opacity-[0.03] pointer-events-none select-none" style="background-image: radial-gradient(circle, currentColor 1px, transparent 1px); background-size: 32px 32px;"></div>
@@ -42,15 +43,15 @@ const wppUrl =
           <div class="relative w-full mt-4 xl:mt-0">
             
             <!-- Imagem Mobile -->
-            <div class="hero-image-animate block xl:hidden w-[105%] -mr-[5%] z-10 pointer-events-none">
+            <div class="hero-image-animate block xl:hidden w-full z-10 pointer-events-none">
               <Image
-                src={heroImage}
+                src={heroImageMobile}
                 alt="Beatriz Mattos em treinamento com American Bully"
                 width={600}
                 height={600}
                 loading="eager"
                 format="webp"
-                class="w-full h-auto drop-shadow-2xl"
+                class="w-full h-auto drop-shadow-2xl translate-x-[2%]"
               />
             </div>
 
@@ -99,7 +100,7 @@ const wppUrl =
           height={1000}
           loading="eager"
           format="webp"
-          class="w-full max-w-[520px] drop-shadow-2xl transition-all duration-700"
+          class="w-full max-w-[520px] ml-auto drop-shadow-2xl transition-all duration-700"
         />
 
 

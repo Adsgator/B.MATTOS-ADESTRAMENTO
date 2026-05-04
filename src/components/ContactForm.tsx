@@ -233,10 +233,11 @@ export default function ContactForm({ whatsappFallback }: Props) {
       )}
 
       <p className="text-center font-display text-label tracking-widest text-muted-foreground">
-        QUER IR DIRETO? <a href={whatsappFallback} className="text-accent underline decoration-2 underline-offset-4">FALALA NO WHATSAPP</a>
+        QUER IR DIRETO? <a href={whatsappFallback} className="text-accent underline decoration-2 underline-offset-4">FALE NO WHATSAPP</a>
       </p>
 
-      <style dangerouslySetInnerHTML={{ __html: `
+      <style dangerouslySetInnerHTML={{
+        __html: `
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
       `}} />
     </div>

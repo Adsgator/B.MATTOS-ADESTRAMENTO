@@ -46,7 +46,7 @@ export default function MobileMenu({ links, ctaLabel, ctaHref }: Props) {
       <button
         aria-label={isOpen ? 'Fechar menu' : 'Abrir menu'}
         onClick={() => setIsOpen(true)}
-        className="xl:hidden flex flex-col justify-center items-center w-10 h-10 gap-2 text-foreground"
+        className="xl:hidden flex flex-col justify-center items-center w-11 h-11 gap-2 text-foreground"
       >
         <span className="w-8 h-1 bg-current" />
         <span className="w-8 h-1 bg-current" />
@@ -70,7 +70,7 @@ export default function MobileMenu({ links, ctaLabel, ctaHref }: Props) {
               className="self-end w-12 h-12 flex items-center justify-center text-white border-2 border-white"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
-                <path d="M18 6 6 18"/><path d="m6 6 12 12"/>
+                <path d="M18 6 6 18" /><path d="m6 6 12 12" />
               </svg>
             </button>
 
@@ -86,7 +86,7 @@ export default function MobileMenu({ links, ctaLabel, ctaHref }: Props) {
                     <a
                       href={link.href}
                       onClick={() => setIsOpen(false)}
-                      className="font-display text-[3.5rem] leading-none text-white hover:text-accent transition-colors uppercase tracking-widest"
+                      className="font-display text-h1 leading-none text-white hover:text-accent transition-colors uppercase tracking-widest"
                     >
                       {link.label}
                     </a>
