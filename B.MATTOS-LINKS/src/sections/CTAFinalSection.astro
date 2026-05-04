@@ -1,0 +1,62 @@
+---
+// src/sections/CTAFinalSection.astro
+import Button from '../components/Button.astro';
+
+const wppUrl =
+  'https://wa.me/5511918952921?text=Oi%2C%20vi%20voc%C3%AA%20no%20Google%20e%20gostaria%20de%20saber%20mais%20sobre%20a%20mentoria%20de%20adestramento.';
+---
+
+<section
+  id="cta-final"
+  class="bg-foreground py-section-mobile-py xl:py-section px-5 xl:px-12 relative overflow-hidden border-t-8 border-accent"
+>
+  <!-- Background Noise -->
+  <div class="absolute inset-0 opacity-[0.05] pointer-events-none mix-blend-overlay" style="background-image: url('https://www.transparenttextures.com/patterns/dark-matter.png');"></div>
+
+  <div class="max-w-content mx-auto text-center flex flex-col items-center gap-10 relative z-10">
+    <h2 class="font-display text-h1 text-white leading-none uppercase max-w-[930px]">
+      CONSTRUA UMA RELAÇÃO DE RESPEITO E <span class="text-accent">CLAREZA COM O SEU CÃO.</span>
+    </h2>
+    
+    <p class="font-sans text-body-lg text-white opacity-80 max-w-[600px]">
+      O próximo passo é uma análise técnica do seu caso para estruturarmos o melhor plano de treinamento. Vamos alinhar as expectativas e começar o trabalho de campo.
+    </p>
+
+    <div class="relative mt-6">
+      <Button
+        label="FALE COMIGO PELO WHATSAPP"
+        href={wppUrl}
+        variant="accent"
+        trackingId="btn-cta-final"
+        section="cta-final"
+        newTab={true}
+        class="px-8 sm:px-16 py-6 text-h3 tracking-[0.2em] border-2 border-foreground"
+      />
+    </div>
+
+    <p class="font-display text-label text-accent tracking-[0.3em] mt-[-1.5rem] uppercase font-bold">
+      MENTORIA INDIVIDUAL. VAGAS POR ORDEM DE CONTATO.
+    </p>
+  </div>
+</section>
+
+<script>
+  import gsap from 'gsap';
+  import ScrollTrigger from 'gsap/ScrollTrigger';
+
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    gsap.registerPlugin(ScrollTrigger);
+
+    gsap.from('#cta-final h2, #cta-final p, #cta-final .relative', {
+      opacity: 0,
+      y: 20,
+      duration: 0.5,
+      stagger: 0.08,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: '#cta-final',
+        start: 'top 95%',
+      },
+    });
+  }
+</script>

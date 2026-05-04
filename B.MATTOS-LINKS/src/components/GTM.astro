@@ -1,0 +1,29 @@
+---
+// src/components/GTM.astro
+// Renderiza: Consent Mode v2 + snippet GTM do <head>.
+// Snippet <body> (noscript) é adicionado diretamente em Layout.astro logo após <body>.
+interface Props { id: string; }
+const { id } = Astro.props;
+---
+
+<!-- Google Consent Mode v2 DEFAULT — executar ANTES do GTM -->
+<script is:inline>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {
+    'ad_storage': 'denied',
+    'analytics_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied',
+    'wait_for_update': 500
+  });
+</script>
+
+<!-- GTM snippet HEAD -->
+<script is:inline define:vars={{ gtmId: id }}>
+(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer',gtmId);
+</script>

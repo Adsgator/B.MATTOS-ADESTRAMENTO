@@ -1,0 +1,171 @@
+# Adsgator — Regras de Desenvolvimento
+# Não editar por projeto — é o padrão global da agência.
+
+---
+
+## CONTEXTO
+
+Você está desenvolvendo Landing Pages de alta conversão para a agência Adsgator.
+Páginas destinadas a tráfego direto do Google Ads.
+Performance, conversão e fidelidade ao design especificado são as prioridades absolutas.
+A Ficha do Projeto (Doc 3) é a fonte da verdade — toda decisão técnica e visual está lá.
+
+---
+
+## STACK
+
+- Astro (versão estável mais recente) — framework base, página estática por padrão
+- Tailwind CSS — toda estilização, tokens via tailwind.config.js
+- Node.js — ambiente de build
+- GSAP + ScrollTrigger — animações, direto em .astro via <script>
+- React — apenas como Astro Island (client:visible) para componentes com estado real
+- Framer Motion — apenas dentro de islands React quando inseparável do estado
+- Fontsource (@fontsource/nome) — nunca Google Fonts CDN
+
+---
+
+## ARQUITETURA
+
+```
+src/
+  components/
+    layout/     → Header.astro, Footer.astro, WhatsAppButton.astro
+    sections/   → Hero.astro, Services.astro, Pricing.astro, CTA.astro, etc.
+    ui/         → Button.astro, Badge.astro, Card.astro
+  layouts/      → BaseLayout.astro (head, meta, fontes, scripts globais)
+  pages/        → index.astro, links.astro
+  styles/       → global.css (apenas reset e tokens CSS se necessário)
+  assets/       → imagens otimizadas para processamento do Astro
+public/         → assets estáticos (favicon, og-image, svgs de marca)
+```
+
+Componente com mais de 80 linhas → dividir em sub-componentes.
+
+---
+
+## TOKENS E CORES
+
+NUNCA HEX hardcoded no código.
+SEMPRE classe Tailwind mapeada para token em tailwind.config.js.
+
+```
+✅ class="bg-background text-text border-border"
+❌ style="background: #1C1C1C"
+❌ className="text-[#FFFFFF]"
+```
+
+---
+
+## TIPOGRAFIA
+
+- Headlines (H1, H2): sempre clamp() — nunca px fixo
+- Aplicar via className, nunca style
+- Line-height corpo: 1.6 — max-width parágrafos: max-w-[65ch]
+- Importar fontes no BaseLayout.astro via @fontsource
+
+---
+
+## ÍCONES
+
+- Biblioteca e strokeWidth definidos na Ficha do Projeto
+- Mesmo strokeWidth em TODOS os ícones da página — nunca variar
+- Cor: currentColor ou token — nunca HEX direto
+
+---
+
+## UX OBRIGATÓRIO (todo projeto)
+
+Header: sticky top-0 z-50, hide/show no scroll via GSAP, backdrop após 80px, CTA sempre visível
+
+WhatsApp flutuante:
+- fixed, bottom-6 right-6 / bottom-8 right-8
+- oculto no load, aparece quando Hero sai do viewport (IntersectionObserver)
+- desaparece quando footer entra no viewport
+- mínimo 56x56px — SVG nativo, sem biblioteca
+
+Imagens: componente <Image /> nativo, loading="eager" só no Hero, .webp, sempre width+height+alt
+
+Rodapé: {new Date().getFullYear()} dinâmico, SVG Adsgator com currentColor
+
+CTA final: imediatamente antes do footer, maior contraste da página, headline diferente do Hero
+
+---
+
+## ANIMAÇÕES GSAP
+
+```js
+const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+// Envolver TODAS as animações neste check
+
+const EASING   = { enter: 'power2.out', exit: 'power2.in' }
+const DURATION = { fast: 0.3, normal: 0.5, slow: 0.7 }
+const OFFSET   = { y: 30 }
+```
+
+- Hero: timeline na entrada, elementos com delay escalonado
+- Seções: ScrollTrigger start "top 80%", opacity+y
+- Cards/listas: ScrollTrigger + stagger 0.1s
+- Imagens: scale 0.97→1 — nunca mover no eixo Y (causa layout shift)
+- Hover de botão: CSS puro, nunca GSAP
+
+---
+
+## MOBILE FIRST
+
+- Base para mobile, sobrescrever com sm: md: lg: xl:
+- Touch targets: mínimo 44x44px em todo elemento interativo
+- Padding lateral mobile mínimo: px-5
+- Layout 2 colunas: breakpoint xl: (1280px)
+- Container: max-w-screen-xl mx-auto
+
+---
+
+## MODO DE AJUSTE FINO (ATIVO)
+
+> O design está aprovado. A partir de agora, qualquer alteração deve ser
+> **cirúrgica** — apenas o que o usuário solicitar explicitamente.
+
+### Regras obrigatórias:
+
+1. **Altere SOMENTE o que foi pedido.** Não "aproveite" para corrigir, melhorar ou refatorar nada ao redor.
+2. **Preserve o design atual.** Fontes, cores, espaçamentos, tamanhos, animações, layout e copy estão aprovados. Não toque neles a menos que seja solicitado.
+3. **Não altere `tailwind.config.js`** sem pedido explícito — os tokens de design estão travados.
+4. **Não altere componentes compartilhados** (`Button.astro`, `Layout.astro`, etc.) a menos que o pedido seja especificamente sobre eles. Mudança em componente global afeta todas as páginas.
+5. **Não adicione nem remova dependências** sem pedido explícito.
+6. **Escopo mínimo.** Se o pedido é sobre um botão, mexa apenas naquele botão. Se é sobre uma seção, mexa apenas naquela seção. Nunca extrapole.
+7. **Antes de editar, confirme** o que vai mudar se houver ambiguidade. Na dúvida, pergunte.
+8. **Teste visual.** Após cada alteração, verifique no browser (desktop e mobile) se nada ao redor quebrou.
+
+---
+
+## PROIBIÇÕES
+
+- ❌ HEX hardcoded no código
+- ❌ style="" onde Tailwind resolve
+- ❌ Alterar qualquer copy (texto aprovado não muda)
+- ❌ Gradientes coloridos
+- ❌ Sombras coloridas
+- ❌ border-radius excessivo (máx rounded-sm botões, rounded cards)
+- ❌ Ícones coloridos
+- ❌ Misturar strokeWidth de ícones
+- ❌ Imagens sem width, height, alt
+- ❌ React onde .astro resolve
+- ❌ console.log em produção
+- ❌ .env commitado
+
+---
+
+## CHECKLIST FINAL
+
+- [ ] Tokens no tailwind.config.js, zero HEX no código
+- [ ] Header hide/show implementado
+- [ ] WhatsApp flutuante com show/hide
+- [ ] Imagens: width, height, alt, loading corretos
+- [ ] prefers-reduced-motion respeitado
+- [ ] Ano dinâmico no footer
+- [ ] SVG Adsgator com currentColor
+- [ ] CTA final antes do footer
+- [ ] Touch targets 44px+
+- [ ] Lighthouse Performance ≥ 90
+- [ ] Testado em 375px e 1280px
+- [ ] .env no .gitignore, não commitado

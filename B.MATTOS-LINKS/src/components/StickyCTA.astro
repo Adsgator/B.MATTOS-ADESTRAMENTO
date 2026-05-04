@@ -1,0 +1,86 @@
+---
+// src/components/StickyCTA.astro
+import Button from './Button.astro';
+
+const wppUrl = 'https://wa.me/5511918952921?text=Oi%2C%20vi%20voc%C3%AA%20no%20Google%20e%20gostaria%20de%20saber%20mais%20sobre%20a%20mentoria%20de%20adestramento.'
+---
+
+<div
+  id="sticky-cta-container"
+  class="fixed bottom-0 left-0 w-full p-4 z-[100] translate-y-full xl:hidden"
+>
+  <div class="max-w-md mx-auto">
+    <Button
+      label="QUERO LIDERAR MEU CÃO"
+      href={wppUrl}
+      variant="accent"
+      trackingId="btn-sticky-cta"
+      section="sticky-footer"
+      newTab={true}
+      class="w-full py-5 shadow-[4px_4px_0px_0px_rgba(26,29,35,1)]"
+    />
+  </div>
+</div>
+
+<script>
+  import gsap from 'gsap';
+  import ScrollTrigger from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const stickyCta = document.getElementById('sticky-cta-container');
+  const heroCta = document.getElementById('btn-cta-hero');
+
+  if (stickyCta && heroCta) {
+    // Show after a small delay on load
+    gsap.to(stickyCta, {
+      y: 0,
+      duration: 0.6,
+      delay: 1,
+      ease: 'power3.out'
+    });
+
+    // Hide when Hero CTA comes into view
+    ScrollTrigger.create({
+      trigger: heroCta,
+      start: 'top 90%',
+      onEnter: () => {
+        gsap.to(stickyCta, {
+          y: '120%',
+          duration: 0.4,
+          ease: 'power2.in',
+          overwrite: true
+        });
+      },
+      // Note: User said "it disappears and doesn't reappear", 
+      // but usually it's better if it reappears if they scroll back up before reaching it?
+      // "ele só aparece entre o top da página e o botão de CTA do hero"
+      // So if they scroll back UP from the hero CTA, it SHOULD reappear.
+      onLeaveBack: () => {
+        gsap.to(stickyCta, {
+          y: 0,
+          duration: 0.4,
+          ease: 'power2.out',
+          overwrite: true
+        });
+      },
+      // If they go past the Hero CTA (scrolling down), keep it hidden
+      onEnterBack: () => {
+        gsap.to(stickyCta, {
+          y: '120%',
+          duration: 0.4,
+          ease: 'power2.in',
+          overwrite: true
+        });
+      },
+      onLeave: () => {
+         gsap.to(stickyCta, {
+          y: '120%',
+          duration: 0.4,
+          ease: 'power2.in',
+          overwrite: true
+        });
+      }
+    });
+  }
+</script>

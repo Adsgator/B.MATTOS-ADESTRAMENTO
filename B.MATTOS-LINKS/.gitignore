@@ -1,0 +1,71 @@
+# Dependências
+node_modules/
+.pnp
+.pnp.js
+
+# Build
+dist/
+.output/
+.vercel/
+.netlify/
+
+# Astro
+.astro/
+
+# Ambiente — NUNCA commitar
+.env
+.env.local
+.env.development
+.env.production
+.env.staging
+*.env
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Cache
+.cache/
+.parcel-cache/
+.turbo/
+
+# Editores
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.DS_Store
+Thumbs.db
+
+# Testes
+coverage/
+.nyc_output/
+
+# Temporários
+*.tmp
+*.temp
+*.bak
+*.orig
+
+# Sistema
+.DS_Store
+.AppleDouble
+.LSOverride
+Desktop.ini
+$RECYCLE.BIN/
+
+# Certificados locais
+*.pem
+*.key
+*.cert
+
+.vercel

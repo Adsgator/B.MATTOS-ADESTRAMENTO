@@ -1,0 +1,118 @@
+---
+// src/sections/ComoFuncionaSection.astro
+import SectionHeader from '../components/SectionHeader.astro';
+
+const passos = [
+  {
+    num: '01',
+    titulo: 'FILTRO INICIAL',
+    descricao: 'Você me envia no WhatsApp raça idade do cão e o principal problema. Esse filtro existe para garantir que a mentoria seja viável para o seu caso antes de você investir.',
+  },
+  {
+    num: '02',
+    titulo: 'ENCONTROS INDIVIDUAIS',
+    descricao: 'Encontros pelo Google Meet totalmente focados no seu caso. Você fala diretamente comigo sem turmas e sem generalização.',
+  },
+  {
+    num: '03',
+    titulo: 'ANÁLISE DE CAMPO',
+    descricao: 'Você filma seus treinos e me envia. Eu analiso tudo e te devolvo o que está gerando ruído na comunicação com o seu cão.',
+  },
+  {
+    num: '04',
+    titulo: 'SUPORTE TÁTICO',
+    descricao: 'Acesso direto ao WhatsApp entre as sessões. Surgiu dúvida na prática você tem suporte para continuar o trabalho.',
+  },
+];
+---
+
+<section
+  id="como-funciona"
+  class="bg-background py-section-mobile-py xl:py-section px-5 xl:px-12 border-b-2 border-foreground"
+>
+  <div class="max-w-content mx-auto">
+    <div class="grid grid-cols-1 xl:grid-cols-[1fr_1.5fr] gap-12 xl:gap-20">
+      
+      <!-- Esquerda: Cabeçalho Fixo -->
+      <div class="xl:sticky xl:top-32 h-fit">
+        <SectionHeader
+          label="O PROCESSO"
+          title="MÉTODO CLARO ACOMPANHAMENTO DIRETO E RESULTADO CONSISTENTE."
+          subtitle="Um acompanhamento direto focado em resultados práticos. Identificamos falhas, aplicamos correções e construímos a sua autonomia como condutor."
+        />
+        
+        <div class="mt-12 p-10 border-4 border-foreground bg-accent text-white font-display text-h2 leading-none rotate-[-2deg] shadow-[8px_8px_0px_0px_rgba(26,29,35,1)] max-w-sm">
+          O OBJETIVO <br/> DA MENTORIA <br/> É A SUA <br/> INDEPENDÊNCIA.
+        </div>
+      </div>
+
+      <!-- Direita: Passos com efeito Stacking -->
+      <div class="flex flex-col gap-0 steps-stack-container">
+        {passos.map((p, index) => (
+          <div 
+            class="sticky bg-surface border-2 border-foreground p-8 xl:p-12 mb-20 shadow-[4px_4px_0px_0px_rgba(26,29,35,1)] transition-transform duration-500 step-card"
+            style={`top: ${120 + (index * 24)}px; z-index: ${index + 1};`}
+          >
+            <span class="font-display text-display text-foreground opacity-5 absolute right-8 top-4 pointer-events-none select-none">
+              {p.num}
+            </span>
+            <div class="flex items-baseline gap-4 mb-4">
+              <span class="font-display text-h2 text-accent">{p.num}.</span>
+              <h3 class="font-display text-h2 text-foreground tracking-widest">{p.titulo}</h3>
+            </div>
+            <p class="font-sans text-body-lg text-muted-foreground max-w-lg leading-relaxed">
+              {p.descricao}
+            </p>
+          </div>
+        ))}
+
+        <!-- Autonomia (Card Final que fecha o stack) -->
+        <div 
+          class="sticky bg-foreground text-white p-10 xl:p-14 border-4 border-foreground shadow-[8px_8px_0px_0px_rgba(255,77,0,1)] z-[10] mb-20"
+          style="top: 120px;"
+        >
+          <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#FF4D00_1px,transparent_1px)] [background-size:20px_20px]"></div>
+          <h3 class="font-display text-display text-accent mb-6 relative z-10 leading-none">AUTONOMIA</h3>
+          <p class="font-sans text-body-lg opacity-90 relative z-10 max-w-xl">
+            Você constrói a base de comunicação. Você entende o cão. Você conduz com clareza. A mentoria termina quando você se torna independente.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Efeito de compressão opcional ao stackar */
+  .step-card {
+    will-change: transform, opacity;
+  }
+</style>
+
+<script>
+  import gsap from 'gsap';
+  import ScrollTrigger from 'gsap/ScrollTrigger';
+
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    gsap.registerPlugin(ScrollTrigger);
+
+    const cards = document.querySelectorAll('.step-card');
+    
+    cards.forEach((card, i) => {
+      // Anima o card atual quando o próximo card se aproxima/sobrepõe
+      gsap.to(card, {
+        scale: 1, // Mantém escala em 1 para não desalinhar as bordas laterais
+        opacity: 0.5,
+        transformOrigin: "top center",
+        scrollTrigger: {
+          trigger: card,
+          start: `top ${120 + (i * 24)}px`,
+          endTrigger: '.steps-stack-container',
+          end: 'bottom center',
+          scrub: true,
+          pinSpacing: false,
+        }
+      });
+    });
+  }
+</script>

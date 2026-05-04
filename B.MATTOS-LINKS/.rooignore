@@ -1,0 +1,47 @@
+# Roo Code — arquivos ignorados
+# Roo não lê, não indexa e não modifica o que está listado aqui.
+
+# Dependências — nunca tocar
+node_modules/
+
+# Build — não ler, pode ser grande e desatualizado
+dist/
+.output/
+.astro/
+
+# Ambiente — nunca ler ou sugerir alterações
+.env
+.env.*
+*.env
+
+# Assets binários — não processar
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.webp
+*.avif
+*.svg
+*.ico
+*.mp4
+*.mp3
+*.woff
+*.woff2
+*.ttf
+*.eot
+
+# Documentos de projeto — leitura permitida, mas nunca editar
+_docs/
+
+# Logs
+*.log
+logs/
+
+# Cache e temporários
+.cache/
+*.tmp
+*.temp
+
+# OS
+.DS_Store
+Thumbs.db

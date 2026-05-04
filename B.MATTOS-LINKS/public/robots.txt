@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /links
+Disallow: /politica-de-privacidade
+Disallow: /404
+
+Sitemap: https://abeak9adestramento.com.br/sitemap-index.xml
