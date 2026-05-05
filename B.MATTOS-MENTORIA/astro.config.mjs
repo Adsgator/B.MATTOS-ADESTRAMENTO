@@ -1,5 +1,5 @@
 // astro.config.mjs
-// NOTA: output 'hybrid' permite páginas estáticas + endpoint serverless /api/contato.
+// NOTA: o output 'hybrid' permite páginas estáticas + endpoint serverless /api/contato.
 // Todas as páginas têm export const prerender = true — comportamento idêntico a 'static'.
 // Somente src/pages/api/contato.ts é serverless (necessário para Resend funcionar).
 import { defineConfig } from 'astro/config';
