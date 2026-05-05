@@ -5,17 +5,18 @@ export default {
     extend: {
       colors: {
         sage: {
-          DEFAULT: '#8B9E87',
-          dark: '#6B7E67',
-          light: '#A8BBA4',
+          DEFAULT: '#f1e6d0',
+          dark: '#C8B897',
+          light: '#f7ead8',
         },
         btn: {
-          bg: '#FFFFFF',
-          hover: '#F3F0EB',
-          text: '#2A2A2A',
+          bg: '#f1e6d0',
+          hover: '#e5d5b6',
+          text: '#C8B897',
         },
       },
       fontFamily: {
+        heading: ['"Bebas Neue"', 'sans-serif'],
         display: ['"Playfair Display"', 'Georgia', 'serif'],
         sans: ['"DM Sans"', 'system-ui', 'sans-serif'],
       },

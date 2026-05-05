@@ -4,10 +4,12 @@ export interface Props {
   label: string;
   href: string;
   newTab?: boolean;
-  icon?: string; // emoji ou SVG inline opcional
+  iconSVG?: string; // SVG inline
 }
 
-const { label, href, newTab = false, icon } = Astro.props;
+
+
+const { label, href, newTab = false, iconSVG } = Astro.props;
 ---
 
 <a
@@ -16,7 +18,9 @@ const { label, href, newTab = false, icon } = Astro.props;
   rel={newTab ? 'noopener noreferrer' : undefined}
   class="link-btn"
 >
-  {icon && <span class="link-btn-icon" aria-hidden="true">{icon}</span>}
+  {iconSVG && (
+    <span class="link-btn-icon" aria-hidden="true" set:html={iconSVG}></span>
+  )}
   <span>{label}</span>
 </a>
 
