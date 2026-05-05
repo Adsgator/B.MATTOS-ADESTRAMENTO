@@ -1,0 +1,60 @@
+---
+// src/components/LinkButton.astro
+export interface Props {
+  label: string;
+  href: string;
+  newTab?: boolean;
+  icon?: string; // emoji ou SVG inline opcional
+}
+
+const { label, href, newTab = false, icon } = Astro.props;
+---
+
+<a
+  href={href}
+  target={newTab ? '_blank' : '_self'}
+  rel={newTab ? 'noopener noreferrer' : undefined}
+  class="link-btn"
+>
+  {icon && <span class="link-btn-icon" aria-hidden="true">{icon}</span>}
+  <span>{label}</span>
+</a>
+
+<style>
+  .link-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 16px 24px;
+    background-color: #FFFFFF;
+    color: #2A2A2A;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    text-decoration: none;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.10), 0 2px 12px rgba(0,0,0,0.06);
+    transition: background-color 0.18s ease, transform 0.15s ease, box-shadow 0.18s ease;
+    cursor: pointer;
+  }
+
+  .link-btn:hover {
+    background-color: #F3F0EB;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 18px rgba(0,0,0,0.12);
+  }
+
+  .link-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.10);
+  }
+
+  .link-btn-icon {
+    font-size: 18px;
+    line-height: 1;
+  }
+</style>

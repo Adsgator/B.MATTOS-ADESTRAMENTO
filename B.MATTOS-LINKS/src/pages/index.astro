@@ -1,128 +1,302 @@
 ---
-// src/pages/links.astro
+// src/pages/index.astro
+import LinksLayout from '../layouts/LinksLayout.astro';
+import LinkButton from '../components/LinkButton.astro';
+
 export const prerender = true;
 
-import { Image } from 'astro:assets';
-import logo from '../assets/logo.svg';
-import avatarLinks from '../assets/images/profissional-retrato.webp'; // Usando o mesmo retrato como fallback
-import Button from '../components/Button.astro';
-import Icon from '../components/Icon.astro';
+// ─── DADOS — editar aqui ───────────────────────────────────────────────────
+const perfil = {
+  nome:      'Beatriz Mattos',
+  cargo:     'ADESTRADORA DE CÃES',
+  fotoPerfil: 'https://placehold.co/200x200/8B9E87/FFF?text=BM',
+  bannerHero: 'https://placehold.co/860x480/6B7E67/FFF?text=Beatriz+Mattos',
+};
 
-const wppUrl =
-  'https://wa.me/5511918952921?text=Ol%C3%A1%2C%20Beatriz!%20Vi%20o%20site%20e%20quero%20saber%20mais%20sobre%20a%20mentoria.%20Seguem%20minhas%20informa%C3%A7%C3%B5es%3A%20Ra%C3%A7a%3A%20%7C%20Idade%20do%20c%C3%A3o%3A%20%7C%20Principal%20problema%20comportamental%3A%20%7C%20Hist%C3%B3rico%20de%20adestramento%3A%20%7C%20Estou%20disposto%20a%20mudar%20a%20rotina%3A';
+const redesSociais = [
+  {
+    nome: 'Instagram',
+    href: 'https://instagram.com/beamattos_adestramento', // ← AJUSTAR URL
+    ariaLabel: 'Instagram de Beatriz Mattos',
+  },
+  {
+    nome: 'TikTok',
+    href: 'https://tiktok.com/@beamattos', // ← AJUSTAR URL
+    ariaLabel: 'TikTok de Beatriz Mattos',
+  },
+  {
+    nome: 'YouTube',
+    href: 'https://youtube.com/@beamattos', // ← AJUSTAR URL
+    ariaLabel: 'YouTube de Beatriz Mattos',
+  },
+  {
+    nome: 'Facebook',
+    href: 'https://facebook.com/beamattos', // ← AJUSTAR URL
+    ariaLabel: 'Facebook de Beatriz Mattos',
+  },
+];
 
 const links = [
   {
-    label: '💬 Falar no WhatsApp',
-    href: wppUrl,
-    variant: 'accent',
-    trackingId: 'links-wpp',
+    label: 'Mentoria Online de Adestramento',
+    href: 'https://mentoria.abeak9adestramento.com.br',
+    icon: '🐾',
     newTab: true,
   },
   {
-    label: '🌐 Acessar o site',
-    href: '/',
-    variant: 'secondary',
-    trackingId: 'links-home',
-  },
-  {
-    label: '📸 Instagram @abeak9',
-    href: 'https://instagram.com/abeak9',
-    variant: 'secondary',
-    trackingId: 'links-insta',
+    label: 'Falar no WhatsApp',
+    href: 'https://wa.me/5511918952921?text=Oi%20Beatriz%2C%20vi%20seu%20link%20e%20gostaria%20de%20saber%20mais!',
+    icon: '💬',
     newTab: true,
   },
   {
-    label: '🎵 TikTok @abeak9',
-    href: 'https://tiktok.com/@abeak9',
-    variant: 'secondary',
-    trackingId: 'links-tiktok',
+    label: 'Ver no Instagram',
+    href: 'https://instagram.com/beamattos_adestramento', // ← AJUSTAR URL
+    icon: '📸',
+    newTab: true,
+  },
+  {
+    label: 'Canal no YouTube',
+    href: 'https://youtube.com/@beamattos', // ← AJUSTAR URL
+    icon: '▶️',
     newTab: true,
   },
 ];
+// ──────────────────────────────────────────────────────────────────────────
 ---
 
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Beatriz Mattos | Links</title>
-  <meta name="description" content="Links oficiais de Beatriz Mattos Adestradora." />
-  <meta name="robots" content="noindex" />
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-</head>
-<body class="bg-background text-foreground antialiased min-h-screen flex flex-col items-center justify-start pt-16 px-5 pb-12">
-  
-  <div class="w-full max-w-[520px] mx-auto flex flex-col items-center gap-8">
-    <!-- Logo -->
-    <a href="/" aria-label="Beatriz Mattos Adestradora">
-      <Image src={logo} alt="Beatriz Mattos Adestradora" height={40} loading="eager" />
-    </a>
+<LinksLayout>
+  <main class="links-page">
 
-    <!-- Avatar -->
-    <div class="relative">
-      <Image
-        src={avatarLinks}
-        alt="Foto de Beatriz Mattos, adestradora"
-        width={96}
-        height={96}
-        loading="eager"
-        class="rounded-full object-cover border-2 border-border shadow-card"
+    <!-- ── HERO BANNER ─────────────────────────────────────────── -->
+    <div class="hero-banner" role="img" aria-label="Banner de Beatriz Mattos">
+      <img
+        src={perfil.bannerHero}
+        alt=""
+        class="hero-banner__img"
+        width="430"
+        height="240"
+        fetchpriority="high"
+        decoding="async"
       />
+      <div class="hero-banner__overlay" aria-hidden="true"></div>
     </div>
 
-    <!-- Taglinee -->
-    <p class="font-sans text-body text-muted-foreground text-center max-w-[280px]">
-      Treina pessoas antes de treinar cães.
-    </p>
+    <!-- ── CARD PRINCIPAL ──────────────────────────────────────── -->
+    <div class="profile-card">
 
-    <!-- Botões -->
-    <nav class="w-full flex flex-col gap-4 links-container">
-      {links.map((link, i) => (
-        <div class="link-item opacity-0 translate-y-4">
-          <Button
-            label={link.label}
-            href={link.href}
-            variant={link.variant as any}
-            trackingId={link.trackingId}
-            section="links-page"
-            newTab={link.newTab}
-            class="w-full py-5"
-          />
-        </div>
-      ))}
-    </nav>
+      <!-- Avatar (posicionado na divisória) -->
+      <div class="avatar-wrapper" aria-hidden="true">
+        <img
+          src={perfil.fotoPerfil}
+          alt={`Foto de ${perfil.nome}`}
+          class="avatar"
+          width="96"
+          height="96"
+          loading="eager"
+          decoding="async"
+        />
+      </div>
 
-    <!-- Redes -->
-    <div class="mt-4 flex gap-6">
-      <a href="mailto:abeamattosk9@gmail.com" class="text-muted-foreground hover:text-accent transition-colors" aria-label="Enviar e-mail">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
-        </svg>
-      </a>
+      <!-- Nome + Cargo -->
+      <div class="profile-info">
+        <h1 class="profile-name">{perfil.nome}</h1>
+        <p class="profile-role">{perfil.cargo}</p>
+      </div>
+
+      <!-- Redes Sociais -->
+      <nav class="social-icons" aria-label="Redes sociais">
+        {redesSociais.map((rede) => (
+          <a
+            href={rede.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={rede.ariaLabel}
+            class="social-icon-link"
+          >
+            <!-- Ícone: TikTok -->
+            {rede.nome === 'TikTok' && (
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.34 6.34 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.19 8.19 0 004.79 1.53V6.78a4.85 4.85 0 01-1.02-.09z"/>
+              </svg>
+            )}
+            <!-- Ícone: YouTube -->
+            {rede.nome === 'YouTube' && (
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+              </svg>
+            )}
+            <!-- Ícone: Instagram -->
+            {rede.nome === 'Instagram' && (
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+              </svg>
+            )}
+            <!-- Ícone: Facebook -->
+            {rede.nome === 'Facebook' && (
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+              </svg>
+            )}
+          </a>
+        ))}
+      </nav>
+
+      <!-- Links -->
+      <div class="links-list" role="list">
+        {links.map((link) => (
+          <div role="listitem">
+            <LinkButton
+              label={link.label}
+              href={link.href}
+              newTab={link.newTab}
+              icon={link.icon}
+            />
+          </div>
+        ))}
+      </div>
+
+      <!-- Rodapé -->
+      <footer class="page-footer">
+        <p>© {new Date().getFullYear()} Beatriz Mattos · Adestramento</p>
+      </footer>
+
     </div>
+  </main>
+</LinksLayout>
 
-    <!-- Footer -->
-    <footer class="mt-auto pt-12 text-center">
-      <p class="font-sans text-small text-muted-foreground opacity-60">
-        © {new Date().getFullYear()} Beatriz Mattos
-      </p>
-    </footer>
-  </div>
+<style>
+  /* ── Layout geral ──────────────────────────────── */
+  .links-page {
+    min-height: 100vh;
+    background-color: #8B9E87;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
-  <script>
-    import gsap from 'gsap';
-    
-    document.addEventListener('DOMContentLoaded', () => {
-      gsap.to('.link-item', {
-        opacity: 1,
-        y: 0,
-        duration: 0.6,
-        stagger: 0.1,
-        ease: 'power2.out',
-      });
-    });
-  </script>
-</body>
-</html>
+  /* ── Hero Banner ───────────────────────────────── */
+  .hero-banner {
+    position: relative;
+    width: 100%;
+    max-width: 430px;
+    height: 240px;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .hero-banner__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+  }
+
+  .hero-banner__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.22);
+  }
+
+  /* ── Card Principal ────────────────────────────── */
+  .profile-card {
+    width: 100%;
+    max-width: 430px;
+    background-color: #8B9E87;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 20px 40px;
+    flex: 1;
+  }
+
+  /* ── Avatar ────────────────────────────────────── */
+  .avatar-wrapper {
+    margin-top: -48px;
+    z-index: 10;
+    position: relative;
+  }
+
+  .avatar {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #FFFFFF;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.20);
+    background-color: #d4d4d4;
+    display: block;
+  }
+
+  /* ── Perfil Info ────────────────────────────────── */
+  .profile-info {
+    margin-top: 14px;
+    text-align: center;
+  }
+
+  .profile-name {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 26px;
+    font-weight: 800;
+    color: #1A1A1A;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin-bottom: 4px;
+  }
+
+  .profile-role {
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: #3D3D3D;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  /* ── Redes Sociais ──────────────────────────────── */
+  .social-icons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+    margin-bottom: 28px;
+  }
+
+  .social-icon-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #2A2A2A;
+    transition: color 0.18s ease, transform 0.15s ease,
+      box-shadow 0.18s ease;
+    text-decoration: none;
+  }
+
+  .social-icon-link:hover {
+    color: #000000;
+    transform: scale(1.15);
+  }
+
+  .social-icon-link:active {
+    transform: scale(0.95);
+  }
+
+  /* ── Lista de Links ─────────────────────────────── */
+  .links-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  /* ── Rodapé ─────────────────────────────────────── */
+  .page-footer {
+    margin-top: 36px;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: 11px;
+    color: rgba(0, 0, 0, 0.35);
+    text-align: center;
+  }
+</style>
