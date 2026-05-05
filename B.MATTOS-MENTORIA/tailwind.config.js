@@ -30,7 +30,7 @@ module.exports = {
       },
       fontSize: {
         'display': ['clamp(3rem, 7vw, 5.5rem)', { lineHeight: '0.9', letterSpacing: '-0.02em' }],
-        'h1': ['clamp(2.85rem, 7vw, 5.5rem)', { lineHeight: '0.95', letterSpacing: '-0.02em' }],
+        'h1': ['clamp(2.85rem, 7vw, 4rem)', { lineHeight: '1.1', letterSpacing: '-0.02em' }],
         'h2': ['clamp(1.75rem, 4vw, 3rem)', { lineHeight: '1.0', letterSpacing: '-0.015em' }],
         'h3': ['clamp(1.25rem, 2.5vw, 2rem)', { lineHeight: '1.1', letterSpacing: '-0.01em' }],
         'body-lg': ['1.1875rem', { lineHeight: '1.6' }],
