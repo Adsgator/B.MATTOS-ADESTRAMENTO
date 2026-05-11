@@ -32,8 +32,20 @@ const modulos = [
 ];
 ---
 
-<section id="como-funciona" class="py-24 lg:py-40 bg-surface relative" aria-label="O que você vai aprender">
-  
+<section id="como-funciona" class="py-24 lg:py-40 bg-surface relative overflow-hidden" aria-label="O que você vai aprender">
+
+  <!-- Fundo decorativo: orbes e gradientes -->
+  <div class="absolute inset-0 pointer-events-none">
+    <!-- Orbe 1 - topo esquerda -->
+    <div class="absolute -top-40 -left-40 w-80 h-80 bg-gold/5 rounded-full blur-[120px] animate-float"></div>
+    <!-- Orbe 2 - topo direita -->
+    <div class="absolute -top-60 right-0 w-96 h-96 bg-primary/3 rounded-full blur-[140px]" style="animation: float 8s ease-in-out infinite 1s;"></div>
+    <!-- Orbe 3 - embaixo -->
+    <div class="absolute bottom-0 left-1/4 w-72 h-72 bg-gold/4 rounded-full blur-[100px]" style="animation: float 10s ease-in-out infinite 2s;"></div>
+    <!-- Grid sutil -->
+    <div class="absolute inset-0 opacity-[0.02] pointer-events-none" style="background-image: linear-gradient(0deg, rgba(255,77,0,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,77,0,0.1) 1px, transparent 1px); background-size: 50px 50px;"></div>
+  </div>
+
   <!-- Detalhe decorativo -->
   <div class="absolute left-0 bottom-0 w-full h-1/4 bg-gradient-to-t from-bg to-transparent opacity-50"></div>
 

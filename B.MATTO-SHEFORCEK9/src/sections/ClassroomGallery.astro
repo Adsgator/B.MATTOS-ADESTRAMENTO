@@ -1,0 +1,67 @@
+---
+import SectionHeader from '../components/global/SectionHeader.astro';
+import ClassroomGallery from '../components/islands/ClassroomGallery';
+---
+
+<section id="galeria" class="py-24 lg:py-40 bg-bg relative overflow-hidden" aria-label="Galeria de turmas anteriores">
+
+  <!-- Elementos decorativos de fundo -->
+  <div class="absolute inset-0 pointer-events-none">
+    <!-- Orbe central -->
+    <div class="absolute top-1/3 -right-1/4 w-[500px] h-[500px] bg-gold/6 rounded-full blur-[130px] animate-float"></div>
+    <!-- Orbe secundário -->
+    <div class="absolute -top-40 left-0 w-[400px] h-[400px] bg-primary/4 rounded-full blur-[120px]" style="animation: float 9s ease-in-out infinite 1s;"></div>
+    <!-- Linha decorativa -->
+    <div class="absolute top-0 left-1/4 w-1/2 h-px bg-gradient-to-r from-transparent via-gold/20 to-transparent"></div>
+  </div>
+
+  <div class="container-content relative z-10">
+
+    <!-- Header com título -->
+    <div class="mb-16 lg:mb-20">
+      <SectionHeader
+        label="Histórico"
+        title="Conheça quem já treinou com a gente"
+        subtitle="Turmas anteriores que transformaram sua segurança e autonomia com o curso She ForceK9."
+        align="center"
+      />
+    </div>
+
+    <!-- Galeria com Island React -->
+    <div class="max-w-4xl mx-auto">
+      <ClassroomGallery client:visible />
+    </div>
+
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (prefersReduced) return;
+
+      gsap.from('#galeria .container-content > div:first-child', {
+        scrollTrigger: {
+          trigger: '#galeria',
+          start: 'top 85%',
+        },
+        opacity: 0,
+        y: 40,
+        duration: 0.8,
+        ease: 'power3.out',
+      });
+
+      gsap.from('#galeria .max-w-4xl', {
+        scrollTrigger: {
+          trigger: '#galeria .max-w-4xl',
+          start: 'top 85%',
+        },
+        opacity: 0,
+        scale: 0.95,
+        duration: 1,
+        delay: 0.2,
+        ease: 'power3.out',
+      });
+    });
+  </script>
+
+</section>
