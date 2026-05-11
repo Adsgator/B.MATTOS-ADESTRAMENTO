@@ -29,11 +29,13 @@ const perguntas = [
 ];
 ---
 
-<section id="faq" class="py-24 lg:py-40 bg-gold/10 relative overflow-hidden" aria-label="Perguntas frequentes">
+<section id="faq" class="py-24 lg:py-40 bg-surface relative overflow-hidden" aria-label="Perguntas frequentes">
   
   <!-- Detalhes de fundo -->
-  <div class="absolute top-0 left-0 w-full h-1 bg-gold-gradient opacity-30"></div>
-  <div class="absolute -bottom-20 -right-20 w-80 h-80 bg-gold/5 rounded-full blur-3xl"></div>
+  <div class="absolute inset-0 opacity-[0.03] pointer-events-none" style="background-image: url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E\"); background-size: 200px;"></div>
+  <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent"></div>
+  <div class="absolute -bottom-20 -left-20 w-80 h-80 bg-gold/5 rounded-full blur-3xl"></div>
+  <div class="absolute top-1/2 right-0 -translate-y-1/2 w-64 h-64 bg-primary/5 rounded-full blur-[100px] pointer-events-none"></div>
 
   <div class="container-content relative z-10">
 
@@ -137,9 +139,5 @@ const perguntas = [
         }
       });
     });
-  });
-</script>0, y: 20, duration: 0.5, ease: 'power2.out', stagger: 0.08,
-      });
-    }
   });
 </script>

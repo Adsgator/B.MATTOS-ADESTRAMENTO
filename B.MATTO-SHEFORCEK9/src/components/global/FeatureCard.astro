@@ -41,7 +41,7 @@ const { icon, title, description, dark = false, index = 0 } = Astro.props;
   <!-- Conteúdo -->
   <div>
     {title && (
-      <h3 class:list={['font-sans font-semibold text-body-md mb-1', dark ? 'text-white' : 'text-text']}>
+      <h3 class:list={['font-display text-body-md mb-1', dark ? 'text-white' : 'text-text']}>
         {title}
       </h3>
     )}

@@ -1,4 +1,7 @@
 ---
+import { Image } from 'astro:assets';
+import logoBranca from '../../assets/images/logo-branca-sheforcek9.svg';
+
 const currentYear = new Date().getFullYear();
 const whatsappHref = 'https://wa.me/5511918952921?text=Ol%C3%A1!%20Vi%20o%20site%20e%20quero%20saber%20mais.';
 ---
@@ -13,8 +16,14 @@ const whatsappHref = 'https://wa.me/5511918952921?text=Ol%C3%A1!%20Vi%20o%20site
 
       <!-- Coluna 1: Marca + descrição -->
       <div>
-        <a href="#top" class="inline-block mb-4" aria-label="She ForceK9 — topo da página">
-          <span class="font-display text-3xl text-white tracking-wide">She ForceK9</span>
+        <a href="#top" class="inline-block mb-6" aria-label="She ForceK9 — topo da página">
+          <Image 
+            src={logoBranca} 
+            alt="She ForceK9 Logo" 
+            width={180} 
+            height={50}
+            class="h-8 lg:h-10 w-auto object-contain"
+          />
         </a>
         <p class="font-sans text-body-sm text-white/60 leading-relaxed">
           Se você quer aprender mais sobre proteção com cães e acompanhar a próxima data do She ForceK9 em SP, nos siga nas redes.
@@ -27,7 +36,7 @@ const whatsappHref = 'https://wa.me/5511918952921?text=Ol%C3%A1!%20Vi%20o%20site
 
       <!-- Coluna 2: Redes sociais -->
       <div>
-        <h3 class="font-sans font-semibold text-body-sm text-white/50 uppercase tracking-widest mb-6">
+        <h3 class="font-display text-lg text-white/50 uppercase tracking-widest mb-6">
           Redes Sociais
         </h3>
         <ul class="space-y-3">
@@ -64,7 +73,7 @@ const whatsappHref = 'https://wa.me/5511918952921?text=Ol%C3%A1!%20Vi%20o%20site
 
       <!-- Coluna 3: Contato -->
       <div>
-        <h3 class="font-sans font-semibold text-body-sm text-white/50 uppercase tracking-widest mb-6">
+        <h3 class="font-display text-lg text-white/50 uppercase tracking-widest mb-6">
           Contato
         </h3>
         <ul class="space-y-3">

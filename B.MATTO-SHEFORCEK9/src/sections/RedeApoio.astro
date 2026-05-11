@@ -1,0 +1,106 @@
+---
+import SectionHeader from '../components/global/SectionHeader.astro';
+---
+
+<section id="rede-apoio" class="py-24 lg:py-40 bg-dark text-white relative overflow-hidden" aria-label="Rede de Apoio">
+  
+  <!-- Fundo com gradiente e formas -->
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-gold/10 via-dark to-dark opacity-80"></div>
+  <div class="absolute top-1/2 left-0 -translate-y-1/2 w-96 h-96 bg-gold/5 rounded-full blur-[120px]"></div>
+
+  <div class="container-content relative z-10">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+      
+      <!-- Lado Esquerdo: Conteúdo -->
+      <div class="lg:col-span-7">
+        <SectionHeader
+          label="Comunidade"
+          title="Muito mais que técnica: uma rede de apoio real"
+          subtitle="No She ForceK9, você não apenas treina seu cão. Você entra para um grupo de mulheres unidas pelo empoderamento e pela força."
+          align="left"
+          dark={true}
+        />
+        
+        <div class="mt-12 space-y-8" id="rede-apoio-list">
+          <div class="flex gap-6 group">
+            <div class="flex-shrink-0 w-12 h-12 rounded-sm border border-gold/30 flex items-center justify-center group-hover:bg-gold transition-colors duration-500">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="text-gold group-hover:text-white">
+                <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 00-3-3.87" /><path d="M16 3.13a4 4 0 010 7.75" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-display text-xl text-white uppercase tracking-wider mb-2">Conexão Feminina</h3>
+              <p class="font-sans text-body-sm text-white/50 leading-relaxed">
+                Um ecossistema exclusivo para que a comunicação seja direta, sem ruídos e focada nas necessidades reais da mulher moderna.
+              </p>
+            </div>
+          </div>
+
+          <div class="flex gap-6 group">
+            <div class="flex-shrink-0 w-12 h-12 rounded-sm border border-gold/30 flex items-center justify-center group-hover:bg-gold transition-colors duration-500">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="text-gold group-hover:text-white">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-display text-xl text-white uppercase tracking-wider mb-2">Segurança Coletiva</h3>
+              <p class="font-sans text-body-sm text-white/50 leading-relaxed">
+                A rede de apoio começa no curso e se estende para a vida, com treinos contínuos e encontros para manter a técnica afiada.
+              </p>
+            </div>
+          </div>
+
+          <div class="flex gap-6 group">
+            <div class="flex-shrink-0 w-12 h-12 rounded-sm border border-gold/30 flex items-center justify-center group-hover:bg-gold transition-colors duration-500">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="text-gold group-hover:text-white">
+                <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-display text-xl text-white uppercase tracking-wider mb-2">Fim do Isolamento</h3>
+              <p class="font-sans text-body-sm text-white/50 leading-relaxed">
+                Pare de se sentir vulnerável. Aqui, transformamos o medo em força através do vínculo com seu cão e com suas parceiras de treino.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lado Direito: Visual/Impacto -->
+      <div class="lg:col-span-5" id="rede-apoio-visual">
+        <div class="relative">
+          <div class="absolute -inset-10 bg-gold/10 rounded-full blur-[100px] opacity-30 animate-pulse"></div>
+          <div class="relative bg-[#1a1d23] border border-white/5 p-10 rounded-sm shadow-2xl">
+            <p class="font-display text-display-md text-gold italic leading-tight mb-6">
+              "Juntas somos a proteção que antes buscávamos fora."
+            </p>
+            <div class="flex items-center gap-4">
+              <div class="w-10 h-10 rounded-full bg-gold/20 flex items-center justify-center">
+                <span class="text-gold text-xs font-bold">SF</span>
+              </div>
+              <p class="font-sans text-label text-white/40 uppercase tracking-widest">Manifesto She ForceK9</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) return;
+
+    gsap.from('#rede-apoio-list > div', {
+      scrollTrigger: { trigger: '#rede-apoio', start: 'top 70%' },
+      opacity: 0, x: -30, duration: 0.8, ease: 'power2.out', stagger: 0.2
+    });
+
+    gsap.from('#rede-apoio-visual', {
+      scrollTrigger: { trigger: '#rede-apoio-visual', start: 'top 80%' },
+      opacity: 0, scale: 0.9, duration: 1.2, ease: 'power3.out'
+    });
+  });
+</script>

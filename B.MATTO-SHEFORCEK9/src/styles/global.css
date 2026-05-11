@@ -22,6 +22,10 @@
     ::selection {
         @apply bg-primary/20 text-text;
     }
+    /* Títulos globais */
+    h1, h2, h3, h4, h5, h6 {
+        @apply font-display uppercase tracking-wide;
+    }
 }
 
 @layer components {
@@ -37,7 +41,7 @@
 
     /* Título de seção */
     .section-title {
-        @apply font-display text-display-lg text-dark;
+        @apply font-display text-display-lg text-dark uppercase tracking-wide;
     }
 
     /* Subtítulo de seção */
@@ -49,12 +53,12 @@
     .btn-gold {
         @apply relative overflow-hidden bg-gold text-white font-sans font-bold uppercase tracking-widest px-8 py-4 rounded-sm transition-all duration-300;
         background-image: theme('backgroundImage.gold-gradient');
-        box-shadow: 0 4px 15px rgba(197, 171, 120, 0.3);
+        box-shadow: 0 4px 15px rgba(255, 77, 0, 0.2);
     }
 
     .btn-gold:hover {
         @apply -translate-y-0.5 shadow-xl scale-[1.02];
-        box-shadow: 0 8px 25px rgba(197, 171, 120, 0.4);
+        box-shadow: 0 8px 25px rgba(255, 77, 0, 0.3);
     }
 
     .btn-gold::after {

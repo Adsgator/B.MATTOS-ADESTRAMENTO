@@ -1,0 +1,224 @@
+---
+import Layout from '../components/global/Layout.astro';
+import Button from '../components/global/Button.astro';
+
+const whatsappHref = 'https://wa.me/5511918952921?text=Oi%20Beatriz!%20Venho%20confirmar%20minha%20inscri%C3%A7%C3%A3o%20no%20She%20ForceK9';
+---
+
+<Layout
+  title="Obrigada! | SheForceK9"
+  description="Sua inscrição foi enviada com sucesso. Você receberá em breve instruções sobre o próximo passo."
+  ogTitle="Sua inscrição no SheForceK9 foi confirmada!"
+  ogDescription="Bem-vinda! Você receberá em breve instruções detalhadas sobre o curso e como proceder."
+  noindex={true}
+>
+  <section class="min-h-screen bg-dark flex items-center justify-center py-20 overflow-hidden relative">
+    <!-- Decoração de fundo -->
+    <div class="absolute inset-0 opacity-[0.03] pointer-events-none" style="background-image: url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E\"); background-size: 200px;"></div>
+
+    <div class="container-content relative z-10 max-w-2xl mx-auto text-center">
+      <!-- Ícone de sucesso (SVG animado) -->
+      <div class="mb-12" id="success-icon">
+        <svg
+          width="120"
+          height="120"
+          viewBox="0 0 120 120"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          class="mx-auto"
+        >
+          <circle cx="60" cy="60" r="55" stroke="#ff6e33" stroke-width="2" opacity="0.3" />
+          <circle
+            cx="60"
+            cy="60"
+            r="50"
+            fill="none"
+            stroke="#ff4d00"
+            stroke-width="2.5"
+            stroke-dasharray="314"
+            stroke-dashoffset="314"
+            id="circle-animation"
+          />
+          <path
+            d="M40 65L55 80L85 50"
+            stroke="#ff6e33"
+            stroke-width="3"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-dasharray="70"
+            stroke-dashoffset="70"
+            id="checkmark-animation"
+          />
+        </svg>
+      </div>
+
+      <!-- Título -->
+      <h1 class="font-display text-display-2xl text-white mb-6">
+        Parabéns, Mulher!
+      </h1>
+
+      <!-- Subtítulo -->
+      <p class="font-sans text-body-lg text-white/70 mb-8 leading-relaxed">
+        Sua inscrição no <span class="text-gold font-semibold">She ForceK9</span> foi recebida com sucesso.
+      </p>
+
+      <!-- Confirmação -->
+      <div class="bg-white/5 border border-gold/20 rounded-sm p-8 mb-12 backdrop-blur-sm">
+        <p class="font-sans text-body-md text-white/80 mb-6">
+          Um momento importante está à sua frente. Em breve, você receberá:
+        </p>
+        <ul class="space-y-4 text-left">
+          <li class="flex items-start gap-4">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#ff6e33"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="flex-shrink-0 mt-1"
+              aria-hidden="true"
+            >
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span class="font-sans text-body-sm text-white/70">
+              Confirmação de sua vaga no curso
+            </span>
+          </li>
+          <li class="flex items-start gap-4">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#ff6e33"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="flex-shrink-0 mt-1"
+              aria-hidden="true"
+            >
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span class="font-sans text-body-sm text-white/70">
+              Instruções de pagamento e acesso
+            </span>
+          </li>
+          <li class="flex items-start gap-4">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#ff6e33"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="flex-shrink-0 mt-1"
+              aria-hidden="true"
+            >
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span class="font-sans text-body-sm text-white/70">
+              Informações práticas para o curso em São José dos Campos
+            </span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Mensagem importante -->
+      <div class="mb-12 p-6 border-l-4 border-gold bg-gold/5 rounded-sm">
+        <p class="font-sans text-body-sm text-white/80">
+          <strong class="text-gold">Se prefirir,</strong> você pode entrar em contato agora mesmo via WhatsApp para tirar dúvidas ou confirmar sua participação com a Beatriz.
+        </p>
+      </div>
+
+      <!-- CTAs -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
+        <Button
+          label="Falar com Beatriz no WhatsApp"
+          href={whatsappHref}
+          variant="gold"
+          size="lg"
+        />
+        <Button
+          label="Voltar ao site"
+          href="/"
+          variant="dark"
+          size="lg"
+        />
+      </div>
+
+      <!-- Rodapé -->
+      <p class="font-sans text-label text-white/40 uppercase tracking-widest">
+        Em breve, você fará parte da rede SheForceK9 🐾
+      </p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  @keyframes circle-draw {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  @keyframes checkmark-draw {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) return;
+
+    const circleAnim = document.getElementById('circle-animation');
+    const checkmarkAnim = document.getElementById('checkmark-animation');
+    const icon = document.getElementById('success-icon');
+
+    if (circleAnim) {
+      circleAnim.style.animation = 'circle-draw 0.6s ease-out forwards';
+    }
+
+    if (checkmarkAnim) {
+      checkmarkAnim.style.animation = 'checkmark-draw 0.5s ease-out 0.4s forwards';
+    }
+
+    if (icon) {
+      icon.style.animation = 'fade-up 0.6s ease-out forwards';
+    }
+
+    // Dispara um evento de conversão customizado no GTM
+    if (window.gtag) {
+      window.gtag('event', 'conversion', {
+        'send_to': 'AW-XXXXX/xxxxx',
+        'value': 1747.00,
+        'currency': 'BRL',
+        'transaction_id': Date.now().toString(),
+      });
+    }
+
+    // Alternativa: enviar via dataLayer do GTM
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: 'purchase',
+      value: 1747.00,
+      currency: 'BRL',
+      items: [
+        {
+          item_id: 'she-forcek9-curso',
+          item_name: 'Curso She ForceK9 — Guarda e Proteção para Mulheres',
+          price: 1747.00,
+          quantity: 1,
+        },
+      ],
+    });
+  });
+</script>

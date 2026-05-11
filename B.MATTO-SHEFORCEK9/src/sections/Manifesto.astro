@@ -1,0 +1,56 @@
+---
+---
+
+<section id="manifesto" class="py-20 bg-dark overflow-hidden relative">
+  <!-- Linhas decorativas de velocidade/movimento -->
+  <div class="absolute inset-0 opacity-10">
+    <div class="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold to-transparent"></div>
+    <div class="absolute top-2/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold to-transparent opacity-50"></div>
+    <div class="absolute top-3/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold to-transparent"></div>
+  </div>
+
+  <div class="container-content relative z-10">
+    <div class="max-w-5xl mx-auto">
+      <p class="font-display text-2xl lg:text-3xl text-white/40 uppercase tracking-[0.2em] mb-8 text-center lg:text-left">
+        A realidade é dura, mas você não precisa ser <span class="text-white">vulnerável</span>.
+      </p>
+      
+      <h2 class="font-display text-display-lg lg:text-display-xl text-white leading-tight mb-12" id="manifesto-title">
+        Infelizmente, quase todas as nossas alunas relatam que já sofreram algum tipo de <span class="text-gold italic">abuso ou opressão</span>. No She ForceK9, transformamos essa dor em uma <span class="text-gold italic">rede de força imbatível</span>.
+      </h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 border-t border-white/10 pt-12" id="manifesto-content">
+        <p class="font-sans text-body-lg text-white/60 leading-relaxed italic">
+          "Não é apenas sobre ter um cachorro bravo. É sobre ter clareza mental, amparo jurídico e uma comunicação tão limpa com seu cão que a sua postura muda diante do mundo."
+        </p>
+        <div class="flex items-center gap-6">
+          <div class="w-16 h-16 rounded-full border border-gold/30 flex items-center justify-center shrink-0">
+             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#c5ab78" stroke-width="1.5">
+               <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+             </svg>
+          </div>
+          <p class="font-sans text-body-sm text-white/80">
+            Focamos no <span class="text-white font-bold">empoderamento real</span>. Você aprende a decidir quando e como agir, sempre dentro da lei, com a força de um parceiro de 4 patas.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) return;
+
+    gsap.from('#manifesto-title', {
+      scrollTrigger: { trigger: '#manifesto', start: 'top 80%' },
+      opacity: 0, y: 30, duration: 1, ease: 'power3.out'
+    });
+
+    gsap.from('#manifesto-content', {
+      scrollTrigger: { trigger: '#manifesto-content', start: 'top 90%' },
+      opacity: 0, y: 20, duration: 0.8, ease: 'power2.out', delay: 0.3
+    });
+  });
+</script>
