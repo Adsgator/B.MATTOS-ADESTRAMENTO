@@ -78,6 +78,11 @@
     100% { transform: translateX(100%); }
 }
 
+@keyframes gentle-glow {
+    0%, 100% { opacity: 0.2; }
+    50% { opacity: 0.35; }
+}
+
 /* Glassmorphism utility */
 .glass {
     @apply backdrop-blur-md bg-white/10 border border-white/20;

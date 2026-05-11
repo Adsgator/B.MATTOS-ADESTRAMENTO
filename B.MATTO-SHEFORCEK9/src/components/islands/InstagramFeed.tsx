@@ -20,21 +20,29 @@ export default function InstagramFeed({ username, profileUrl }: Props) {
   useEffect(() => {
     const fetchInstagramPosts = async () => {
       try {
-        // Usa a rota de dados públicos do Instagram
         const response = await fetch(
           `https://www.instagram.com/api/v1/users/web_profile_info/?username=${username}`,
           {
             headers: {
-              'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+              'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+              'Accept': 'application/json',
+              'Accept-Language': 'pt-BR,pt;q=0.9,en;q=0.8',
+              'X-Requested-With': 'XMLHttpRequest',
             },
           }
         );
 
-        if (!response.ok) throw new Error('Falha ao carregar posts');
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}`);
+        }
 
         const data = await response.json();
-        const user = data.data.user;
-        const media = user.edge_owner_to_timeline_media.edges;
+
+        if (!data.data?.user?.edge_owner_to_timeline_media?.edges) {
+          throw new Error('Formato de resposta inválido');
+        }
+
+        const media = data.data.user.edge_owner_to_timeline_media.edges;
 
         const postsData: Post[] = media.slice(0, 12).map((edge: any) => {
           const node = edge.node;
@@ -53,7 +61,7 @@ export default function InstagramFeed({ username, profileUrl }: Props) {
         setPosts(postsData);
         setLoading(false);
       } catch (err) {
-        console.error('Instagram fetch error:', err);
+        console.error('Instagram fetch failed:', err instanceof Error ? err.message : String(err));
         setError(true);
         setLoading(false);
       }
