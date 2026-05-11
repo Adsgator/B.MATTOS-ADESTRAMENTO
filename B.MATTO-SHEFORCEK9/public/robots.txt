@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+Disallow: /links
+Disallow: /politica-de-privacidade
+Disallow: /termos-de-uso
+
+Sitemap: https://sheforcek9.abeak9adestramento.com.br/sitemap-index.xml

@@ -1,0 +1,16 @@
+{
+    "name": "SheForceK9 — Curso de Proteção para Mulheres",
+    "short_name": "SheForceK9",
+    "description": "Curso presencial de guarda e proteção com cães para mulheres. São José dos Campos/SP.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#f9f0df",
+    "theme_color": "#1a1d23",
+    "icons": [
+        {
+            "src": "/favicon.svg",
+            "sizes": "any",
+            "type": "image/svg+xml"
+        }
+    ]
+}

@@ -1,0 +1,53 @@
+# .clinerules — SheForceK9
+
+## Identidade do Projeto
+- Cliente: Beatriz Mattos
+- Projeto: She ForceK9 — Curso de Guarda e Proteção para Mulheres
+- Domínio: sheforcek9.abeak9adestramento.com.br
+- Agência: Adsgator
+
+## Stack
+- Framework: Astro (output: static)
+- Estilização: Tailwind CSS — tokens apenas, sem HEX hardcoded
+- Islands React: MobileMenu, InstagramFeed, CookieBanner
+- Animações: GSAP + ScrollTrigger (em scripts .astro), Framer Motion (em islands React)
+- Scroll: Lenis integrado ao GSAP
+- Deploy: Vercel (static)
+
+## Regras Absolutas
+1. NUNCA alterar a copy dos blocos — transcrever exatamente como no DOC-1
+2. NUNCA HEX hardcoded no código — sempre via token Tailwind (ex: `bg-primary`)
+3. NUNCA console.log em produção
+4. NUNCA credenciais ou tokens no código — sempre em .env
+5. NUNCA <div> clicável no lugar de <button> ou <a>
+6. NUNCA <form> HTML nativo em islands React — usar event handlers
+7. SEMPRE prefers-reduced-motion antes de qualquer animação GSAP
+8. SEMPRE width, height e alt em toda imagem
+9. SEMPRE rel="noopener noreferrer" em links externos
+10. SEMPRE focus-visible em todos os elementos interativos
+
+## Tokens de Design
+- Fonte títulos: Bebas Neue
+- Fonte corpo: DM Sans
+- Cor primary: cor-primary (→ #fe5d16)
+- Cor dark: cor-dark (→ #1a1d23)
+- Cor background: cor-bg (→ #f9f0df)
+- Cor texto: cor-text (→ #1d1d1c)
+- Cor suporte: cor-muted (→ #535353)
+
+## Estrutura de Arquivos Esperada
+src/
+  assets/images/          → hero-principal.webp, profissional-retrato.webp, og-image.webp, favicon.svg, avatar-links.webp
+  components/
+    global/               → Layout.astro, Header.astro, Footer.astro, Button.astro, SectionHeader.astro, FeatureCard.astro, GTM.astro
+    islands/              → MobileMenu.tsx, InstagramFeed.tsx, CookieBanner.tsx
+  pages/
+    index.astro           → landing page principal
+    links.astro           → árvore de links
+    404.astro             → página 404 personalizada
+    politica-de-privacidade.astro
+    termos-de-uso.astro
+  sections/               → Hero.astro, Servico.astro, Diferenciais.astro, ComoFunciona.astro, Precos.astro, FAQ.astro, InstagramSection.astro, CTAFinal.astro
+public/
+  robots.txt
+  manifest.json
