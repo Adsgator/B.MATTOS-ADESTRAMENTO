@@ -9,13 +9,7 @@ export default defineConfig({
     integrations: [
         react(),
         tailwind({ applyBaseStyles: false }),
-        sitemap({
-            filter: (page) =>
-                !page.includes('/links') &&
-                !page.includes('/politica-de-privacidade') &&
-                !page.includes('/termos-de-uso') &&
-                !page.includes('/404'),
-        }),
+        sitemap(),
     ],
     image: {
         domains: [],
