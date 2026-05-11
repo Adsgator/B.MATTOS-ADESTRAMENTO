@@ -87,7 +87,7 @@ const siteUrl = 'https://sheforcek9.abeak9adestramento.com.br';
 
   <!-- Preconnect Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
   
   <!-- Bebas Neue — preload do woff2 crítico -->
   <link
@@ -158,25 +158,25 @@ const siteUrl = 'https://sheforcek9.abeak9adestramento.com.br';
 
   <!-- Botão WhatsApp Flutuante -->
   <a
-    id="btn-whatsapp-flutuante"
-    href="https://wa.me/5511918952921?text=Ol%C3%A1!%20Vi%20o%20site%20e%20quero%20saber%20mais."
+    id="btn-wpp-floating"
+    href="https://wa.me/5511918952921?text=Oi%2C%20vi%20voc%C3%AA%20no%20Google%20e%20gostaria%20de%20saber%20mais%20sobre%20o%20curso%20She%20ForceK9"
     target="_blank"
     rel="noopener noreferrer"
     aria-label="Falar pelo WhatsApp"
     data-tracking="click-whatsapp-flutuante"
     data-section="floating"
     class="
-      fixed bottom-6 right-6 z-50
+      fixed bottom-6 right-6 z-40
+      w-14 h-14 md:w-16 md:h-16
       flex items-center justify-center
-      w-14 h-14 rounded-full
+      rounded-full
       bg-[#25D366] text-white
-      shadow-lg
-      transition-all duration-200
-      hover:scale-110 hover:shadow-xl
+      shadow-xl
+      hover:scale-110 active:scale-95
+      transition-all duration-300
       focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#25D366]
-      opacity-0 pointer-events-none
+      opacity-0 scale-0
     "
-    id="whatsapp-fab"
   >
     <!-- WhatsApp SVG nativo -->
     <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -224,36 +224,18 @@ const siteUrl = 'https://sheforcek9.abeak9adestramento.com.br';
       initLenis();
     }
 
-    // WhatsApp FAB — IntersectionObserver no hero + animação inicial
-    (function initWhatsappFAB() {
-      const fab   = document.getElementById('whatsapp-fab');
-      const hero  = document.getElementById('hero-section');
-      if (!fab) return;
+    // Floating Button logic — WhatsApp FAB
+    const floatingBtn = document.getElementById('btn-wpp-floating');
+    const heroSection = document.getElementById('hero-section');
 
-      // Animação inicial — aparecer após 1s
-      setTimeout(() => {
-        fab.classList.remove('opacity-0', 'pointer-events-none');
-        fab.classList.add('opacity-100');
-      }, 1000);
-
-      // Se houver hero, esconder enquanto está visível
-      if (hero) {
-        const observer = new IntersectionObserver(
-          ([entry]) => {
-            if (entry.isIntersecting) {
-              fab.classList.add('opacity-0', 'pointer-events-none');
-              fab.classList.remove('opacity-100');
-            } else {
-              fab.classList.remove('opacity-0', 'pointer-events-none');
-              fab.classList.add('opacity-100');
-            }
-          },
-          { threshold: 0.1 }
-        );
-
-        observer.observe(hero);
-      }
-    })();
+    if (heroSection && floatingBtn) {
+      ScrollTrigger.create({
+        trigger: heroSection,
+        start: 'bottom 20%',
+        onEnter: () => gsap.to(floatingBtn, { opacity: 1, scale: 1, duration: 0.3, ease: 'power2.out' }),
+        onLeaveBack: () => gsap.to(floatingBtn, { opacity: 0, scale: 0, duration: 0.3, ease: 'power2.in' }),
+      });
+    }
 
     // Header inteligente — esconde ao scrollar pra baixo, reaparece ao subir
     (function initSmartHeader() {

@@ -20,11 +20,16 @@ export default function MobileMenu({ links }: Props) {
   useEffect(() => {
     if (isOpen) {
       document.documentElement.style.overflow = 'hidden';
+      document.body.style.overflow = 'hidden';
       closeRef.current?.focus();
     } else {
       document.documentElement.style.overflow = '';
+      document.body.style.overflow = '';
     }
-    return () => { document.documentElement.style.overflow = ''; };
+    return () => {
+      document.documentElement.style.overflow = '';
+      document.body.style.overflow = '';
+    };
   }, [isOpen]);
 
   // Fechar com Escape
@@ -128,6 +133,7 @@ export default function MobileMenu({ links }: Props) {
               bg-dark
               flex flex-col justify-between
               px-8 py-24
+              min-h-screen w-full
             "
             onClick={(e) => { if (e.target === e.currentTarget) setIsOpen(false); }}
           >
