@@ -1,5 +1,6 @@
 ---
 import { Image } from 'astro:assets';
+import Button from './Button.astro';
 import logoBranca from '../../assets/images/logo-branca-sheforcek9.svg';
 
 const navLinks = [
@@ -40,7 +41,7 @@ const whatsappHref = 'https://wa.me/5511918952921?text=Ol%C3%A1!%20Vi%20o%20site
     </a>
 
     <!-- Nav Desktop -->
-    <nav aria-label="Navegação principal" class="hidden lg:flex items-center gap-8 ml-auto">
+    <nav aria-label="Navegação principal" class="hidden lg:flex items-center gap-8 ml-auto mr-10">
       {navLinks.map(({ label, href }) => (
         <a
           href={href}
@@ -54,6 +55,18 @@ const whatsappHref = 'https://wa.me/5511918952921?text=Ol%C3%A1!%20Vi%20o%20site
         </a>
       ))}
     </nav>
+
+    <!-- Botão WhatsApp Desktop -->
+    <div class="hidden lg:block">
+      <Button
+        label="Falar no WhatsApp"
+        href={whatsappHref}
+        variant="gold"
+        trackingId="header-whatsapp"
+        section="header"
+        size="sm"
+      />
+    </div>
 
     <!-- Hambúrguer Mobile — island React com Framer Motion -->
     <div class="lg:hidden ml-auto" id="mobile-menu-trigger">

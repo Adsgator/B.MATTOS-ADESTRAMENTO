@@ -70,14 +70,14 @@ const modulos = [
             <span class="font-display text-3xl sm:text-4xl lg:text-5xl text-gold/20 leading-none">0{gi + 1}</span>
             <div>
               <h3 class="font-display text-xl sm:text-2xl text-dark uppercase tracking-wide">{grupo}</h3>
-              <p class="font-sans text-body-sm text-muted text-xs sm:text-sm">{desc}</p>
+              <p class="font-sans text-body-sm text-muted text-sm sm:text-sm">{desc}</p>
             </div>
           </div>
 
           <div class="grid grid-cols-1 gap-2 sm:gap-4">
             {itens.map((item) => (
               <div class="group flex items-center justify-between p-3 sm:p-5 bg-white/50 border border-dark/5 rounded-sm hover:bg-white hover:shadow-xl hover:border-gold/30 transition-all duration-300">
-                <p class="font-sans text-body-sm text-dark/80 group-hover:text-dark transition-colors text-xs sm:text-sm">{item}</p>
+                <p class="font-sans text-body-sm text-dark/80 group-hover:text-dark transition-colors text-sm sm:text-sm">{item}</p>
                 <div class="w-2 h-2 rounded-full bg-gold/30 group-hover:bg-gold transition-colors"></div>
               </div>
             ))}

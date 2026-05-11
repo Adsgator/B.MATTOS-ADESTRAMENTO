@@ -51,3 +51,64 @@ src/
 public/
   robots.txt
   manifest.json
+
+## Regras de Proteção do Projeto — "Desktop Finalizado"
+
+**STATUS:** Projeto estável e pronto para produção. Aplicar máxima proteção.
+
+### O QUE NUNCA FAZER
+1. **Não adicionar novas dependências sem discussão explícita**
+   - O projeto está otimizado com Astro + Tailwind + GSAP/Framer Motion
+   - Toda nova lib deve ser justificada e aprovada antes
+
+2. **Não refatorar código "só porque sim"**
+   - Não mexer em componentes que estão funcionando
+   - Não reorganizar pastas ou renomear arquivos sem necessidade
+   - Não "melhorar" arquitetura sem problema real
+
+3. **Não adicionar features não pedidas**
+   - Sem animações extras
+   - Sem campos de formulário novos
+   - Sem seções novas
+   - Sem otimizações especulativas
+
+4. **Não modificar design/styling sem instrução**
+   - Não alterar cores, fontes, espaçamentos
+   - Não mudar tamanhos de elementos
+   - Não "melhorar" o visual arbitrariamente
+
+5. **Não remover ou comentar código "morto"**
+   - Se não foi identificado como problema, deixar como está
+   - Sem limpeza de "código não utilizado"
+
+6. **Não adicionar comentários, docstrings ou type annotations extras**
+   - Somente onde foi explicitamente pedido
+   - Não "documentar" código existente
+
+7. **Não fazer commit sem permissão explícita**
+   - Sempre confirmar mudanças antes de git push
+   - Não force-push a main
+
+8. **Não mexer em .env, .env.example ou variáveis de ambiente**
+   - Somente se configuração de novo serviço externo for pedida
+
+9. **Não tocar em configurações (astro.config.ts, tailwind.config.js, tsconfig.json)**
+   - Sem discussions sobre performance, bundle size ou otimizações
+
+10. **Não executar npm install, upgrade ou package manager commands sem autorização**
+    - Congelada a versão de dependências
+
+### QUANDO INTERVIR
+- ✅ Bug reports com detalhes específicos
+- ✅ Copy/texto para atualizar (se aprovado pela cliente)
+- ✅ Imagens/assets para substituir
+- ✅ Integração com novo serviço externo (gateway de pagamento, API, etc.)
+- ✅ Correção de acessibilidade comprovada
+- ✅ Correção de performance ou SEO com métricas
+
+### FLUXO DE TRABALHO
+1. Sempre ler CLAUDE.md e .clinerules antes de qualquer ação
+2. Ler o código antes de propor mudanças
+3. Confirmar com o usuário o escopo EXATO
+4. Testar build (`npm run build`) antes de commitar
+5. Revisar diffs antes de qualquer commit

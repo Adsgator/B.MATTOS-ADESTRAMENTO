@@ -125,7 +125,7 @@ export default function MobileMenu({ links }: Props) {
             exit="exit"
             className="
               fixed inset-0 z-[100]
-              bg-dark/97 backdrop-blur-sm
+              bg-dark
               flex flex-col justify-between
               px-8 py-24
             "

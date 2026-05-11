@@ -224,26 +224,35 @@ const siteUrl = 'https://sheforcek9.abeak9adestramento.com.br';
       initLenis();
     }
 
-    // WhatsApp FAB — IntersectionObserver no hero
+    // WhatsApp FAB — IntersectionObserver no hero + animação inicial
     (function initWhatsappFAB() {
       const fab   = document.getElementById('whatsapp-fab');
       const hero  = document.getElementById('hero-section');
-      if (!fab || !hero) return;
+      if (!fab) return;
 
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
-            fab.classList.add('opacity-0', 'pointer-events-none');
-            fab.classList.remove('opacity-100');
-          } else {
-            fab.classList.remove('opacity-0', 'pointer-events-none');
-            fab.classList.add('opacity-100');
-          }
-        },
-        { threshold: 0.1 }
-      );
+      // Animação inicial — aparecer após 1s
+      setTimeout(() => {
+        fab.classList.remove('opacity-0', 'pointer-events-none');
+        fab.classList.add('opacity-100');
+      }, 1000);
 
-      observer.observe(hero);
+      // Se houver hero, esconder enquanto está visível
+      if (hero) {
+        const observer = new IntersectionObserver(
+          ([entry]) => {
+            if (entry.isIntersecting) {
+              fab.classList.add('opacity-0', 'pointer-events-none');
+              fab.classList.remove('opacity-100');
+            } else {
+              fab.classList.remove('opacity-0', 'pointer-events-none');
+              fab.classList.add('opacity-100');
+            }
+          },
+          { threshold: 0.1 }
+        );
+
+        observer.observe(hero);
+      }
     })();
 
     // Header inteligente — esconde ao scrollar pra baixo, reaparece ao subir
