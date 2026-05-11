@@ -28,7 +28,7 @@ const whatsappHref = 'https://wa.me/5511918952921?text=Ol%C3%A1!%20Vi%20o%20site
   <div class="absolute inset-0 bg-gradient-to-t from-dark via-transparent to-transparent opacity-60"></div>
 
   <!-- Container interno -->
-  <div class="container-content relative z-10 w-full pt-32 pb-20 lg:pt-40 lg:pb-32">
+  <div class="container-content relative z-10 w-full pt-32 pb-32 lg:pt-40 lg:pb-48">
     <div class="grid grid-cols-1 lg:grid-cols-[52%_48%] gap-12 lg:gap-16 items-center">
 
       <!-- Coluna texto -->
@@ -71,26 +71,10 @@ const whatsappHref = 'https://wa.me/5511918952921?text=Ol%C3%A1!%20Vi%20o%20site
             section="hero"
             size="lg"
           />
-          
+
           <div class="flex flex-col gap-1">
             <p class="font-sans text-white font-medium text-body-sm">Próxima Turma: 09 a 12 de Julho / 2026</p>
             <p class="font-sans text-white/40 text-[0.7rem] uppercase tracking-widest">Vagas extremamente limitadas</p>
-          </div>
-        </div>
-
-        <!-- Badges — estilo premium isomeet -->
-        <div class="mt-16 pt-8 border-t border-white/5 flex flex-wrap gap-8 opacity-60" id="hero-badges">
-          <div class="flex items-center gap-2">
-            <span class="text-gold font-display text-2xl">01.</span>
-            <span class="text-white/70 text-label">Presencial em SJC/SP</span>
-          </div>
-          <div class="flex items-center gap-2">
-            <span class="text-gold font-display text-2xl">02.</span>
-            <span class="text-white/70 text-label">Qualquer raça participa</span>
-          </div>
-          <div class="flex items-center gap-2">
-            <span class="text-gold font-display text-2xl">03.</span>
-            <span class="text-white/70 text-label">Foco total na mulher</span>
           </div>
         </div>
       </div>
@@ -179,12 +163,9 @@ const whatsappHref = 'https://wa.me/5511918952921?text=Ol%C3%A1!%20Vi%20o%20site
       .from('#hero-label',    { opacity: 0, y: 20, duration: 0.6 }, 0.2)
       .from('#hero-title',    { opacity: 0, y: 40, duration: 0.8 }, 0.4)
       .from('#hero-subtitle', { opacity: 0, y: 30, duration: 0.7 }, 0.6)
-      .from('#hero-badges > *', {
-        opacity: 0, y: 15, duration: 0.5, stagger: 0.1
-      }, 0.8)
-      .from('#hero-cta',      { opacity: 0, y: 20, duration: 0.5 }, 1.0)
+      .from('#hero-cta',      { opacity: 0, y: 20, duration: 0.5 }, 0.8)
       .from('#hero-image-wrapper', { opacity: 0, x: 40, duration: 0.9 }, 0.5)
-      .from('#hero-detail-card-1', { opacity: 0, x: 20, duration: 0.5 }, 1.1)
-      .from('#hero-detail-card-2', { opacity: 0, x: -20, duration: 0.5 }, 1.2);
+      .from('#hero-detail-card-1', { opacity: 0, x: 20, duration: 0.5 }, 0.9)
+      .from('#hero-detail-card-2', { opacity: 0, x: -20, duration: 0.5 }, 1.0);
   });
 </script>
