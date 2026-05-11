@@ -3,27 +3,27 @@ import { useState, useEffect } from 'react';
 const images = [
   {
     id: 1,
-    src: '/src/assets/images/classroom_1.webp',
+    src: 'classroom_1.webp',
     alt: 'Turma SheForceK9 - Momento de aprendizado',
   },
   {
     id: 2,
-    src: '/src/assets/images/classroom_2.webp',
+    src: 'classroom_2.webp',
     alt: 'Alunas com cães de proteção em treinamento',
   },
   {
     id: 3,
-    src: '/src/assets/images/classroom_3.webp',
+    src: 'classroom_3.webp',
     alt: 'Prática de proteção e segurança',
   },
   {
     id: 4,
-    src: '/src/assets/images/classroom_4.webp',
+    src: 'classroom_4.webp',
     alt: 'Certificação e conclusão do curso',
   },
   {
     id: 5,
-    src: '/src/assets/images/classroom_5.webp',
+    src: 'classroom_5.webp',
     alt: 'Finalização e celebração da turma',
   },
 ];
@@ -91,6 +91,10 @@ export default function ClassroomGallery() {
     return () => clearInterval(timer);
   }, [current, prefersReduced]);
 
+  const getImageUrl = (filename: string) => {
+    return new URL(`../../assets/images/${filename}`, import.meta.url).href;
+  };
+
   return (
     <div className="relative w-full h-full">
       <div
@@ -106,7 +110,7 @@ export default function ClassroomGallery() {
           {images.map((image, idx) => (
             <img
               key={image.id}
-              src={image.src}
+              src={getImageUrl(image.src)}
               alt={image.alt}
               className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
                 idx === current ? 'opacity-100' : 'opacity-0 pointer-events-none'
