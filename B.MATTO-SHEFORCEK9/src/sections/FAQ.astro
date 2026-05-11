@@ -1,0 +1,137 @@
+---
+import SectionHeader from '../components/global/SectionHeader.astro';
+
+const perguntas = [
+  {
+    pergunta: 'Preciso ter experiência com cães ou adestramento para participar?',
+    resposta: 'Não. Muito pelo contrário — o She ForceK9 foi feito para mulheres que não são do meio e não tiveram acesso a esse conhecimento antes. Você começa do zero, com suporte total.',
+  },
+  {
+    pergunta: 'Meu cão precisa ser de raça específica ou já ser treinado para proteção?',
+    resposta: 'Não. O curso é completamente inclusivo. Você pode trazer qualquer cão — inclusive seu pet — para treinos de obediência. E durante o curso você vai ter experiência prática com cães de proteção formados e seguros.',
+  },
+  {
+    pergunta: 'E se eu não tiver cão nenhum?',
+    resposta: 'Também pode participar. Durante o curso você vai trabalhar com os cães disponíveis e vai aprender como selecionar o cão certo para você — quando estiver pronta para isso.',
+  },
+  {
+    pergunta: 'É seguro trabalhar com cães de proteção sem experiência?',
+    resposta: 'Sim — porque você vai estar sob orientação direta durante todo o tempo. Os cães usados nas práticas são formados e acompanhados por profissionais. Segurança é parte do método, não um detalhe.',
+  },
+  {
+    pergunta: 'O que exatamente são os módulos de Direito e Psicologia?',
+    resposta: 'No Direito, você aprende o que a lei brasileira permite e o que não permite no uso de cães de proteção — para nunca estar em risco legal. Na Psicologia, são aplicadas dinâmicas de escuta focadas em mulheres que já viveram situações de assédio ou violência. Não é obrigatório ter passado por isso — mas o espaço existe e é seguro.',
+  },
+  {
+    pergunta: 'O curso é só para mulheres?',
+    resposta: 'Sim. O ambiente é 100% feminino por escolha — para que todas possam falar, aprender e se sentir à vontade do começo ao fim.',
+  },
+];
+---
+
+<section id="faq" class="py-24 lg:py-40 bg-bg" aria-label="Perguntas frequentes">
+  <div class="container-content">
+
+    <SectionHeader
+      label="FAQ"
+      title="Perguntas que toda mulher faz antes de se inscrever"
+      align="center"
+    />
+
+    <!-- Accordion -->
+    <div class="max-w-2xl mx-auto space-y-3" id="faq-accordion">
+      {perguntas.map((item, i) => (
+        <div
+          class="border border-surface rounded-card overflow-hidden bg-white"
+          data-faq-item={i}
+        >
+          <button
+            type="button"
+            class="
+              w-full flex items-start justify-between gap-4
+              px-6 py-5 text-left
+              font-sans font-semibold text-body-md text-text
+              hover:text-primary transition-colors duration-150
+              focus-visible:outline-2 focus-visible:outline-offset-0 focus-visible:outline-primary
+            "
+            aria-expanded="false"
+            aria-controls={`faq-answer-${i}`}
+            id={`faq-btn-${i}`}
+          >
+            <span>{item.pergunta}</span>
+            <svg
+              width="20" height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              class="flex-shrink-0 transition-transform duration-300 mt-0.5 faq-icon"
+              aria-hidden="true"
+            >
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </button>
+          <div
+            id={`faq-answer-${i}`}
+            role="region"
+            aria-labelledby={`faq-btn-${i}`}
+            class="faq-answer overflow-hidden max-h-0 transition-[max-height] duration-300 ease-in-out"
+          >
+            <div class="px-6 pb-6">
+              <p class="font-sans text-body-sm text-muted leading-relaxed">
+                {item.resposta}
+              </p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const items = document.querySelectorAll('[data-faq-item]');
+
+    items.forEach((item) => {
+      const btn    = item.querySelector('button');
+      const answer = item.querySelector('.faq-answer');
+      const icon   = item.querySelector('.faq-icon');
+      if (!btn || !answer || !icon) return;
+
+      btn.addEventListener('click', () => {
+        const isOpen = btn.getAttribute('aria-expanded') === 'true';
+
+        // Fechar todos
+        items.forEach((otherItem) => {
+          const otherBtn    = otherItem.querySelector('button');
+          const otherAnswer = otherItem.querySelector('.faq-answer');
+          const otherIcon   = otherItem.querySelector('.faq-icon');
+          if (otherBtn && otherAnswer && otherIcon) {
+            otherBtn.setAttribute('aria-expanded', 'false');
+            (otherAnswer as HTMLElement).style.maxHeight = '0';
+            (otherIcon as SVGElement).style.transform = 'rotate(0deg)';
+          }
+        });
+
+        // Abrir este (se estava fechado)
+        if (!isOpen) {
+          btn.setAttribute('aria-expanded', 'true');
+          const content = answer.querySelector('div');
+          (answer as HTMLElement).style.maxHeight = content ? content.scrollHeight + 24 + 'px' : '500px';
+          (icon as SVGElement).style.transform = 'rotate(180deg)';
+        }
+      });
+    });
+
+    // Animação de entrada
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!prefersReduced) {
+      gsap.from('#faq-accordion > div', {
+        scrollTrigger: { trigger: '#faq-accordion', start: 'top 85%', toggleActions: 'play none none none' },
+        opacity: 0, y: 20, duration: 0.5, ease: 'power2.out', stagger: 0.08,
+      });
+    }
+  });
+</script>

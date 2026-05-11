@@ -1,0 +1,96 @@
+---
+import SectionHeader from '../components/global/SectionHeader.astro';
+import Button from '../components/global/Button.astro';
+
+const whatsappHref = 'https://wa.me/5511918952921?text=Ol%C3%A1!%20Vi%20o%20site%20e%20quero%20saber%20mais.';
+
+const modulos = [
+  {
+    grupo: 'Prática Canina',
+    cor: 'primary',
+    itens: [
+      'Análise do comportamento canino aplicada a cães de guarda e proteção',
+      'Como criar uma comunicação limpa com o cão em ambiente urbano',
+      'Ferramentas e técnicas de condução segura — mesmo sem nunca ter feito isso antes',
+      'Diferenciais da condução de cães de proteção versus cães comuns',
+      'Figuração e formação: como cães de proteção são desenvolvidos',
+      'Como selecionar um cão de proteção — o que observar antes de comprar ou adotar',
+    ],
+  },
+  {
+    grupo: 'Direito & Psicologia',
+    cor: 'dark',
+    itens: [
+      'Psicologia: dinâmicas de escuta e suporte para mulheres que já viveram situações de abuso',
+      'Direito: o que a lei brasileira diz sobre o uso de cães de proteção e quais são seus limites',
+    ],
+  },
+];
+---
+
+<section id="como-funciona" class="py-24 lg:py-40 bg-surface" aria-label="O que você vai aprender">
+  <div class="container-content">
+
+    <SectionHeader
+      label="Como Funciona"
+      title="O que você vai aprender nos quatro dias"
+      subtitle="O curso combina prática com cães, teoria aplicada e dinâmicas de grupo. Cada dia tem um propósito claro — e você sai de cada um deles com algo concreto nas mãos."
+      align="center"
+    />
+
+    <!-- Linha do tempo visual por grupos -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-14" id="como-funciona-grid">
+
+      {modulos.map(({ grupo, cor, itens }, gi) => (
+        <div class="bg-white border border-surface rounded-card p-8 gsap-fade-up">
+
+          <!-- Cabeçalho do grupo -->
+          <div class={`inline-flex items-center gap-2 mb-6 px-3 py-1.5 rounded ${cor === 'primary' ? 'bg-primary/10' : 'bg-dark/10'}`}>
+            <span class={`font-sans font-semibold text-label uppercase tracking-widest ${cor === 'primary' ? 'text-primary' : 'text-dark'}`}>
+              {grupo}
+            </span>
+          </div>
+
+          <!-- Lista numerada -->
+          <ol class="space-y-4">
+            {itens.map((item, i) => (
+              <li class="flex items-start gap-4">
+                <span class={`flex-shrink-0 w-7 h-7 rounded flex items-center justify-center font-display text-sm ${cor === 'primary' ? 'bg-primary text-white' : 'bg-dark text-white'}`}>
+                  {gi * 6 + i + 1}
+                </span>
+                <p class="font-sans text-body-sm text-text leading-relaxed pt-1">{item}</p>
+              </li>
+            ))}
+          </ol>
+
+        </div>
+      ))}
+
+    </div>
+
+    <!-- CTA -->
+    <div class="flex justify-center">
+      <Button
+        label="Tenho dúvidas — quero conversar"
+        href={whatsappHref}
+        variant="primary"
+        trackingId="como-funciona-cta"
+        section="como-funciona"
+        size="lg"
+      />
+    </div>
+
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) return;
+
+    gsap.from('#como-funciona-grid .gsap-fade-up', {
+      scrollTrigger: { trigger: '#como-funciona-grid', start: 'top 85%', toggleActions: 'play none none none' },
+      opacity: 0, y: 40, duration: 0.7, ease: 'power2.out', stagger: 0.15,
+    });
+  });
+</script>

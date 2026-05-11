@@ -1,0 +1,200 @@
+---
+import Button from '../components/global/Button.astro';
+
+const whatsappHref = 'https://wa.me/5511918952921?text=Ol%C3%A1!%20Vi%20o%20site%20e%20quero%20saber%20mais.';
+---
+
+<!-- Hero full-bleed — fundo escuro com textura, conteúdo 2 colunas no desktop -->
+<section
+  id="hero-section"
+  class="
+    relative min-h-screen
+    bg-dark overflow-hidden
+    flex items-center
+  "
+  aria-label="Apresentação principal"
+>
+
+  <!-- Textura de fundo (grain visual sutil) -->
+  <div
+    aria-hidden="true"
+    class="absolute inset-0 opacity-[0.04] pointer-events-none"
+    style="background-image: url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E\"); background-size: 200px;"
+  ></div>
+
+  <!-- Acento laranja — linha vertical desktop -->
+  <div
+    aria-hidden="true"
+    class="hidden lg:block absolute left-0 top-0 bottom-0 w-1 bg-primary"
+  ></div>
+
+  <!-- Container interno -->
+  <div class="container-content relative z-10 w-full pt-32 pb-20 lg:pt-40 lg:pb-32">
+    <div class="grid grid-cols-1 lg:grid-cols-[55%_45%] gap-12 lg:gap-8 items-center">
+
+      <!-- Coluna texto -->
+      <div>
+
+        <!-- Label -->
+        <p class="section-label mb-6" id="hero-label">
+          She ForceK9 · São José dos Campos / SP
+        </p>
+
+        <!-- H1 -->
+        <h1
+          class="font-display text-display-2xl text-white leading-none mb-8"
+          id="hero-title"
+        >
+          Aprenda a andar na rua sem medo com um cão de proteção ao seu lado
+        </h1>
+
+        <!-- Subtítulo -->
+        <p
+          class="font-sans text-body-lg text-white/70 leading-relaxed mb-10 max-w-xl"
+          id="hero-subtitle"
+        >
+          O She ForceK9 é o único curso presencial do Brasil criado para mulheres que querem ter segurança real com cães de guarda e proteção — sem precisar ter experiência, sem precisar ter raça específica e dentro da lei. Próximas turmas: 09, 10, 11 e 12 de julho em São José dos Campos/SP.
+        </p>
+
+        <!-- Cards de micro-informação (estilo isomeet ref) — aparecem com stagger -->
+        <div class="flex flex-wrap gap-3 mb-10" id="hero-badges">
+          {[
+            { icon: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z', text: '100% feminino' },
+            { icon: 'M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z', text: 'Jul 09-12, 2026' },
+            { icon: 'M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z', text: 'SJC / SP' },
+          ].map(({ icon, text }) => (
+            <span class="inline-flex items-center gap-2 bg-white/10 border border-white/15 rounded px-3 py-1.5 font-sans text-body-sm text-white/80">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d={icon} />
+              </svg>
+              {text}
+            </span>
+          ))}
+        </div>
+
+        <!-- CTA -->
+        <div id="hero-cta">
+          <Button
+            label="Quero garantir minha vaga"
+            href={whatsappHref}
+            variant="primary"
+            trackingId="hero-cta"
+            section="hero"
+            size="lg"
+          />
+        </div>
+
+        <!-- Prova social mínima -->
+        <p class="font-sans text-label text-white/40 mt-5 uppercase tracking-wider">
+          Vagas limitadas · Turmas pequenas
+        </p>
+      </div>
+
+      <!-- Coluna imagem -->
+      <div class="relative" id="hero-image-wrapper">
+
+        <!-- Placeholder — substituir por <Image /> quando asset chegar -->
+        <div
+          class="
+            relative w-full aspect-[4/5] max-w-md mx-auto lg:mx-0 lg:ml-auto
+            bg-surface rounded overflow-hidden
+            border border-white/10
+          "
+        >
+          <!-- Ao ter o asset real, substituir pelo componente abaixo:
+          <Image
+            src={import('../assets/images/hero-principal.webp')}
+            alt="Beatriz Mattos conduzindo cão de proteção em ambiente urbano"
+            width={600}
+            height={750}
+            loading="eager"
+            format="webp"
+            class="w-full h-full object-cover"
+          />
+          -->
+          <div class="absolute inset-0 flex items-end p-6">
+            <p class="font-sans text-muted text-body-sm text-center w-full">
+              [Foto da instrutora com cão de proteção — 600×750px]
+            </p>
+          </div>
+
+          <!-- Card detalhe flutuante — inspiração isomeet -->
+          <div
+            class="
+              absolute top-6 -right-4 lg:-right-8
+              bg-dark/95 backdrop-blur-sm border border-white/15
+              rounded px-4 py-3
+              font-sans text-body-sm text-white
+              flex items-center gap-2
+              shadow-card
+            "
+            id="hero-detail-card-1"
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fe5d16" stroke-width="2.5" aria-hidden="true">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg>
+            Formação dentro da lei
+          </div>
+
+          <!-- Card detalhe flutuante 2 -->
+          <div
+            class="
+              absolute bottom-12 -left-4 lg:-left-8
+              bg-primary/95 backdrop-blur-sm
+              rounded px-4 py-3
+              font-sans text-body-sm text-white font-semibold
+              flex items-center gap-2
+              shadow-button
+            "
+            id="hero-detail-card-2"
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" aria-hidden="true">
+              <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+              <circle cx="9" cy="7" r="4" />
+              <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" />
+            </svg>
+            Qualquer mulher pode participar
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40" aria-hidden="true">
+    <span class="font-sans text-label text-white uppercase tracking-widest">Scroll</span>
+    <div class="w-px h-12 bg-white/30 relative overflow-hidden">
+      <div class="absolute top-0 w-full h-4 bg-primary animate-[scroll-line_2s_ease-in-out_infinite]"></div>
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes scroll-line {
+    0%   { transform: translateY(-100%); }
+    100% { transform: translateY(400%); }
+  }
+</style>
+
+<script>
+  // Animações do Hero com GSAP
+  document.addEventListener('DOMContentLoaded', () => {
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) return;
+
+    const tl = gsap.timeline({ defaults: { ease: 'power2.out' } });
+
+    tl
+      .from('#hero-label',    { opacity: 0, y: 20, duration: 0.6 }, 0.2)
+      .from('#hero-title',    { opacity: 0, y: 40, duration: 0.8 }, 0.4)
+      .from('#hero-subtitle', { opacity: 0, y: 30, duration: 0.7 }, 0.6)
+      .from('#hero-badges > *', {
+        opacity: 0, y: 15, duration: 0.5, stagger: 0.1
+      }, 0.8)
+      .from('#hero-cta',      { opacity: 0, y: 20, duration: 0.5 }, 1.0)
+      .from('#hero-image-wrapper', { opacity: 0, x: 40, duration: 0.9 }, 0.5)
+      .from('#hero-detail-card-1', { opacity: 0, x: 20, duration: 0.5 }, 1.1)
+      .from('#hero-detail-card-2', { opacity: 0, x: -20, duration: 0.5 }, 1.2);
+  });
+</script>

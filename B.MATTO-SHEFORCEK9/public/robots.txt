@@ -1,8 +1,10 @@
 User-agent: *
 Allow: /
 
+# Bloquear páginas legais e auxiliares do Google (opcional, mas recomendado)
 Disallow: /links
 Disallow: /politica-de-privacidade
 Disallow: /termos-de-uso
+Disallow: /404
 
 Sitemap: https://sheforcek9.abeak9adestramento.com.br/sitemap-index.xml

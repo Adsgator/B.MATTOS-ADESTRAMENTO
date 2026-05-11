@@ -1,0 +1,67 @@
+---
+import Button from '../components/global/Button.astro';
+
+const whatsappHref = 'https://wa.me/5511918952921?text=Ol%C3%A1!%20Vi%20o%20site%20e%20quero%20saber%20mais.';
+---
+
+<!-- CTA Final full-bleed — fundo escuro máximo contraste -->
+<section
+  id="cta-final"
+  class="relative py-28 lg:py-40 bg-dark overflow-hidden"
+  aria-label="Garantir vaga no She ForceK9"
+>
+
+  <!-- Acento decorativo laranja no canto -->
+  <div
+    aria-hidden="true"
+    class="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl pointer-events-none"
+  ></div>
+  <div
+    aria-hidden="true"
+    class="absolute bottom-0 left-0 w-48 h-48 bg-primary/8 rounded-full blur-2xl pointer-events-none"
+  ></div>
+
+  <div class="container-content relative z-10 text-center max-w-3xl mx-auto" id="cta-final-content">
+
+    <!-- Label -->
+    <p class="section-label mb-6">Últimas vagas · Julho 2026</p>
+
+    <!-- Headline -->
+    <h2 class="font-display text-display-xl text-white leading-none mb-8">
+      As vagas para julho estão abertas — e são poucas
+    </h2>
+
+    <!-- Subtítulo -->
+    <p class="font-sans text-body-lg text-white/70 leading-relaxed mb-12 max-w-2xl mx-auto">
+      O She ForceK9 não é um curso de massa. As turmas são pequenas de propósito. Se você está lendo isso e quer participar, o melhor momento para falar é agora.
+    </p>
+
+    <!-- CTA grande centralizado -->
+    <Button
+      label="Garantir minha vaga no She ForceK9"
+      href={whatsappHref}
+      variant="primary"
+      trackingId="cta-final"
+      section="cta-final"
+      size="lg"
+    />
+
+    <!-- Microgarantia -->
+    <p class="font-sans text-label text-white/30 mt-6 uppercase tracking-widest">
+      Resposta rápida · Sem compromisso
+    </p>
+
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) return;
+
+    gsap.from('#cta-final-content > *', {
+      scrollTrigger: { trigger: '#cta-final', start: 'top 80%', toggleActions: 'play none none none' },
+      opacity: 0, y: 30, duration: 0.7, ease: 'power2.out', stagger: 0.12,
+    });
+  });
+</script>

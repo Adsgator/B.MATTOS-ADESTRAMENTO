@@ -1,0 +1,52 @@
+---
+interface Props {
+  icon:        string;    // SVG path string
+  title?:      string;
+  description: string;
+  dark?:       boolean;
+  index?:      number;    // para stagger GSAP
+}
+
+const { icon, title, description, dark = false, index = 0 } = Astro.props;
+---
+
+<div
+  class:list={[
+    'gsap-stagger-item',
+    'flex items-start gap-4 p-6 rounded-card',
+    'transition-all duration-200 hover:-translate-y-1',
+    dark
+      ? 'bg-dark-lighter border border-white/10 hover:border-white/20'
+      : 'bg-white border border-surface hover:shadow-card-hover',
+  ]}
+  data-index={index}
+>
+  <!-- Ícone monocromático -->
+  <div class:list={['flex-shrink-0 w-10 h-10 rounded flex items-center justify-center', dark ? 'bg-primary/20' : 'bg-primary/10']}>
+    <svg
+      width="20" height="20"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="text-primary"
+      aria-hidden="true"
+    >
+      <path d={icon} />
+    </svg>
+  </div>
+
+  <!-- Conteúdo -->
+  <div>
+    {title && (
+      <h3 class:list={['font-sans font-semibold text-body-md mb-1', dark ? 'text-white' : 'text-text']}>
+        {title}
+      </h3>
+    )}
+    <p class:list={['font-sans text-body-sm', dark ? 'text-white/70' : 'text-muted']}>
+      {description}
+    </p>
+  </div>
+</div>

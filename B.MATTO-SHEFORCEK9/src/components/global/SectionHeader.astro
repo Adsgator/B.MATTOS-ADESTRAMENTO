@@ -1,0 +1,35 @@
+---
+interface Props {
+  label?:    string;
+  title:     string;
+  subtitle?: string;
+  align?:    'left' | 'center';
+  dark?:     boolean;  // true = texto branco (para fundos escuros)
+}
+
+const {
+  label,
+  title,
+  subtitle,
+  align = 'center',
+  dark  = false,
+} = Astro.props;
+
+const alignClass = align === 'center' ? 'text-center mx-auto' : 'text-left';
+---
+
+<div class:list={['max-w-3xl mb-12 lg:mb-16 gsap-fade-up', alignClass]}>
+  {label && (
+    <span class:list={['section-label block mb-3', dark && 'text-primary']}>
+      {label}
+    </span>
+  )}
+  <h2 class:list={['font-display text-display-lg mb-4', dark ? 'text-white' : 'text-dark']}>
+    {title}
+  </h2>
+  {subtitle && (
+    <p class:list={['font-sans text-body-lg leading-relaxed', dark ? 'text-white/70' : 'text-muted']}>
+      {subtitle}
+    </p>
+  )}
+</div>

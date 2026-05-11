@@ -1,0 +1,54 @@
+---
+interface Props {
+  label:      string;
+  href:       string;
+  variant?:   'primary' | 'secondary' | 'ghost';
+  trackingId: string;
+  section:    string;
+  external?:  boolean;
+  fullWidth?: boolean;
+  size?:      'sm' | 'md' | 'lg';
+}
+
+const {
+  label,
+  href,
+  variant    = 'primary',
+  trackingId,
+  section,
+  external   = href.startsWith('http'),
+  fullWidth  = false,
+  size       = 'md',
+} = Astro.props;
+
+const sizeClasses = {
+  sm: 'px-4 py-2.5 text-body-sm',
+  md: 'px-6 py-3.5 text-body-md',
+  lg: 'px-8 py-4 text-body-lg',
+};
+
+const variantClasses = {
+  primary:   'bg-primary text-white hover:bg-primary-hover shadow-button',
+  secondary: 'border-2 border-primary text-primary hover:bg-primary hover:text-white',
+  ghost:     'border border-white/30 text-white hover:border-white hover:bg-white/10',
+};
+---
+
+<a
+  id={`btn-${trackingId}`}
+  href={href}
+  target={external ? '_blank' : undefined}
+  rel={external ? 'noopener noreferrer' : undefined}
+  data-tracking={`click-${trackingId}`}
+  data-section={section}
+  class:list={[
+    'inline-flex items-center justify-center gap-2 font-sans font-semibold rounded',
+    'transition-all duration-150 hover:scale-[1.03]',
+    'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary',
+    sizeClasses[size],
+    variantClasses[variant],
+    fullWidth && 'w-full',
+  ]}
+>
+  {label}
+</a>
