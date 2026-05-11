@@ -29,14 +29,14 @@ export default {
             },
             fontSize: {
                 // Escala tipográfica editorial — Reduzida para não ficar "gritante"
-                'display-2xl': ['clamp(2.5rem, 5vw, 4.5rem)', { lineHeight: '1', letterSpacing: '0.02em' }],
-                'display-xl': ['clamp(2rem, 4vw, 3.5rem)', { lineHeight: '1', letterSpacing: '0.01em' }],
-                'display-lg': ['clamp(1.75rem, 3vw, 2.75rem)', { lineHeight: '1.1', letterSpacing: '0.01em' }],
-                'display-md': ['clamp(1.5rem, 2.5vw, 2.25rem)', { lineHeight: '1.1', letterSpacing: '0.01em' }],
-                'body-lg': ['1.125rem', { lineHeight: '1.75' }],
-                'body-md': ['1rem', { lineHeight: '1.7' }],
-                'body-sm': ['0.875rem', { lineHeight: '1.65' }],
-                'label': ['0.75rem', { lineHeight: '1', letterSpacing: '0.15em' }],
+                'display-2xl': ['clamp(1.5rem, 5vw, 4.5rem)', { lineHeight: '1', letterSpacing: '0.02em' }],
+                'display-xl': ['clamp(1.25rem, 4vw, 3.5rem)', { lineHeight: '1', letterSpacing: '0.01em' }],
+                'display-lg': ['clamp(1.25rem, 3vw, 2.75rem)', { lineHeight: '1.1', letterSpacing: '0.01em' }],
+                'display-md': ['clamp(1.125rem, 2.5vw, 2.25rem)', { lineHeight: '1.1', letterSpacing: '0.01em' }],
+                'body-lg': ['clamp(0.95rem, 2vw, 1.125rem)', { lineHeight: '1.75' }],
+                'body-md': ['clamp(0.9rem, 1.5vw, 1rem)', { lineHeight: '1.7' }],
+                'body-sm': ['clamp(0.8rem, 1.2vw, 0.875rem)', { lineHeight: '1.65' }],
+                'label': ['0.65rem', { lineHeight: '1', letterSpacing: '0.15em' }],
             },
             spacing: {
                 // Espaçamento de seção

@@ -31,7 +31,7 @@
 @layer components {
     /* Container padrão do projeto */
     .container-content {
-        @apply mx-auto max-w-content px-6 lg:px-12;
+        @apply mx-auto max-w-content px-4 sm:px-6 lg:px-12;
     }
 
     /* Label de seção — texto pequeno uppercase acima dos títulos */

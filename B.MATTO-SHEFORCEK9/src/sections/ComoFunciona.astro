@@ -32,7 +32,7 @@ const modulos = [
 ];
 ---
 
-<section id="como-funciona" class="py-24 lg:py-40 bg-surface relative overflow-hidden" aria-label="O que você vai aprender">
+<section id="como-funciona" class="py-16 sm:py-24 lg:py-40 bg-surface relative overflow-hidden" aria-label="O que você vai aprender">
 
   <!-- Fundo decorativo: orbes e gradientes -->
   <div class="absolute inset-0 pointer-events-none">
@@ -51,33 +51,33 @@ const modulos = [
 
   <div class="container-content relative z-10">
 
-    <div class="max-w-4xl mb-20">
+    <div class="max-w-4xl mb-12 sm:mb-20">
       <SectionHeader
         label="O Método"
         title="O que você vai aprender: o equilíbrio entre técnica e sensibilidade"
-        subtitle="O curso é dividido em dois grandes pilares que se fundem durante os quatro dias de imersão presencial."
+        subtitle="O curso é dividido em dois grandes pilares que se fundem durante os quatro dias de curso presencial."
         align="left"
       />
     </div>
 
     <!-- Layout de Cards Editorial -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20" id="como-funciona-grid">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-20" id="como-funciona-grid">
 
       {modulos.map(({ grupo, desc, itens }, gi) => (
         <div class="gsap-reveal flex flex-col">
           
-          <div class="flex items-baseline gap-4 mb-8">
-            <span class="font-display text-4xl lg:text-5xl text-gold/20 leading-none">0{gi + 1}</span>
+          <div class="flex items-baseline gap-3 sm:gap-4 mb-6 sm:mb-8">
+            <span class="font-display text-3xl sm:text-4xl lg:text-5xl text-gold/20 leading-none">0{gi + 1}</span>
             <div>
-              <h3 class="font-display text-2xl text-dark uppercase tracking-wide">{grupo}</h3>
-              <p class="font-sans text-body-sm text-muted">{desc}</p>
+              <h3 class="font-display text-xl sm:text-2xl text-dark uppercase tracking-wide">{grupo}</h3>
+              <p class="font-sans text-body-sm text-muted text-xs sm:text-sm">{desc}</p>
             </div>
           </div>
 
-          <div class="grid grid-cols-1 gap-4">
+          <div class="grid grid-cols-1 gap-2 sm:gap-4">
             {itens.map((item) => (
-              <div class="group flex items-center justify-between p-5 bg-white/50 border border-dark/5 rounded-sm hover:bg-white hover:shadow-xl hover:border-gold/30 transition-all duration-300">
-                <p class="font-sans text-body-sm text-dark/80 group-hover:text-dark transition-colors">{item}</p>
+              <div class="group flex items-center justify-between p-3 sm:p-5 bg-white/50 border border-dark/5 rounded-sm hover:bg-white hover:shadow-xl hover:border-gold/30 transition-all duration-300">
+                <p class="font-sans text-body-sm text-dark/80 group-hover:text-dark transition-colors text-xs sm:text-sm">{item}</p>
                 <div class="w-2 h-2 rounded-full bg-gold/30 group-hover:bg-gold transition-colors"></div>
               </div>
             ))}
@@ -88,9 +88,9 @@ const modulos = [
     </div>
 
     <!-- CTA Area -->
-    <div class="mt-24 pt-20 border-t border-dark/5 flex flex-col items-center text-center">
-      <h4 class="font-display text-display-md text-dark mb-8 max-w-2xl">
-        Mais do que um curso de adestramento, é um resgate da sua <span class="text-gold italic">autonomia</span>.
+    <div class="mt-16 sm:mt-24 pt-12 sm:pt-20 border-t border-dark/5 flex flex-col items-center text-center">
+      <h4 class="font-display text-display-md text-dark mb-4 sm:mb-8 max-w-2xl text-xl sm:text-2xl">
+        Mais do que um curso de adestramento, é um resgate da sua <span class="text-gold">autonomia</span>.
       </h4>
       <Button
         label="Agendar com Beatriz Mattos"

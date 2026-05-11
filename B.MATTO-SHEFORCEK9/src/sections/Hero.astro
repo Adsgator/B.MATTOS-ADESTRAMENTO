@@ -1,7 +1,7 @@
 ---
 import Button from '../components/global/Button.astro';
 import { Image } from 'astro:assets';
-import heroImage from '../assets/images/hero-principal.png';
+import heroImage from '../assets/images/hero_principal.webp';
 
 const whatsappHref = 'https://wa.me/5511918952921?text=Ol%C3%A1!%20Vi%20o%20site%20e%20quero%20saber%20mais.';
 ---
@@ -28,8 +28,8 @@ const whatsappHref = 'https://wa.me/5511918952921?text=Ol%C3%A1!%20Vi%20o%20site
   <div class="absolute inset-0 bg-gradient-to-t from-dark via-transparent to-transparent opacity-60"></div>
 
   <!-- Container interno -->
-  <div class="container-content relative z-10 w-full pt-32 pb-32 lg:pt-40 lg:pb-48">
-    <div class="grid grid-cols-1 lg:grid-cols-[52%_48%] gap-12 lg:gap-16 items-center">
+  <div class="container-content relative z-10 w-full pt-20 pb-20 sm:pt-32 sm:pb-32 lg:pt-40 lg:pb-48">
+    <div class="grid grid-cols-1 lg:grid-cols-[52%_48%] gap-8 sm:gap-12 lg:gap-16 items-center">
 
       <!-- Coluna texto -->
       <div class="relative">
@@ -38,31 +38,31 @@ const whatsappHref = 'https://wa.me/5511918952921?text=Ol%C3%A1!%20Vi%20o%20site
         <div class="absolute -top-12 -left-4 w-24 h-24 border-l border-t border-gold/20 opacity-50 hidden lg:block"></div>
 
         <!-- Label -->
-        <div class="flex items-center gap-3 mb-6" id="hero-label">
-          <div class="w-8 h-px bg-gold/50"></div>
-          <p class="section-label !text-gold/80 !mb-0">
+        <div class="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6" id="hero-label">
+          <div class="w-6 sm:w-8 h-px bg-gold/50"></div>
+          <p class="section-label !text-gold/80 !mb-0 text-xs sm:text-sm">
             Curso de Guarda e Proteção para Mulheres
           </p>
         </div>
 
         <!-- H1 -->
         <h1
-          class="font-display text-display-2xl text-white mb-8 max-w-2xl"
+          class="font-display text-display-lg lg:text-display-xl text-white mb-4 sm:mb-8 max-w-2xl"
           id="hero-title"
         >
-          Sinta-se segura em qualquer lugar com um <span class="text-gold italic">cão de proteção</span> ao seu lado
+          Sinta-se segura em qualquer lugar com um <span class="text-gold">cão de proteção</span> ao seu lado
         </h1>
 
         <!-- Subtítulo -->
         <p
-          class="font-sans text-body-lg text-white/60 leading-relaxed mb-12 max-w-xl"
+          class="font-sans text-body-lg text-white/60 leading-relaxed mb-6 sm:mb-12 max-w-xl text-sm sm:text-base"
           id="hero-subtitle"
         >
-          O She ForceK9 é a única imersão no Brasil que une técnica canina, psicologia e direito para que você volte a andar na rua sem medo de assédio ou opressão — mesmo sem nenhuma experiência prévia com cães.
+          O She ForceK9 é o único curso no Brasil que une técnica canina, psicologia e direito para que você volte a andar na rua sem medo de assédio ou opressão, mesmo sem nenhuma experiência prévia com cães.
         </p>
 
         <!-- CTA + Info -->
-        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6" id="hero-cta">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6" id="hero-cta">
           <Button
             label="Quero saber mais"
             href={whatsappHref}
@@ -72,9 +72,9 @@ const whatsappHref = 'https://wa.me/5511918952921?text=Ol%C3%A1!%20Vi%20o%20site
             size="lg"
           />
 
-          <div class="flex flex-col gap-1">
-            <p class="font-sans text-white font-medium text-body-sm">Próxima Turma: 09 a 12 de Julho / 2026</p>
-            <p class="font-sans text-white/40 text-[0.7rem] uppercase tracking-widest">Vagas extremamente limitadas</p>
+          <div class="flex flex-col gap-0.5 sm:gap-1">
+            <p class="font-sans text-white font-medium text-body-sm text-xs sm:text-sm">Próxima Turma: 09 a 12 de Julho / 2026</p>
+            <p class="font-sans text-white/40 text-[0.6rem] sm:text-[0.7rem] uppercase tracking-widest">Vagas extremamente limitadas</p>
           </div>
         </div>
       </div>
@@ -88,7 +88,7 @@ const whatsappHref = 'https://wa.me/5511918952921?text=Ol%C3%A1!%20Vi%20o%20site
         <!-- Imagem Principal -->
         <div
           class="
-            relative w-full aspect-[4/5] rounded shadow-2xl overflow-hidden
+            relative w-full aspect-[4/5] rounded shadow-2xl
             border border-white/10
           "
         >
@@ -108,28 +108,28 @@ const whatsappHref = 'https://wa.me/5511918952921?text=Ol%C3%A1!%20Vi%20o%20site
           <!-- Badge Flutuante 1 -->
           <div
             class="
-              absolute top-8 -left-6
+              absolute top-4 sm:top-8 -left-3 sm:-left-6
               bg-dark/90 backdrop-blur-md border border-white/10
-              rounded-sm px-6 py-4
-              shadow-2xl
+              rounded-sm px-4 sm:px-6 py-3 sm:py-4
+              shadow-2xl whitespace-nowrap
             "
             id="hero-detail-card-1"
           >
-            <p class="font-display text-gold text-lg leading-tight">Segurança<br/>Real</p>
-            <p class="font-sans text-white/40 text-[0.6rem] uppercase mt-2 tracking-widest">Certificado SheForce</p>
+            <p class="font-display text-gold text-sm sm:text-lg leading-tight">Segurança Real</p>
+            <p class="font-sans text-white/40 text-[0.5rem] sm:text-[0.6rem] uppercase mt-1 sm:mt-2 tracking-widest">Certificado SheForce</p>
           </div>
 
           <!-- Badge Flutuante 2 -->
           <div
             class="
-              absolute bottom-12 -right-6
+              absolute bottom-6 sm:bottom-12 -right-3 sm:-right-6
               bg-gold-gradient
-              rounded-sm px-6 py-4
+              rounded-sm px-4 sm:px-6 py-3 sm:py-4
               shadow-2xl
             "
             id="hero-detail-card-2"
           >
-            <p class="font-sans text-white font-bold text-body-sm leading-tight uppercase tracking-wider">Metodologia<br/>Beatriz Mattos</p>
+            <p class="font-sans text-white font-bold text-xs sm:text-body-sm leading-tight uppercase tracking-wider">Metodologia<br/>Beatriz Mattos</p>
           </div>
         </div>
 

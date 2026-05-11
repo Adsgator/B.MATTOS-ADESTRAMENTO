@@ -1,55 +1,57 @@
 ---
 import SectionHeader from '../components/global/SectionHeader.astro';
 import Button from '../components/global/Button.astro';
+import { Image } from 'astro:assets';
+import beatrizImage from '../assets/images/beatriz_mattos.webp';
 
 const whatsappHref = 'https://wa.me/5511918952921?text=Ol%C3%A1!%20Vi%20o%20site%20e%20quero%20saber%20mais.';
 
 const itens = [
-  { title: 'Visão 360º do Mercado', text: 'Beatriz já ocupou todos os papéis: cliente, atendimento a domicílio, dona de escola, instrutora e competidora titulada. Uma visão completa que poucos profissionais possuem.' },
+  { title: 'Visão 360º do Mercado', text: 'Eu já ocupei todos os papéis: cliente, atendimento a domicílio, dona de escola, instrutora e competidora titulada. Uma visão completa que poucos profissionais possuem.' },
   { title: 'Experiência com Diversos Perfis', text: 'Volume real de atendimento com diversas raças, temperamentos e problemas comportamentais, gerando uma leitura refinada e precisa de cada cão.' },
   { title: 'Atualização Contínua', text: 'Estudo constante e profundo que se reflete na didática e na forma eficaz de resolver problemas complexos de forma segura.' },
-  { title: 'Troca Sem Segredos', text: 'O valor está em transmitir o conhecimento, não em retê-lo. Beatriz entrega técnicas e informações sem reservas ou inseguranças.' },
-  { title: 'Didática Direta e Prática', text: 'Sem teorias místicas ou excessivas. Entrega clareza, segurança, sequência lógica e aplicação imediata para resultados reais.' },
+  { title: 'Troca Sem Segredos', text: 'O valor está em transmitir o conhecimento, não em retê-lo. Eu entrego técnicas e informações sem segredos e sem ego.' },
+  { title: 'Didática Direta e Prática', text: 'Sem teorias místicas ou excessivas. Entrego clareza, segurança, sequência lógica e aplicação imediata para resultados reais.' },
   { title: 'Foco no Fator Humano', text: 'Uma leitura fina da pessoa por trás do cachorro. As orientações são precisas, transformadoras e acolhedoras, sem perder a firmeza necessária.' },
   { title: 'Liderança no Nicho Feminino', text: 'Pioneirismo ao guiar mulheres para a autonomia com cães de proteção, ocupando um espaço necessário e potente no mercado.' },
   { title: 'Simplicidade na Complexidade', text: 'Habilidade rara de traduzir conceitos avançados de adestramento para quem está começando, sem perder a profundidade técnica.' },
 ];
 ---
 
-<section id="diferenciais" class="py-24 lg:py-40 bg-bg relative overflow-hidden" aria-label="Diferenciais do She ForceK9">
+<section id="diferenciais" class="py-16 sm:py-24 lg:py-40 bg-bg relative overflow-hidden" aria-label="Diferenciais do She ForceK9">
   
   <!-- Elemento decorativo de fundo -->
   <div class="absolute top-0 right-0 w-1/3 h-1/2 bg-surface rounded-bl-[10vw] -z-10 opacity-50"></div>
 
   <div class="container-content">
 
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-end mb-20 lg:mb-32">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 items-end mb-12 sm:mb-20 lg:mb-32">
       <div class="lg:col-span-7">
         <SectionHeader
           label="A Diferença SheForce"
-          title="7 Princípios da minha abordagem centrada na mulher"
+          title="8 Princípios da minha abordagem centrada na mulher"
           align="left"
         />
       </div>
-      <div class="lg:col-span-5 pb-16 lg:pb-20">
-        <p class="font-sans text-body-lg text-muted leading-relaxed border-l-2 border-gold/30 pl-6">
+      <div class="lg:col-span-5 pb-10 sm:pb-16 lg:pb-20">
+        <p class="font-sans text-body-lg text-muted leading-relaxed border-l-2 border-gold/30 pl-4 sm:pl-6 text-sm sm:text-base">
           "Eu já ocupei todos os papéis: fui cliente, atendi a domicílio, tive escola e hoje sou competidora titulada. Isso me dá uma leitura que une técnica e sensibilidade feminina."
         </p>
       </div>
     </div>
 
     <!-- Layout Central: Foto e Princípios em volta -->
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-16 items-start">
       
       <!-- Coluna Esquerda (Princípios 1-4) -->
-      <div class="lg:col-span-4 space-y-12" id="diferenciais-col-1">
+      <div class="lg:col-span-4 space-y-8 sm:space-y-12" id="diferenciais-col-1">
         {itens.slice(0, 4).map((item, i) => (
           <div class="gsap-stagger-item group">
-            <div class="flex items-center gap-4 mb-3">
-              <span class="font-display text-2xl text-gold/40 group-hover:text-gold transition-colors">0{i + 1}</span>
-              <h3 class="font-display text-xl text-dark uppercase tracking-wide">{item.title}</h3>
+            <div class="flex items-center gap-3 sm:gap-4 mb-2 sm:mb-3">
+              <span class="font-display text-xl sm:text-2xl text-gold/40 group-hover:text-gold transition-colors">0{i + 1}</span>
+              <h3 class="font-display text-base sm:text-xl text-dark uppercase tracking-wide text-sm sm:text-lg">{item.title}</h3>
             </div>
-            <p class="font-sans text-body-sm text-muted leading-relaxed pl-10">
+            <p class="font-sans text-body-sm text-muted leading-relaxed pl-8 sm:pl-10 text-xs sm:text-sm">
               {item.text}
             </p>
           </div>
@@ -61,13 +63,13 @@ const itens = [
         <div class="relative group">
           <div class="absolute -inset-4 border border-gold/10 rounded-sm translate-x-2 translate-y-2 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform duration-500"></div>
           <div class="aspect-[3/4] bg-surface rounded-sm overflow-hidden shadow-2xl relative z-10">
-            <!-- Retrato placeholder elegante -->
-            <div class="w-full h-full bg-gradient-to-br from-surface to-gold/10 flex items-center justify-center p-12 text-center">
-               <p class="font-display text-gold/40 text-lg uppercase tracking-widest leading-relaxed">
-                 Beatriz Mattos<br/>
-                 <span class="font-sans text-[0.6rem] tracking-[0.3em]">Instrutora She ForceK9</span>
-               </p>
-            </div>
+            <Image
+              src={beatrizImage}
+              alt="Beatriz Mattos - Instrutora She ForceK9"
+              width={400}
+              height={533}
+              class="w-full h-full object-cover"
+            />
             <div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-dark/80 to-transparent">
               <p class="font-sans text-white text-[0.7rem] uppercase tracking-[0.2em] font-bold">Liderança Feminina no Adestramento</p>
             </div>
@@ -75,8 +77,8 @@ const itens = [
         </div>
       </div>
 
-      <!-- Coluna Direita (Princípios 5-7 + CTA) -->
-      <div class="lg:col-span-4 space-y-12" id="diferenciais-col-2">
+      <!-- Coluna Direita (Princípios 5-7) -->
+      <div class="lg:col-span-4 space-y-8 sm:space-y-12" id="diferenciais-col-2">
         {itens.slice(4).map((item, i) => (
           <div class="gsap-stagger-item group">
             <div class="flex items-center gap-4 mb-3">
@@ -88,19 +90,19 @@ const itens = [
             </p>
           </div>
         ))}
-
-        <div class="pt-12 gsap-stagger-item">
-          <Button
-            label="Quero agendar uma conversa"
-            href={whatsappHref}
-            variant="gold"
-            trackingId="diferenciais-cta"
-            section="diferenciais"
-            fullWidth={true}
-          />
-        </div>
       </div>
 
+    </div>
+
+    <!-- CTA Centralizado -->
+    <div class="mt-8 sm:mt-12 pt-4 sm:pt-6 flex justify-center">
+      <Button
+        label="Quero agendar uma conversa"
+        href={whatsappHref}
+        variant="gold"
+        trackingId="diferenciais-cta"
+        section="diferenciais"
+      />
     </div>
 
   </div>

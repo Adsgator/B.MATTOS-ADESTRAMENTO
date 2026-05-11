@@ -10,23 +10,28 @@ interface GalleryImage {
 const images: GalleryImage[] = [
   {
     id: 1,
-    src: '/images/classroom-1.jpg',
+    src: new URL('../../assets/images/classroom_1.webp', import.meta.url).href,
     alt: 'Turma SheForceK9 - Momento de aprendizado',
   },
   {
     id: 2,
-    src: '/images/classroom-2.jpg',
+    src: new URL('../../assets/images/classroom_2.webp', import.meta.url).href,
     alt: 'Alunas com cães de proteção em treinamento',
   },
   {
     id: 3,
-    src: '/images/classroom-3.jpg',
+    src: new URL('../../assets/images/classroom_3.webp', import.meta.url).href,
     alt: 'Prática de proteção e segurança',
   },
   {
     id: 4,
-    src: '/images/classroom-4.jpg',
+    src: new URL('../../assets/images/classroom_4.webp', import.meta.url).href,
     alt: 'Certificação e conclusão do curso',
+  },
+  {
+    id: 5,
+    src: new URL('../../assets/images/classroom_5.webp', import.meta.url).href,
+    alt: 'Finalização e celebração da turma',
   },
 ];
 

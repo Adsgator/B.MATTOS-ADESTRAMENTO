@@ -14,7 +14,7 @@ const incluso = [
 ];
 ---
 
-<section id="precos" class="py-24 lg:py-40 bg-dark relative overflow-hidden" aria-label="Investimento">
+<section id="precos" class="py-16 sm:py-24 lg:py-40 bg-dark relative overflow-hidden" aria-label="Investimento">
   
   <!-- Textura de fundo sutil -->
   <div class="absolute inset-0 opacity-[0.02] pointer-events-none grayscale invert" style="background-image: url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E\"); background-size: 200px;"></div>
@@ -41,39 +41,39 @@ const incluso = [
       id="preco-card"
     >
       <!-- Header do Card com Gradiente Gold -->
-      <div class="bg-gold-gradient px-10 py-12 text-center relative overflow-hidden group">
+      <div class="bg-gold-gradient px-6 sm:px-10 py-8 sm:py-12 text-center relative overflow-hidden group">
         <div class="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-        <p class="font-sans text-white/80 text-label uppercase tracking-[0.3em] mb-4">Plano Único Imersão</p>
+        <p class="font-sans text-white/80 text-label uppercase tracking-[0.3em] mb-2 sm:mb-4 text-xs sm:text-sm">Plano Único Imersão</p>
         <div class="flex items-start justify-center gap-2 text-white">
-          <span class="font-display text-2xl mt-2">R$</span>
-          <span class="font-display text-7xl lg:text-8xl leading-none">1.747</span>
+          <span class="font-display text-xl sm:text-2xl mt-1 sm:mt-2">R$</span>
+          <span class="font-display text-5xl sm:text-7xl lg:text-8xl leading-none">1.747</span>
         </div>
-        <p class="font-sans text-white/70 text-body-sm mt-4">
+        <p class="font-sans text-white/70 text-body-sm mt-2 sm:mt-4 text-xs sm:text-sm">
           <span class="text-white font-bold">5% de desconto no Pix</span><br/>
           ou parcelamento no cartão (com juros da operadora)
         </p>
       </div>
 
       <!-- Corpo do Card -->
-      <div class="px-10 py-12 bg-dark">
-        <h3 class="font-display text-xl text-white uppercase tracking-widest mb-8 border-b border-white/5 pb-4">
+      <div class="px-6 sm:px-10 py-8 sm:py-12 bg-dark">
+        <h3 class="font-display text-lg sm:text-xl text-white uppercase tracking-widest mb-6 sm:mb-8 border-b border-white/5 pb-3 sm:pb-4 text-base sm:text-lg">
           Tudo o que você recebe
         </h3>
         
-        <ul class="space-y-6 mb-12">
+        <ul class="space-y-3 sm:space-y-6 mb-8 sm:mb-12">
           {incluso.map((item) => (
-            <li class="flex items-start gap-4">
-              <div class="flex-shrink-0 w-5 h-5 rounded-full border border-gold/30 flex items-center justify-center mt-1">
-                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#c5ab78" stroke-width="3" aria-hidden="true">
+            <li class="flex items-start gap-2 sm:gap-4">
+              <div class="flex-shrink-0 w-4 h-4 sm:w-5 sm:h-5 rounded-full border border-gold/30 flex items-center justify-center mt-0.5 sm:mt-1">
+                <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#c5ab78" stroke-width="3" aria-hidden="true" class="sm:w-[10px] sm:h-[10px]">
                   <polyline points="20 6 9 17 4 12" />
                 </svg>
               </div>
-              <span class="font-sans text-body-sm text-white/60 leading-relaxed">{item}</span>
+              <span class="font-sans text-body-sm text-white/60 leading-relaxed text-xs sm:text-sm">{item}</span>
             </li>
           ))}
         </ul>
 
-        <div class="space-y-6">
+        <div class="space-y-4 sm:space-y-6">
           <Button
             label="Garantir minha vaga no WhatsApp"
             href={whatsappHref}
@@ -83,8 +83,8 @@ const incluso = [
             size="lg"
             fullWidth={true}
           />
-          
-          <div class="flex items-center justify-center gap-4 text-white/30 text-[0.6rem] uppercase tracking-widest">
+
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 text-white/30 text-[0.5rem] sm:text-[0.6rem] uppercase tracking-widest">
             <span class="flex items-center gap-1">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0110 0v4"></path></svg>
               Pagamento Seguro
@@ -97,7 +97,7 @@ const incluso = [
     </div>
 
     <!-- Garantia/Aviso sutil -->
-    <p class="text-center mt-12 font-sans text-body-sm text-white/30 max-w-lg mx-auto">
+    <p class="text-center mt-8 sm:mt-12 font-sans text-body-sm text-white/30 max-w-lg mx-auto text-xs sm:text-sm">
       Precisa de condições especiais para grupos de mulheres? <a href={whatsappHref} class="text-gold border-b border-gold/20 hover:border-gold transition-all">Fale comigo</a>.
     </p>
 

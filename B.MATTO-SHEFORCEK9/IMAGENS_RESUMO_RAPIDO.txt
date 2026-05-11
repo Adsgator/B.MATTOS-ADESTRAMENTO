@@ -1,0 +1,81 @@
+═══════════════════════════════════════════════════════════════════════════════
+                    IMAGENS - RESUMO RÁPIDO
+═══════════════════════════════════════════════════════════════════════════════
+
+1. LOGO (Header & Footer)
+   └─ Arquivo: logo-branca-sheforcek9.svg
+   └─ Dimensão: 180 × 50px (SVG - vetorial)
+   └─ Formato: SVG
+   └─ Uso: Topo (Header) e Rodapé (Footer)
+
+2. IMAGEM HERO (Principal)
+   └─ Arquivo: hero-principal.png
+   └─ Dimensão: 800 × 1000px
+   └─ Proporção: 4:5
+   └─ Formato: PNG ou WebP
+   └─ Uso: Seção Hero, lado direito
+   └─ Conteúdo: Mulher com cão, ambiente urbano, confiante
+
+3. FOTO BEATRIZ (Diferenciais)
+   └─ Arquivo: beatriz-mattos.png
+   └─ Dimensão: 400 × 533px
+   └─ Proporção: 3:4 (portrait)
+   └─ Formato: PNG ou WebP
+   └─ Uso: Seção Diferenciais, coluna central
+   └─ Conteúdo: Retrato profissional (headshot + parte superior corpo)
+
+4. AVATAR (Página Links)
+   └─ Arquivo: avatar-links.webp
+   └─ Dimensão: 96 × 96px
+   └─ Proporção: 1:1 (quadrado)
+   └─ Formato: WebP
+   └─ Uso: Página /links - redes sociais
+   └─ Conteúdo: Foto de perfil da Beatriz
+
+5. OG IMAGE (Compartilhamento Social)
+   └─ Arquivo: og-image.webp
+   └─ Dimensão: 1200 × 630px
+   └─ Proporção: ~1.91:1
+   └─ Formato: WebP
+   └─ Uso: Meta tag (WhatsApp, Facebook, LinkedIn, etc.)
+   └─ Conteúdo: Logo + título + cores da marca
+
+6. GALERIA DE TURMAS (ClassroomGallery)
+   └─ Quantidade: Múltiplas imagens
+   └─ Dimensão MÍNIMA: 600 × 600px
+   └─ Proporção: 1:1 (quadrado)
+   └─ Formato: WebP ou JPG otimizado
+   └─ Uso: Seção Galeria (carousel)
+   └─ Conteúdo: Fotos da turma, cães, atividades
+
+7. ASSINATURA ADSGATOR (Footer)
+   └─ Arquivo: assinatura-adsgator-fundo-escuro.svg
+   └─ Dimensão: 120 × 40px
+   └─ Formato: SVG (vetorial)
+   └─ Uso: Footer - rodapé direito
+   └─ Conteúdo: Logo da agência
+
+═══════════════════════════════════════════════════════════════════════════════
+                    DICAS IMPORTANTES
+═══════════════════════════════════════════════════════════════════════════════
+
+✓ EXPORTE COMO:
+  • Logos: SVG (vetorial, sem perda)
+  • Fotos: WebP (melhor) ou JPG (compatibilidade)
+  • Fallback: PNG se necessário
+
+✓ OTIMIZE:
+  • WebP: TinyWebP
+  • JPG: Qualidade 85-90%
+  • PNG: TinyPNG
+
+✓ CORES PADRÃO PARA OG IMAGE:
+  • Background: #1a1d23 (dark)
+  • Destaque: #ff4d00 (laranja)
+
+✓ RESPONSIVE:
+  • As proporções são mantidas em todos os breakpoints
+  • Mobile: layout single-column
+  • Desktop: layout multi-column com imagens maiores
+
+═══════════════════════════════════════════════════════════════════════════════
