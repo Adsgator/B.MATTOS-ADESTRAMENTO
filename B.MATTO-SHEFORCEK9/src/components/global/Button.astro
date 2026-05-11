@@ -2,7 +2,7 @@
 interface Props {
   label:      string;
   href:       string;
-  variant?:   'primary' | 'secondary' | 'ghost';
+  variant?:   'primary' | 'secondary' | 'ghost' | 'gold';
   trackingId: string;
   section:    string;
   external?:  boolean;
@@ -22,15 +22,16 @@ const {
 } = Astro.props;
 
 const sizeClasses = {
-  sm: 'px-4 py-2.5 text-body-sm',
-  md: 'px-6 py-3.5 text-body-md',
-  lg: 'px-8 py-4 text-body-lg',
+  sm: 'px-4 py-2.5 text-[0.8rem] lg:text-body-sm uppercase tracking-wider',
+  md: 'px-6 py-3.5 text-[0.9rem] lg:text-body-md uppercase tracking-wider',
+  lg: 'px-8 py-4.5 text-[1rem] lg:text-body-lg uppercase tracking-widest',
 };
 
 const variantClasses = {
   primary:   'bg-primary text-white hover:bg-primary-hover shadow-button',
   secondary: 'border-2 border-primary text-primary hover:bg-primary hover:text-white',
   ghost:     'border border-white/30 text-white hover:border-white hover:bg-white/10',
+  gold:      'btn-gold',
 };
 ---
 

@@ -6,24 +6,33 @@ export default {
             colors: {
                 // Tokens de cor — nunca usar HEX direto no código
                 primary: '#fe5d16', // laranja da marca
+                gold: {
+                    DEFAULT: '#c5ab78',
+                    light: '#e2d1a8',
+                    dark: '#a68b5a',
+                },
                 dark: '#1a1d23', // quase preto — header, footer, CTAs
-                bg: '#f9f0df', // creme — fundo principal
-                surface: '#f0e6d0', // creme mais escuro — fundo seções alternadas
-                text: '#1d1d1c', // texto principal
-                muted: '#535353', // texto secundário / suporte
-                'primary-hover': '#e04d0c', // laranja escurecido para hover
-                'dark-lighter': '#252830', // dark levemente mais claro para superfícies no escuro
+                bg: '#fbf7f0', // creme mais claro e elegante
+                surface: '#f3ede2', // creme mais quente
+                text: '#2d2d2b', // cinza muito escuro, menos "duro" que o preto
+                muted: '#71716f', // cinza médio
+                'primary-hover': '#e04d0c', 
+                'dark-lighter': '#252830', 
+            },
+            backgroundImage: {
+                'gold-gradient': 'linear-gradient(135deg, #c5ab78 0%, #e2d1a8 50%, #a68b5a 100%)',
+                'gold-shimmer': 'linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent)',
             },
             fontFamily: {
-                display: ['"Bebas Neue"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+                display: ['"Prata"', 'serif'],
                 sans: ['"DM Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
             },
             fontSize: {
-                // Escala tipográfica editorial
-                'display-2xl': ['clamp(3.5rem, 8vw, 7rem)', { lineHeight: '0.95', letterSpacing: '0.01em' }],
-                'display-xl': ['clamp(2.8rem, 6vw, 5.5rem)', { lineHeight: '1', letterSpacing: '0.01em' }],
-                'display-lg': ['clamp(2.2rem, 4vw, 4rem)', { lineHeight: '1.05', letterSpacing: '0.01em' }],
-                'display-md': ['clamp(1.8rem, 3vw, 3rem)', { lineHeight: '1.1', letterSpacing: '0.01em' }],
+                // Escala tipográfica editorial — Reduzida para não ficar "gritante"
+                'display-2xl': ['clamp(2.5rem, 5vw, 4.5rem)', { lineHeight: '1.1', letterSpacing: '-0.02em' }],
+                'display-xl': ['clamp(2rem, 4vw, 3.5rem)', { lineHeight: '1.1', letterSpacing: '-0.01em' }],
+                'display-lg': ['clamp(1.75rem, 3vw, 2.75rem)', { lineHeight: '1.2', letterSpacing: '-0.01em' }],
+                'display-md': ['clamp(1.5rem, 2.5vw, 2.25rem)', { lineHeight: '1.2', letterSpacing: '0' }],
                 'body-lg': ['1.125rem', { lineHeight: '1.75' }],
                 'body-md': ['1rem', { lineHeight: '1.7' }],
                 'body-sm': ['0.875rem', { lineHeight: '1.65' }],

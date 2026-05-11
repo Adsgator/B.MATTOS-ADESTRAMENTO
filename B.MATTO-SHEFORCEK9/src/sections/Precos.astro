@@ -5,112 +5,98 @@ import SectionHeader from '../components/global/SectionHeader.astro';
 const whatsappHref = 'https://wa.me/5511918952921?text=Ol%C3%A1!%20Vi%20o%20site%20e%20quero%20saber%20mais.';
 
 const incluso = [
-  'Café da manhã, lanche da tarde e almoço inclusos nos quatro dias',
-  'Conteúdo prático com cães de proteção formados e seguros',
+  'Café da manhã, lanche e almoço inclusos nos 4 dias',
+  'Conteúdo prático com cães de proteção de elite',
   'Módulo de Psicologia com profissional habilitada',
   'Módulo de Direito: uso legal de cães no Brasil',
-  'Acesso ao grupo de mulheres que segue junto após o curso',
-  'Você pode trazer qualquer cão — inclusive para treino de obediência',
+  'Certificação SheForceK9 de participação',
+  'Acesso ao grupo exclusivo de alunas pós-curso',
 ];
 ---
 
-<section id="precos" class="py-24 lg:py-40 bg-dark" aria-label="Investimento e próximas datas">
-  <div class="container-content">
+<section id="precos" class="py-24 lg:py-40 bg-dark relative overflow-hidden" aria-label="Investimento">
+  
+  <!-- Textura de fundo sutil -->
+  <div class="absolute inset-0 opacity-[0.02] pointer-events-none grayscale invert" style="background-image: url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E\"); background-size: 200px;"></div>
+
+  <div class="container-content relative z-10">
 
     <div class="flex justify-center">
       <SectionHeader
-        label="Investimento"
-        title="Investimento e próximas datas"
-        subtitle="O She ForceK9 acontece nos dias 09, 10, 11 e 12 de julho de 2026, em São José dos Campos/SP. As vagas são limitadas por design — o curso precisa ser pequeno para funcionar."
+        label="O Investimento"
+        title="Invista na sua segurança e autonomia"
+        subtitle="Vagas limitadas. O curso acontece em São José dos Campos/SP, nos dias 09 a 12 de julho de 2026."
         align="center"
         dark={true}
       />
     </div>
 
-    <!-- Card único de preço -->
+    <!-- Card de Preço Premium -->
     <div
       class="
-        max-w-2xl mx-auto
-        bg-dark-lighter border border-white/15 rounded-card
-        overflow-hidden
+        max-w-xl mx-auto
+        bg-[#23262d] border border-white/5 rounded-sm
+        shadow-2xl overflow-hidden
       "
       id="preco-card"
     >
-
-      <!-- Topo do card -->
-      <div class="bg-primary px-8 py-6">
-        <p class="font-sans text-white/80 text-body-sm uppercase tracking-widest mb-1">Valor de investimento</p>
-        <p class="font-display text-display-xl text-white leading-none">
-          A partir de R$ 1.747,00
-        </p>
-        <p class="font-sans text-white/70 text-body-sm mt-2">5% de desconto no Pix</p>
+      <!-- Header do Card com Gradiente Gold -->
+      <div class="bg-gold-gradient px-10 py-12 text-center relative overflow-hidden group">
+        <div class="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+        <p class="font-sans text-white/80 text-label uppercase tracking-[0.3em] mb-4">Plano Único Imersão</p>
+        <div class="flex items-start justify-center gap-2 text-white">
+          <span class="font-display text-2xl mt-2">R$</span>
+          <span class="font-display text-7xl lg:text-8xl leading-none">1.747</span>
+        </div>
+        <p class="font-sans text-white/70 text-body-sm mt-4 italic">Ou em até 12x no cartão de crédito</p>
       </div>
 
-      <!-- Corpo do card -->
-      <div class="px-8 py-8">
-
-        <!-- O que está incluso -->
-        <h3 class="font-sans font-semibold text-white text-body-md mb-5 uppercase tracking-wider">
-          O que está incluso
+      <!-- Corpo do Card -->
+      <div class="px-10 py-12 bg-dark">
+        <h3 class="font-display text-xl text-white uppercase tracking-widest mb-8 border-b border-white/5 pb-4">
+          Tudo o que você recebe
         </h3>
-        <ul class="space-y-3 mb-8">
+        
+        <ul class="space-y-6 mb-12">
           {incluso.map((item) => (
-            <li class="flex items-start gap-3">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fe5d16" stroke-width="2.5" class="flex-shrink-0 mt-0.5" aria-hidden="true">
-                <polyline points="20 6 9 17 4 12" />
-              </svg>
-              <span class="font-sans text-body-sm text-white/75 leading-relaxed">{item}</span>
+            <li class="flex items-start gap-4">
+              <div class="flex-shrink-0 w-5 h-5 rounded-full border border-gold/30 flex items-center justify-center mt-1">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#c5ab78" stroke-width="3" aria-hidden="true">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+              </div>
+              <span class="font-sans text-body-sm text-white/60 leading-relaxed">{item}</span>
             </li>
           ))}
         </ul>
 
-        <!-- Formas de pagamento -->
-        <div class="border-t border-white/10 pt-6 mb-8">
-          <div class="flex flex-wrap gap-4">
-            <div class="flex items-center gap-2 bg-white/5 border border-white/10 rounded px-4 py-2.5">
-              <!-- Ícone Pix simplificado -->
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" class="text-primary" aria-hidden="true">
-                <path d="M11.644 1.59a.75.75 0 01.712 0l9.75 5.25a.75.75 0 010 1.32l-9.75 5.25a.75.75 0 01-.712 0l-9.75-5.25a.75.75 0 010-1.32l9.75-5.25z"/>
-                <path d="M3.265 10.602l7.668 4.129a2.25 2.25 0 002.134 0l7.668-4.13 1.37.739a.75.75 0 010 1.32l-9.75 5.25a.75.75 0 01-.71 0l-9.75-5.25a.75.75 0 010-1.32l1.37-.738z"/>
-              </svg>
-              <span class="font-sans text-white/70 text-body-sm font-medium">Pix — 5% off</span>
-            </div>
-            <div class="flex items-center gap-2 bg-white/5 border border-white/10 rounded px-4 py-2.5">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-white/50" aria-hidden="true">
-                <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/>
-                <line x1="1" y1="10" x2="23" y2="10"/>
-              </svg>
-              <span class="font-sans text-white/70 text-body-sm font-medium">Cartão parcelado</span>
-            </div>
+        <div class="space-y-6">
+          <Button
+            label="Garantir minha vaga no WhatsApp"
+            href={whatsappHref}
+            variant="gold"
+            trackingId="precos-cta"
+            section="precos"
+            size="lg"
+            fullWidth={true}
+          />
+          
+          <div class="flex items-center justify-center gap-4 text-white/30 text-[0.6rem] uppercase tracking-widest">
+            <span class="flex items-center gap-1">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0110 0v4"></path></svg>
+              Pagamento Seguro
+            </span>
+            <span class="w-1 h-1 bg-white/10 rounded-full"></span>
+            <span>Vagas por Ordem de Reserva</span>
           </div>
-          <p class="font-sans text-label text-white/30 mt-3">
-            Parcelamento no cartão de crédito disponível. Juros por conta do cliente.
-          </p>
         </div>
-
-        <!-- Urgência + CTA -->
-        <div class="bg-primary/10 border border-primary/20 rounded px-5 py-4 mb-6">
-          <p class="font-sans text-body-sm text-white/80">
-            <strong class="text-primary">Vagas limitadas</strong> — turmas pequenas para garantir atenção individual.
-          </p>
-        </div>
-
-        <Button
-          label="Quero saber como garantir minha vaga"
-          href={whatsappHref}
-          variant="primary"
-          trackingId="precos-cta"
-          section="precos"
-          size="lg"
-          fullWidth={true}
-        />
-
-        <!-- Espaço reservado para gateway de pagamento futuro -->
-        <!-- NOTA PARA IMPLEMENTAÇÃO: integrar gateway aqui quando plataforma for confirmada -->
-        <!-- id="checkout-gateway-placeholder" -->
-
       </div>
     </div>
+
+    <!-- Garantia/Aviso sutil -->
+    <p class="text-center mt-12 font-sans text-body-sm text-white/30 max-w-lg mx-auto">
+      Precisa de condições especiais para grupos de mulheres? <a href={whatsappHref} class="text-gold border-b border-gold/20 hover:border-gold transition-all">Fale comigo</a>.
+    </p>
 
   </div>
 </section>
@@ -121,8 +107,15 @@ const incluso = [
     if (prefersReduced) return;
 
     gsap.from('#preco-card', {
-      scrollTrigger: { trigger: '#preco-card', start: 'top 85%', toggleActions: 'play none none none' },
-      opacity: 0, y: 40, duration: 0.8, ease: 'power2.out',
+      scrollTrigger: { 
+        trigger: '#preco-card', 
+        start: 'top 85%' 
+      },
+      opacity: 0, 
+      scale: 0.9,
+      y: 40, 
+      duration: 1, 
+      ease: 'power3.out'
     });
   });
 </script>

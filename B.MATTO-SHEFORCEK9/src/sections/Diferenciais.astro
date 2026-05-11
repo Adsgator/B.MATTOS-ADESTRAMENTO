@@ -5,95 +5,101 @@ import Button from '../components/global/Button.astro';
 const whatsappHref = 'https://wa.me/5511918952921?text=Ol%C3%A1!%20Vi%20o%20site%20e%20quero%20saber%20mais.';
 
 const itens = [
-  { icon: 'M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z', text: 'Qualquer mulher pode participar — nenhuma experiência prévia é necessária' },
-  { icon: 'M4 6h16M4 10h16M4 14h16M4 18h16', text: 'Qualquer cão é bem-vindo — inclusive pets sem histórico de proteção' },
-  { icon: 'M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253', text: 'Você não aprende só sobre cães — aprende sobre seus direitos e sobre você mesma' },
-  { icon: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z', text: 'Ambiente exclusivamente feminino, sem julgamento, com escuta real' },
-  { icon: 'M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z', text: 'Didática clara e prática — sem teorias complicadas, sem termos técnicos desnecessários' },
-  { icon: 'M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z', text: 'Eu não retenho conhecimento: meu valor está em transmitir, não em guardar' },
-  { icon: 'M13 10V3L4 14h7v7l9-11h-7z', text: 'Grupo de mulheres que segue junto — a rede de apoio começa no curso e não termina' },
+  { title: 'Inclusão Total', text: 'Qualquer mulher pode participar — nenhuma experiência prévia é necessária. O curso é desenhado para quem nunca teve contato com adestramento.' },
+  { title: 'Sem Limite de Raça', text: 'Qualquer cão é bem-vindo — inclusive pets sem histórico de proteção. Focamos na condução e no vínculo, não apenas na agressão.' },
+  { title: 'Conhecimento Jurídico', text: 'Você não aprende só sobre cães — aprende sobre seus direitos, legítima defesa e como agir dentro da lei em situações de risco.' },
+  { title: 'Espaço Seguro', text: 'Ambiente exclusivamente feminino, sem julgamentos. Um lugar onde você pode expor seus medos e ser ouvida de verdade.' },
+  { title: 'Prática Direta', text: 'Didática clara e prática — sem teorias complicadas ou termos técnicos que só servem para inflar o ego de instrutores.' },
+  { title: 'Transparência', text: 'Eu não retenho conhecimento: meu valor está em transmitir tudo o que sei para que você se torne independente.' },
+  { title: 'Rede de Apoio', text: 'Grupo de mulheres que segue junto — a rede de apoio começa no curso e se estende para a vida, com treinos e encontros.' },
 ];
 ---
 
-<!-- Fundo escuro para alternar com seção anterior -->
-<section id="diferenciais" class="py-24 lg:py-40 bg-dark" aria-label="Diferenciais do She ForceK9">
+<section id="diferenciais" class="py-24 lg:py-40 bg-bg relative overflow-hidden" aria-label="Diferenciais do She ForceK9">
+  
+  <!-- Elemento decorativo de fundo -->
+  <div class="absolute top-0 right-0 w-1/3 h-1/2 bg-surface rounded-bl-[10vw] -z-10 opacity-50"></div>
+
   <div class="container-content">
 
-    <div class="flex justify-center">
-      <SectionHeader
-        label="Por que é diferente"
-        title="Por que o She ForceK9 não é igual a nenhum outro curso que você já viu"
-        subtitle="Eu já ocupei todos os papéis dentro desse mercado: fui cliente, atendi a domicílio, tive escola, acompanhei competições, fui mentora e instrutora, e hoje sou competidora e titulada. Isso me dá uma leitura do comportamento canino — e do comportamento humano — que pouquíssimas pessoas têm."
-        align="center"
-        dark={true}
-      />
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-end mb-20 lg:mb-32">
+      <div class="lg:col-span-7">
+        <SectionHeader
+          label="A Diferença SheForce"
+          title="7 Princípios da minha abordagem centrada na mulher"
+          align="left"
+        />
+      </div>
+      <div class="lg:col-span-5 pb-16 lg:pb-20">
+        <p class="font-sans text-body-lg text-muted leading-relaxed border-l-2 border-gold/30 pl-6 italic">
+          "Eu já ocupei todos os papéis: fui cliente, atendi a domicílio, tive escola e hoje sou competidora titulada. Isso me dá uma leitura que une técnica e sensibilidade feminina."
+        </p>
+      </div>
     </div>
 
-    <!-- Grid de diferenciais + foto lateral em desktop -->
-    <div class="grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-8 lg:gap-12 items-start">
-
-      <!-- Diferenciais -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="diferenciais-grid">
-        {itens.map(({ icon, text }, i) => (
-          <div
-            class="
-              gsap-stagger-item
-              flex items-start gap-4 p-5
-              bg-dark-lighter border border-white/10 rounded-card
-              transition-all duration-200 hover:border-white/20 hover:-translate-y-1
-            "
-            data-index={i}
-          >
-            <div class="flex-shrink-0 w-8 h-8 rounded bg-primary/20 flex items-center justify-center">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary" aria-hidden="true">
-                <path d={icon} />
-              </svg>
+    <!-- Layout Central: Foto e Princípios em volta -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+      
+      <!-- Coluna Esquerda (Princípios 1-4) -->
+      <div class="lg:col-span-4 space-y-12" id="diferenciais-col-1">
+        {itens.slice(0, 4).map((item, i) => (
+          <div class="gsap-stagger-item group">
+            <div class="flex items-center gap-4 mb-3">
+              <span class="font-display text-2xl text-gold/40 group-hover:text-gold transition-colors">0{i + 1}</span>
+              <h3 class="font-display text-xl text-dark uppercase tracking-wide">{item.title}</h3>
             </div>
-            <p class="font-sans text-body-sm text-white/75 leading-relaxed">{text}</p>
+            <p class="font-sans text-body-sm text-muted leading-relaxed pl-10">
+              {item.text}
+            </p>
           </div>
         ))}
       </div>
 
-      <!-- Foto da instrutora (retrato) -->
-      <div class="relative hidden lg:block" id="diferenciais-foto">
-        <div class="w-full aspect-[3/4] bg-dark-lighter rounded-card border border-white/10 overflow-hidden">
-          <!-- Asset: profissional-retrato.webp
-          <Image
-            src={import('../assets/images/profissional-retrato.webp')}
-            alt="Beatriz Mattos, instrutora do She ForceK9, posando com cão de proteção"
-            width={340}
-            height={450}
-            loading="lazy"
-            format="webp"
-            class="w-full h-full object-cover"
-          />
-          -->
-          <div class="absolute inset-0 flex items-end p-5">
-            <p class="font-sans text-muted text-body-sm text-center w-full">
-              [Retrato da instrutora — 340×450px]
-            </p>
+      <!-- Coluna Central (Foto) -->
+      <div class="lg:col-span-4 sticky top-32" id="diferenciais-foto-wrapper">
+        <div class="relative group">
+          <div class="absolute -inset-4 border border-gold/10 rounded-sm translate-x-2 translate-y-2 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform duration-500"></div>
+          <div class="aspect-[3/4] bg-surface rounded-sm overflow-hidden shadow-2xl relative z-10">
+            <!-- Retrato placeholder elegante -->
+            <div class="w-full h-full bg-gradient-to-br from-surface to-gold/10 flex items-center justify-center p-12 text-center">
+               <p class="font-display text-gold/40 text-lg uppercase tracking-widest leading-relaxed">
+                 Beatriz Mattos<br/>
+                 <span class="font-sans text-[0.6rem] tracking-[0.3em]">Instrutora She ForceK9</span>
+               </p>
+            </div>
+            <div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-dark/80 to-transparent">
+              <p class="font-sans text-white text-[0.7rem] uppercase tracking-[0.2em] font-bold">Liderança Feminina no Adestramento</p>
+            </div>
           </div>
-        </div>
-
-        <!-- Label sobreposto -->
-        <div class="absolute -bottom-4 left-4 right-4 bg-primary rounded px-4 py-3">
-          <p class="font-sans font-semibold text-white text-body-sm">Beatriz Mattos</p>
-          <p class="font-sans text-white/70 text-label uppercase tracking-wider">Instrutora · She ForceK9</p>
         </div>
       </div>
 
-    </div>
+      <!-- Coluna Direita (Princípios 5-7 + CTA) -->
+      <div class="lg:col-span-4 space-y-12" id="diferenciais-col-2">
+        {itens.slice(4).map((item, i) => (
+          <div class="gsap-stagger-item group">
+            <div class="flex items-center gap-4 mb-3">
+              <span class="font-display text-2xl text-gold/40 group-hover:text-gold transition-colors">0{i + 5}</span>
+              <h3 class="font-display text-xl text-dark uppercase tracking-wide">{item.title}</h3>
+            </div>
+            <p class="font-sans text-body-sm text-muted leading-relaxed pl-10">
+              {item.text}
+            </p>
+          </div>
+        ))}
 
-    <!-- CTA -->
-    <div class="flex justify-center mt-14">
-      <Button
-        label="Quero fazer parte desse grupo"
-        href={whatsappHref}
-        variant="primary"
-        trackingId="diferenciais-cta"
-        section="diferenciais"
-        size="lg"
-      />
+        <div class="pt-12 gsap-stagger-item">
+          <Button
+            label="Quero agendar uma conversa"
+            href={whatsappHref}
+            variant="gold"
+            trackingId="diferenciais-cta"
+            section="diferenciais"
+            fullWidth={true}
+          />
+        </div>
+      </div>
+
     </div>
 
   </div>
@@ -104,13 +110,31 @@ const itens = [
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReduced) return;
 
-    gsap.from('#diferenciais-grid .gsap-stagger-item', {
-      scrollTrigger: { trigger: '#diferenciais-grid', start: 'top 85%', toggleActions: 'play none none none' },
-      opacity: 0, y: 30, duration: 0.6, ease: 'power2.out', stagger: { each: 0.1, from: 'start' },
+    gsap.from('.gsap-stagger-item', {
+      scrollTrigger: { 
+        trigger: '#diferenciais', 
+        start: 'top 70%', 
+        toggleActions: 'play none none none' 
+      },
+      opacity: 0, 
+      y: 30, 
+      duration: 0.8, 
+      ease: 'power3.out', 
+      stagger: 0.1,
     });
-    gsap.from('#diferenciais-foto', {
-      scrollTrigger: { trigger: '#diferenciais-foto', start: 'top 80%', toggleActions: 'play none none none' },
-      opacity: 0, x: 40, duration: 0.8, ease: 'power2.out',
+
+    gsap.from('#diferenciais-foto-wrapper', {
+      scrollTrigger: { 
+        trigger: '#diferenciais-foto-wrapper', 
+        start: 'top 80%' 
+      },
+      opacity: 0,
+      scale: 0.95,
+      duration: 1.2,
+      ease: 'power2.out'
+    });
+  });
+</script> duration: 0.8, ease: 'power2.out',
     });
   });
 </script>

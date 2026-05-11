@@ -4,52 +4,49 @@ import Button from '../components/global/Button.astro';
 const whatsappHref = 'https://wa.me/5511918952921?text=Ol%C3%A1!%20Vi%20o%20site%20e%20quero%20saber%20mais.';
 ---
 
-<!-- CTA Final full-bleed — fundo escuro máximo contraste -->
 <section
   id="cta-final"
-  class="relative py-28 lg:py-40 bg-dark overflow-hidden"
-  aria-label="Garantir vaga no She ForceK9"
+  class="relative py-32 lg:py-48 bg-dark overflow-hidden"
+  aria-label="Garantir vaga"
 >
 
-  <!-- Acento decorativo laranja no canto -->
-  <div
-    aria-hidden="true"
-    class="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl pointer-events-none"
-  ></div>
-  <div
-    aria-hidden="true"
-    class="absolute bottom-0 left-0 w-48 h-48 bg-primary/8 rounded-full blur-2xl pointer-events-none"
-  ></div>
+  <!-- Gradiente de Fundo Premium -->
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-gold/5 via-dark to-dark opacity-80"></div>
+  
+  <!-- Acentos decorativos -->
+  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-gold/20 to-transparent"></div>
 
-  <div class="container-content relative z-10 text-center max-w-3xl mx-auto" id="cta-final-content">
+  <div class="container-content relative z-10 text-center max-w-4xl mx-auto" id="cta-final-content">
 
-    <!-- Label -->
-    <p class="section-label mb-6">Últimas vagas · Julho 2026</p>
+    <div class="inline-flex items-center gap-4 mb-8">
+      <div class="w-12 h-px bg-gold/30"></div>
+      <p class="section-label !text-gold !mb-0 tracking-[0.4em]">Inscrições Abertas</p>
+      <div class="w-12 h-px bg-gold/30"></div>
+    </div>
 
-    <!-- Headline -->
-    <h2 class="font-display text-display-xl text-white leading-none mb-8">
-      As vagas para julho estão abertas — e são poucas
+    <h2 class="font-display text-display-xl text-white mb-10">
+      Não espere a insegurança bater à sua porta para agir. <span class="text-gold italic">Seja a proteção</span>.
     </h2>
 
-    <!-- Subtítulo -->
-    <p class="font-sans text-body-lg text-white/70 leading-relaxed mb-12 max-w-2xl mx-auto">
-      O She ForceK9 não é um curso de massa. As turmas são pequenas de propósito. Se você está lendo isso e quer participar, o melhor momento para falar é agora.
+    <p class="font-sans text-body-lg text-white/60 leading-relaxed mb-14 max-w-2xl mx-auto">
+      O She ForceK9 é uma experiência transformadora que mudará sua relação com o medo. As turmas são limitadas para garantir que cada mulher receba a atenção necessária.
     </p>
 
-    <!-- CTA grande centralizado -->
-    <Button
-      label="Garantir minha vaga no She ForceK9"
-      href={whatsappHref}
-      variant="primary"
-      trackingId="cta-final"
-      section="cta-final"
-      size="lg"
-    />
-
-    <!-- Microgarantia -->
-    <p class="font-sans text-label text-white/30 mt-6 uppercase tracking-widest">
-      Resposta rápida · Sem compromisso
-    </p>
+    <div class="flex flex-col items-center gap-6">
+      <Button
+        label="Quero minha vaga na turma de Julho"
+        href={whatsappHref}
+        variant="gold"
+        trackingId="cta-final"
+        section="cta-final"
+        size="lg"
+      />
+      
+      <div class="flex items-center gap-2 text-white/40 text-label uppercase tracking-widest">
+        <span class="w-2 h-2 rounded-full bg-gold animate-pulse"></span>
+        Restam apenas 4 vagas disponíveis
+      </div>
+    </div>
 
   </div>
 </section>
@@ -61,7 +58,7 @@ const whatsappHref = 'https://wa.me/5511918952921?text=Ol%C3%A1!%20Vi%20o%20site
 
     gsap.from('#cta-final-content > *', {
       scrollTrigger: { trigger: '#cta-final', start: 'top 80%', toggleActions: 'play none none none' },
-      opacity: 0, y: 30, duration: 0.7, ease: 'power2.out', stagger: 0.12,
+      opacity: 0, y: 30, duration: 1, ease: 'power3.out', stagger: 0.15,
     });
   });
 </script>
