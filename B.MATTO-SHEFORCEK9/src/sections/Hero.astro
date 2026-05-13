@@ -1,44 +1,72 @@
 ---
-import Button from '../components/global/Button.astro';
-import { Image } from 'astro:assets';
-import heroImage from '../assets/images/hero_principal.webp';
+import Button from "../components/global/Button.astro";
+import { Image } from "astro:assets";
+import heroImage from "../assets/images/hero_principal.webp";
 
-const whatsappHref = 'https://wa.me/5511918952921?text=Oi%2C%20vi%20voc%C3%AA%20no%20Google%20e%20gostaria%20de%20saber%20mais%20sobre%20o%20curso%20She%20ForceK9';
+const whatsappHref =
+  "https://wa.me/5511918952921?text=Oi%2C%20vi%20voc%C3%AA%20no%20Google%20e%20gostaria%20de%20saber%20mais%20sobre%20o%20curso%20She%20ForceK9";
 ---
 
 <!-- Hero full-bleed — fundo escuro com textura, conteúdo 2 colunas no desktop -->
 <section
   id="hero-section"
-  class="
-    relative min-h-[90vh] lg:min-h-screen
-    bg-dark overflow-hidden
-    flex items-center
-  "
+  class="relative min-h-[90vh] lg:min-h-screen bg-dark overflow-hidden flex items-center"
   aria-label="Apresentação principal"
 >
-
   <!-- Textura de fundo (grain visual sutil) -->
   <div
     aria-hidden="true"
     class="absolute inset-0 opacity-[0.03] pointer-events-none"
-    style="background-image: url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E\"); background-size: 200px;"
-  ></div>
+    style="background-image: url(\"
+    data:image
+    svg+xml,%3Csvg
+    viewBox="0 0 256 256"
+    xmlns="http://www.w3.org/2000/svg"
+    %3E%3Cfilter
+    id="noise"
+    %3E%3CfeTurbulence
+    type="fractalNoise"
+    baseFrequency="0.9"
+    numOctaves="4"
+    stitchTiles="stitch"
+    %3E%3C
+    filter%3E%3Crect
+    width="100%25"
+    height="100%25"
+    filter="url(%23noise)"
+    %3E%3C
+    svg%3E\");
+    background-size:
+    200px;"
+  >
+  </div>
 
   <!-- Gradiente de profundidade -->
-  <div class="absolute inset-0 bg-gradient-to-t from-dark via-transparent to-transparent opacity-60"></div>
+  <div
+    class="absolute inset-0 bg-gradient-to-t from-dark via-transparent to-transparent opacity-60"
+  >
+  </div>
 
   <!-- Container interno -->
-  <div class="container-content relative z-10 w-full pt-32 pb-20 sm:pt-40 sm:pb-32 lg:pt-48 lg:pb-48">
-    <div class="grid grid-cols-1 lg:grid-cols-[52%_48%] gap-8 sm:gap-12 lg:gap-16 items-center">
-
+  <div
+    class="container-content relative z-10 w-full pt-32 pb-20 sm:pt-40 sm:pb-32 lg:pt-48 lg:pb-28"
+  >
+    <div
+      class="grid grid-cols-1 lg:grid-cols-[52%_48%] gap-8 sm:gap-12 lg:gap-16 items-center"
+    >
       <!-- Coluna texto -->
       <div class="relative">
-        
         <!-- Elemento decorativo sutil -->
-        <div class="absolute -top-12 -left-4 w-24 h-24 border-l border-t border-gold/20 opacity-50 hidden lg:block"></div>
+        <div
+          class="absolute -top-12 -left-4 w-24 h-24 border-l border-t border-gold/20 opacity-50 hidden lg:block"
+        >
+        </div>
 
         <!-- Label -->
-        <div class="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6" id="hero-label">
+        <div
+          class="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6"
+          id="hero-label"
+        >
           <div class="w-6 sm:w-8 h-px bg-gold/50"></div>
           <p class="section-label !text-gold/80 !mb-0 text-sm sm:text-sm">
             Curso de Guarda e Proteção para Mulheres
@@ -50,7 +78,9 @@ const whatsappHref = 'https://wa.me/5511918952921?text=Oi%2C%20vi%20voc%C3%AA%20
           class="font-display text-5xl sm:text-display-lg lg:text-display-xl text-white mb-4 sm:mb-8 max-w-2xl"
           id="hero-title"
         >
-          Sinta-se segura em qualquer lugar com um <span class="text-gold">cão de proteção</span> ao seu lado
+          Sinta-se segura em qualquer lugar com um <span class="text-gold"
+            >cão de proteção</span
+          > ao seu lado
         </h1>
 
         <!-- Subtítulo -->
@@ -58,11 +88,16 @@ const whatsappHref = 'https://wa.me/5511918952921?text=Oi%2C%20vi%20voc%C3%AA%20
           class="font-sans text-[1rem] text-white/60 leading-relaxed mb-6 sm:mb-12 max-w-xl"
           id="hero-subtitle"
         >
-          O She ForceK9 é o único curso no Brasil que une técnica canina, psicologia e direito para que você volte a andar na rua sem medo de assédio ou opressão, mesmo sem nenhuma experiência prévia com cães.
+          O She ForceK9 é o único curso no Brasil que une técnica canina,
+          psicologia e direito para que você desenvolva autonomia real com um
+          cão de proteção, mesmo sem nenhuma experiência prévia.
         </p>
 
         <!-- CTA + Info -->
-        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6" id="hero-cta">
+        <div
+          class="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6"
+          id="hero-cta"
+        >
           <Button
             label="Quero saber mais"
             href={whatsappHref}
@@ -73,24 +108,31 @@ const whatsappHref = 'https://wa.me/5511918952921?text=Oi%2C%20vi%20voc%C3%AA%20
           />
 
           <div class="flex flex-col gap-0.5 sm:gap-1">
-            <p class="font-sans text-white font-medium text-body-sm text-sm sm:text-sm">Próxima Turma: 09 a 12 de Julho / 2026</p>
-            <p class="font-sans text-white/40 text-[0.65rem] sm:text-[0.7rem] uppercase tracking-widest">Vagas extremamente limitadas</p>
+            <p
+              class="font-sans text-white font-medium text-body-sm text-sm sm:text-sm"
+            >
+              Próxima Turma: 09 a 12 de Julho / 2026
+            </p>
+            <p
+              class="font-sans text-white/40 text-[0.65rem] sm:text-[0.7rem] uppercase tracking-widest"
+            >
+              Vagas extremamente limitadas
+            </p>
           </div>
         </div>
       </div>
 
       <!-- Coluna imagem -->
       <div class="relative lg:pl-8" id="hero-image-wrapper">
-
         <!-- Frame Decorativo -->
-        <div class="absolute -inset-4 border border-gold/10 rounded-sm translate-x-4 translate-y-4 hidden lg:block"></div>
+        <div
+          class="absolute -inset-4 border border-gold/10 rounded-sm translate-x-4 translate-y-4 hidden lg:block"
+        >
+        </div>
 
         <!-- Imagem Principal -->
         <div
-          class="
-            relative w-full aspect-[4/5] rounded shadow-2xl
-            border border-white/10
-          "
+          class="relative w-full aspect-[4/5] rounded shadow-2xl border border-white/10"
         >
           <Image
             src={heroImage}
@@ -101,62 +143,67 @@ const whatsappHref = 'https://wa.me/5511918952921?text=Oi%2C%20vi%20voc%C3%AA%20
             fetchpriority="high"
             class="w-full h-full object-cover grayscale-[0.2] hover:grayscale-0 transition-all duration-700"
           />
-          
+
           <!-- Overlay Soft -->
-          <div class="absolute inset-0 bg-gradient-to-t from-dark/60 via-transparent to-transparent"></div>
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-dark/60 via-transparent to-transparent"
+          >
+          </div>
 
           <!-- Badge Flutuante 1 -->
           <div
-            class="
-              absolute top-4 sm:top-8 -left-3 sm:-left-6
-              bg-dark/90 backdrop-blur-md border border-white/10
-              rounded-sm px-4 sm:px-6 py-3 sm:py-4
-              shadow-2xl whitespace-nowrap
-            "
+            class="absolute top-4 sm:top-8 -left-3 sm:-left-6 bg-dark/90 backdrop-blur-md border border-white/10 rounded-sm px-4 sm:px-6 py-3 sm:py-4 shadow-2xl whitespace-nowrap"
             id="hero-detail-card-1"
           >
-            <p class="font-display text-gold text-sm sm:text-lg leading-tight">Segurança Real</p>
-            <p class="font-sans text-white/40 text-[0.6rem] sm:text-[0.6rem] uppercase mt-1 sm:mt-2 tracking-widest">Certificado SheForce</p>
+            <p class="font-display text-gold text-sm sm:text-lg leading-tight">
+              Segurança Real
+            </p>
+            <p
+              class="font-sans text-white/40 text-[0.6rem] sm:text-[1rem] uppercase mt-1 sm:mt-2 tracking-widest"
+            >
+              Certificado SheForceK9
+            </p>
           </div>
 
           <!-- Badge Flutuante 2 -->
           <div
-            class="
-              absolute bottom-6 sm:bottom-12 -right-3 sm:-right-6
-              bg-gold-gradient
-              rounded-sm px-4 sm:px-6 py-3 sm:py-4
-              shadow-2xl
-            "
+            class="absolute bottom-6 sm:bottom-12 -right-3 sm:-right-6 bg-gold-gradient rounded-sm px-4 sm:px-6 py-3 sm:py-4 shadow-2xl"
             id="hero-detail-card-2"
           >
-            <p class="font-sans text-white font-bold text-sm sm:text-body-sm leading-tight uppercase tracking-wider">Metodologia<br/>Beatriz Mattos</p>
+            <p
+              class="font-sans text-white font-bold text-sm sm:text-body-sm leading-tight uppercase tracking-wider"
+            >
+              Beatriz Mattos &<br />Beatriz Medeiros
+            </p>
           </div>
         </div>
-
       </div>
     </div>
   </div>
 
   <!-- Linha separadora sutil -->
-  <div class="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold/20 to-transparent"></div>
+  <div
+    class="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold/20 to-transparent"
+  >
+  </div>
 </section>
-
 
 <script>
   // Animações do Hero com GSAP
-  document.addEventListener('DOMContentLoaded', () => {
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.addEventListener("DOMContentLoaded", () => {
+    const prefersReduced = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
     if (prefersReduced) return;
 
-    const tl = gsap.timeline({ defaults: { ease: 'power2.out' } });
+    const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
 
-    tl
-      .from('#hero-label',    { opacity: 0, y: 20, duration: 0.6 }, 0.2)
-      .from('#hero-title',    { opacity: 0, y: 40, duration: 0.8 }, 0.4)
-      .from('#hero-subtitle', { opacity: 0, y: 30, duration: 0.7 }, 0.6)
-      .from('#hero-cta',      { opacity: 0, y: 20, duration: 0.5 }, 0.8)
-      .from('#hero-image-wrapper', { opacity: 0, x: 40, duration: 0.9 }, 0.5)
-      .from('#hero-detail-card-1', { opacity: 0, x: 20, duration: 0.5 }, 0.9)
-      .from('#hero-detail-card-2', { opacity: 0, x: -20, duration: 0.5 }, 1.0);
+    tl.from("#hero-label", { opacity: 0, y: 20, duration: 0.6 }, 0.2)
+      .from("#hero-title", { opacity: 0, y: 40, duration: 0.8 }, 0.4)
+      .from("#hero-subtitle", { opacity: 0, y: 30, duration: 0.7 }, 0.6)
+      .from("#hero-cta", { opacity: 0, y: 20, duration: 0.5 }, 0.8)
+      .from("#hero-image-wrapper", { opacity: 0, x: 40, duration: 0.9 }, 0.5)
+      .from("#hero-detail-card-1", { opacity: 0, x: 20, duration: 0.5 }, 0.9)
+      .from("#hero-detail-card-2", { opacity: 0, x: -20, duration: 0.5 }, 1.0);
   });
 </script>

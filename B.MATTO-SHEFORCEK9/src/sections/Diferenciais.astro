@@ -7,11 +7,11 @@ import beatrizImage from '../assets/images/beatriz_mattos.webp';
 const whatsappHref = 'https://wa.me/5511918952921?text=Oi%2C%20vi%20voc%C3%AA%20no%20Google%20e%20gostaria%20de%20saber%20mais%20sobre%20o%20curso%20She%20ForceK9';
 
 const itens = [
-  { title: 'Visão 360º do Mercado', text: 'Eu já ocupei todos os papéis: cliente, atendimento a domicílio, dona de escola, instrutora e competidora titulada. Uma visão completa que poucos profissionais possuem.' },
+  { title: 'Visão 360º do Mercado', text: 'Nossa equipe une perspectivas complementares: técnica canina, comportamento humano e respaldo jurídico. Uma visão completa que poucos cursos no Brasil oferecem.' },
   { title: 'Experiência com Diversos Perfis', text: 'Volume real de atendimento com diversas raças, temperamentos e problemas comportamentais, gerando uma leitura refinada e precisa de cada cão.' },
   { title: 'Atualização Contínua', text: 'Estudo constante e profundo que se reflete na didática e na forma eficaz de resolver problemas complexos de forma segura.' },
-  { title: 'Troca Sem Segredos', text: 'O valor está em transmitir o conhecimento, não em retê-lo. Eu entrego técnicas e informações sem segredos e sem ego.' },
-  { title: 'Didática Direta e Prática', text: 'Sem teorias místicas ou excessivas. Entrego clareza, segurança, sequência lógica e aplicação imediata para resultados reais.' },
+  { title: 'Troca Sem Segredos', text: 'O valor está em transmitir o conhecimento, não em retê-lo. Entregamos técnicas e informações sem segredos e sem ego.' },
+  { title: 'Didática Direta e Prática', text: 'Sem teorias místicas ou excessivas. Clareza, segurança, sequência lógica e aplicação imediata para resultados reais.' },
   { title: 'Foco no Fator Humano', text: 'Uma leitura fina da pessoa por trás do cachorro. As orientações são precisas, transformadoras e acolhedoras, sem perder a firmeza necessária.' },
   { title: 'Liderança no Nicho Feminino', text: 'Pioneirismo ao guiar mulheres para a autonomia com cães de proteção, ocupando um espaço necessário e potente no mercado.' },
   { title: 'Simplicidade na Complexidade', text: 'Habilidade rara de traduzir conceitos avançados de adestramento para quem está começando, sem perder a profundidade técnica.' },
@@ -29,13 +29,13 @@ const itens = [
       <div class="lg:col-span-7">
         <SectionHeader
           label="A Diferença SheForce"
-          title="8 Princípios da minha abordagem centrada na mulher"
+          title="8 Princípios da nossa abordagem centrada na mulher"
           align="left"
         />
       </div>
       <div class="lg:col-span-5 pb-10 sm:pb-16 lg:pb-20">
         <p class="font-sans text-[1rem] text-muted leading-relaxed border-l-2 border-gold/30 pl-4 sm:pl-6">
-          "Eu já ocupei todos os papéis: fui cliente, atendi a domicílio, tive escola e hoje sou competidora titulada. Isso me dá uma leitura que une técnica e sensibilidade feminina."
+          "Unimos técnica canina, psicologia e direito para entregar uma experiência completa. A proteção real vai muito além do adestramento."
         </p>
       </div>
     </div>
@@ -58,8 +58,8 @@ const itens = [
         ))}
       </div>
 
-      <!-- Coluna Central (Foto) -->
-      <div class="lg:col-span-4 sticky top-32" id="diferenciais-foto-wrapper">
+      <!-- Coluna Central (Foto + CTA) -->
+      <div class="lg:col-span-4 sticky top-32 flex flex-col gap-32" id="diferenciais-foto-wrapper">
         <div class="relative group">
           <div class="absolute -inset-4 border border-gold/10 rounded-sm translate-x-2 translate-y-2 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform duration-500"></div>
           <div class="aspect-[3/4] bg-surface rounded-sm overflow-hidden shadow-2xl relative z-10">
@@ -71,9 +71,18 @@ const itens = [
               class="w-full h-full object-cover"
             />
             <div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-dark/80 to-transparent">
-              <p class="font-sans text-white text-[0.75rem] uppercase tracking-[0.2em] font-bold">Liderança Feminina no Adestramento</p>
+              <p class="font-sans text-white text-[0.75rem] uppercase tracking-[0.2em] font-bold">Liderança Feminina na Proteção</p>
             </div>
           </div>
+        </div>
+        <div class="hidden lg:flex justify-center">
+          <Button
+            label="Fale agora pelo WhatsApp"
+            href={whatsappHref}
+            variant="gold"
+            trackingId="diferenciais-cta"
+            section="diferenciais"
+          />
         </div>
       </div>
 
@@ -94,10 +103,10 @@ const itens = [
 
     </div>
 
-    <!-- CTA Centralizado -->
-    <div class="mt-8 sm:mt-12 pt-4 sm:pt-6 flex justify-center">
+    <!-- CTA Mobile apenas -->
+    <div class="lg:hidden mt-8 sm:mt-12 pt-4 sm:pt-6 flex justify-center">
       <Button
-        label="Quero agendar uma conversa"
+        label="Fale agora pelo WhatsApp"
         href={whatsappHref}
         variant="gold"
         trackingId="diferenciais-cta"
