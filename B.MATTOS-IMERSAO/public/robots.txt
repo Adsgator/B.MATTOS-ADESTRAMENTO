@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+Disallow: /links/
+Disallow: /politica-de-privacidade/
+Disallow: /termos-de-uso/
+Disallow: /404/
+
+Sitemap: https://imersao.abeak9adestramento.com.br/sitemap-index.xml

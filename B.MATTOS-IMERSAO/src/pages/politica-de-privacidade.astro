@@ -1,0 +1,182 @@
+---
+import Layout from '@/components/global/Layout.astro';
+const year = new Date().getFullYear();
+---
+
+<Layout
+  title="Política de Privacidade — Training Camping"
+  description="Saiba como o Training Camping coleta, usa e protege seus dados pessoais conforme a LGPD."
+  canonical="https://imersao.abeak9adestramento.com.br/politica-de-privacidade/"
+  ogTitle="Política de Privacidade — Training Camping"
+  ogDescription="Saiba como tratamos seus dados pessoais."
+  ogImage="/og-image.webp"
+  noindex={true}
+>
+  <!-- Header simplificado -->
+  <header class="border-b border-border py-4 px-6" aria-label="Cabeçalho">
+    <div class="max-w-5xl mx-auto flex items-center justify-between">
+      <a
+        href="/"
+        class="font-display font-bold text-lg text-text-main tracking-tight hover:text-secondary transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary rounded"
+        aria-label="Voltar para o Training Camping"
+      >
+        Training Camping
+      </a>
+      <a
+        href="/"
+        class="flex items-center gap-2 font-sans text-sm text-text-support hover:text-text-main transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary rounded"
+        aria-label="Voltar ao site"
+      >
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M13 8H3M7 4L3 8l4 4"/>
+        </svg>
+        Voltar ao site
+      </a>
+    </div>
+  </header>
+
+  <main id="main-content" class="max-w-2xl mx-auto px-6 py-16 lg:py-24">
+    <h1 class="font-display font-bold text-3xl sm:text-4xl text-text-main tracking-tight mb-3">
+      Política de Privacidade
+    </h1>
+    <p class="font-sans text-sm text-text-support mb-12">Última atualização: maio de {year}</p>
+
+    <div class="prose-content space-y-10 font-sans text-base text-text-main leading-[1.8]">
+
+      <section aria-labelledby="pp-intro">
+        <h2 id="pp-intro" class="font-display font-semibold text-xl text-text-main mb-3">1. Quem somos</h2>
+        <p>
+          Esta Política de Privacidade se aplica ao Training Camping, serviço de imersão presencial
+          de treinamento comportamental canino operado por Beatriz Mattos, CNPJ 49.081.534/0001-89,
+          com atendimento em São José dos Campos – SP.
+        </p>
+        <p class="mt-3">
+          Ao acessar este site ou entrar em contato pelo WhatsApp, você concorda com os termos
+          desta política.
+        </p>
+      </section>
+
+      <section aria-labelledby="pp-dados">
+        <h2 id="pp-dados" class="font-display font-semibold text-xl text-text-main mb-3">2. Dados que coletamos</h2>
+        <p>Coletamos apenas os dados necessários para prestação dos nossos serviços:</p>
+        <ul class="mt-3 space-y-2 list-none">
+          {[
+            'Nome e dados de contato (WhatsApp, e-mail) fornecidos voluntariamente por você.',
+            'Informações sobre o seu cão (raça, idade, comportamento) compartilhadas na avaliação.',
+            'Dados de navegação coletados pelo Google Analytics e Google Tag Manager (IP anonimizado, páginas visitadas, tempo de sessão).',
+            'Preferências de cookies conforme consentimento registrado no banner LGPD.',
+          ].map((item) => (
+            <li class="flex items-start gap-3">
+              <span class="mt-2 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-secondary" aria-hidden="true"/>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section aria-labelledby="pp-uso">
+        <h2 id="pp-uso" class="font-display font-semibold text-xl text-text-main mb-3">3. Como usamos seus dados</h2>
+        <p>Utilizamos seus dados exclusivamente para:</p>
+        <ul class="mt-3 space-y-2 list-none">
+          {[
+            'Responder aos seus contatos e fornecer informações sobre o Training Camping.',
+            'Realizar a avaliação prévia e planejar a imersão de acordo com o caso do seu cão.',
+            'Melhorar o desempenho e a usabilidade do site.',
+            'Cumprir obrigações legais e regulatórias.',
+          ].map((item) => (
+            <li class="flex items-start gap-3">
+              <span class="mt-2 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-secondary" aria-hidden="true"/>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+        <p class="mt-4">
+          Não vendemos, alugamos ou compartilhamos seus dados com terceiros para fins de marketing.
+        </p>
+      </section>
+
+      <section aria-labelledby="pp-cookies">
+        <h2 id="pp-cookies" class="font-display font-semibold text-xl text-text-main mb-3">4. Cookies e tecnologias de rastreamento</h2>
+        <p>
+          Utilizamos o Google Tag Manager e o Google Analytics para coletar dados de navegação de
+          forma anonimizada. A coleta só ocorre após seu consentimento explícito via banner de
+          cookies presente no site, em conformidade com o Google Consent Mode v2.
+        </p>
+        <p class="mt-3">
+          Você pode revogar seu consentimento a qualquer momento limpando os cookies do navegador.
+        </p>
+      </section>
+
+      <section aria-labelledby="pp-retencao">
+        <h2 id="pp-retencao" class="font-display font-semibold text-xl text-text-main mb-3">5. Retenção de dados</h2>
+        <p>
+          Dados de contato e informações sobre seu cão são mantidos pelo tempo necessário para
+          a prestação do serviço contratado e pelo prazo mínimo exigido pela legislação brasileira.
+          Dados de navegação são retidos por até 26 meses no Google Analytics.
+        </p>
+      </section>
+
+      <section aria-labelledby="pp-direitos">
+        <h2 id="pp-direitos" class="font-display font-semibold text-xl text-text-main mb-3">6. Seus direitos (LGPD)</h2>
+        <p>Conforme a Lei Geral de Proteção de Dados (Lei 13.709/2018), você tem direito a:</p>
+        <ul class="mt-3 space-y-2 list-none">
+          {[
+            'Confirmar a existência de tratamento dos seus dados.',
+            'Acessar, corrigir ou atualizar seus dados.',
+            'Solicitar a anonimização, bloqueio ou eliminação de dados desnecessários.',
+            'Revogar o consentimento a qualquer momento.',
+          ].map((item) => (
+            <li class="flex items-start gap-3">
+              <span class="mt-2 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-secondary" aria-hidden="true"/>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+        <p class="mt-4">
+          Para exercer qualquer um desses direitos, entre em contato pelo WhatsApp:{' '}
+          <a
+            href="https://wa.me/5511918952921"
+            rel="noopener noreferrer"
+            target="_blank"
+            class="text-secondary underline underline-offset-2 hover:opacity-80 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary rounded"
+          >
+            (11) 91895-2921
+          </a>.
+        </p>
+      </section>
+
+      <section aria-labelledby="pp-seguranca">
+        <h2 id="pp-seguranca" class="font-display font-semibold text-xl text-text-main mb-3">7. Segurança</h2>
+        <p>
+          Adotamos medidas técnicas e organizacionais razoáveis para proteger seus dados contra
+          acesso não autorizado, perda ou divulgação indevida. O site opera com HTTPS e as
+          comunicações por WhatsApp utilizam a criptografia de ponta a ponta da plataforma.
+        </p>
+      </section>
+
+      <section aria-labelledby="pp-atualizacao">
+        <h2 id="pp-atualizacao" class="font-display font-semibold text-xl text-text-main mb-3">8. Atualizações desta política</h2>
+        <p>
+          Esta política pode ser atualizada periodicamente. A data da última revisão está indicada
+          no topo da página. Recomendamos a consulta periódica.
+        </p>
+      </section>
+
+      <section aria-labelledby="pp-contato">
+        <h2 id="pp-contato" class="font-display font-semibold text-xl text-text-main mb-3">9. Contato</h2>
+        <p>
+          Dúvidas sobre esta Política de Privacidade? Fale conosco pelo WhatsApp:{' '}
+          <a
+            href="https://wa.me/5511918952921"
+            rel="noopener noreferrer"
+            target="_blank"
+            class="text-secondary underline underline-offset-2 hover:opacity-80 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary rounded"
+          >
+            (11) 91895-2921
+          </a>.
+        </p>
+      </section>
+
+    </div>
+  </main>
+</Layout>

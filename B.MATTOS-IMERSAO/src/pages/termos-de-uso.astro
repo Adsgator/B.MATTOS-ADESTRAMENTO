@@ -1,0 +1,140 @@
+---
+import Layout from '@/components/global/Layout.astro';
+const year = new Date().getFullYear();
+---
+
+<Layout
+  title="Termos de Uso — Training Camping"
+  description="Leia os termos de uso do site Training Camping e do serviço de imersão presencial de treinamento canino."
+  canonical="https://imersao.abeak9adestramento.com.br/termos-de-uso/"
+  ogTitle="Termos de Uso — Training Camping"
+  ogDescription="Termos de uso do Training Camping."
+  ogImage="/og-image.webp"
+  noindex={true}
+>
+  <!-- Header simplificado -->
+  <header class="border-b border-border py-4 px-6" aria-label="Cabeçalho">
+    <div class="max-w-5xl mx-auto flex items-center justify-between">
+      <a
+        href="/"
+        class="font-display font-bold text-lg text-text-main tracking-tight hover:text-secondary transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary rounded"
+        aria-label="Voltar para o Training Camping"
+      >
+        Training Camping
+      </a>
+      <a
+        href="/"
+        class="flex items-center gap-2 font-sans text-sm text-text-support hover:text-text-main transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary rounded"
+        aria-label="Voltar ao site"
+      >
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M13 8H3M7 4L3 8l4 4"/>
+        </svg>
+        Voltar ao site
+      </a>
+    </div>
+  </header>
+
+  <main id="main-content" class="max-w-2xl mx-auto px-6 py-16 lg:py-24">
+    <h1 class="font-display font-bold text-3xl sm:text-4xl text-text-main tracking-tight mb-3">
+      Termos de Uso
+    </h1>
+    <p class="font-sans text-sm text-text-support mb-12">Última atualização: maio de {year}</p>
+
+    <div class="space-y-10 font-sans text-base text-text-main leading-[1.8]">
+
+      <section aria-labelledby="tu-aceite">
+        <h2 id="tu-aceite" class="font-display font-semibold text-xl text-text-main mb-3">1. Aceitação dos termos</h2>
+        <p>
+          Ao acessar ou utilizar o site do Training Camping
+          (imersao.abeak9adestramento.com.br), você concorda com estes Termos de Uso.
+          Se não concordar com algum ponto, recomendamos que não utilize o site.
+        </p>
+      </section>
+
+      <section aria-labelledby="tu-servico">
+        <h2 id="tu-servico" class="font-display font-semibold text-xl text-text-main mb-3">2. Descrição do serviço</h2>
+        <p>
+          O Training Camping é um serviço de imersão presencial de treinamento comportamental
+          canino, operado por Beatriz Mattos (CNPJ 49.081.534/0001-89), realizado na Chácara
+          Recanto Feliz, em São José dos Campos – SP.
+        </p>
+        <p class="mt-3">
+          As informações disponibilizadas neste site têm caráter informativo e não constituem
+          contrato de prestação de serviços. A contratação se dá por meio de acordo explícito
+          via WhatsApp ou outro canal de comunicação direto.
+        </p>
+      </section>
+
+      <section aria-labelledby="tu-uso">
+        <h2 id="tu-uso" class="font-display font-semibold text-xl text-text-main mb-3">3. Uso do site</h2>
+        <p>Você concorda em utilizar este site apenas para fins lícitos e em conformidade com:</p>
+        <ul class="mt-3 space-y-2 list-none">
+          {[
+            'A legislação brasileira aplicável.',
+            'Estes Termos de Uso.',
+            'A Política de Privacidade disponível neste site.',
+          ].map((item) => (
+            <li class="flex items-start gap-3">
+              <span class="mt-2 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-secondary" aria-hidden="true"/>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+        <p class="mt-4">
+          É proibido utilizar o site para disseminar conteúdo falso, ofensivo, ou que viole
+          direitos de terceiros.
+        </p>
+      </section>
+
+      <section aria-labelledby="tu-propriedade">
+        <h2 id="tu-propriedade" class="font-display font-semibold text-xl text-text-main mb-3">4. Propriedade intelectual</h2>
+        <p>
+          Todo o conteúdo deste site — textos, imagens, logotipos, layout e código — é de
+          propriedade do Training Camping ou licenciado para uso. É proibida a reprodução,
+          distribuição ou uso comercial sem autorização prévia e expressa.
+        </p>
+      </section>
+
+      <section aria-labelledby="tu-responsabilidade">
+        <h2 id="tu-responsabilidade" class="font-display font-semibold text-xl text-text-main mb-3">5. Limitação de responsabilidade</h2>
+        <p>
+          O Training Camping não se responsabiliza por danos diretos ou indiretos decorrentes
+          do uso ou da impossibilidade de uso deste site, nem pela disponibilidade contínua
+          do serviço online.
+        </p>
+        <p class="mt-3">
+          Os resultados obtidos com a imersão dependem de fatores individuais de cada animal
+          e do engajamento do tutor durante e após o processo. Não garantimos resultados
+          específicos.
+        </p>
+      </section>
+
+      <section aria-labelledby="tu-links">
+        <h2 id="tu-links" class="font-display font-semibold text-xl text-text-main mb-3">6. Links externos</h2>
+        <p>
+          Este site pode conter links para plataformas externas (WhatsApp, Instagram). Esses
+          serviços possuem seus próprios termos de uso e políticas de privacidade, pelos quais
+          o Training Camping não se responsabiliza.
+        </p>
+      </section>
+
+      <section aria-labelledby="tu-modificacoes">
+        <h2 id="tu-modificacoes" class="font-display font-semibold text-xl text-text-main mb-3">7. Modificações</h2>
+        <p>
+          Estes termos podem ser atualizados a qualquer momento. A versão mais recente estará
+          sempre disponível nesta página, com a data de última revisão indicada no topo.
+        </p>
+      </section>
+
+      <section aria-labelledby="tu-lei">
+        <h2 id="tu-lei" class="font-display font-semibold text-xl text-text-main mb-3">8. Lei aplicável</h2>
+        <p>
+          Estes Termos de Uso são regidos pela legislação brasileira. Eventuais disputas serão
+          resolvidas no foro da comarca de São José dos Campos – SP.
+        </p>
+      </section>
+
+    </div>
+  </main>
+</Layout>

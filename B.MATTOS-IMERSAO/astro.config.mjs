@@ -11,7 +11,7 @@ export default defineConfig({
   integrations: [
     tailwind({ applyBaseStyles: true }),
     react(),
-    // sitemap habilitado na Parte 4 após criar páginas adicionais
+    // sitemap habilitado na Parte 5+ (versão do @astrojs/sitemap com bug será corrigida)
     // sitemap({
     //   filter: (page) =>
     //     ![
@@ -20,10 +20,6 @@ export default defineConfig({
     //       `${SITE}/termos-de-uso/`,
     //       `${SITE}/404/`,
     //     ].includes(page),
-    //   i18n: {
-    //     defaultLocale: 'pt',
-    //     locales: { pt: 'pt-BR' },
-    //   },
     // }),
   ],
   vite: {

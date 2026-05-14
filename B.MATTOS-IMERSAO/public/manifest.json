@@ -1,0 +1,17 @@
+{
+  "name": "Training Camping — Imersão Canina SJC",
+  "short_name": "Training Camping",
+  "description": "Imersão presencial de treinamento comportamental para cães em SJC.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1a1d23",
+  "lang": "pt-BR",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
