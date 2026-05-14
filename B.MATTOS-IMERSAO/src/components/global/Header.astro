@@ -1,0 +1,119 @@
+---
+import Button from './Button.astro';
+import MobileMenu from '../islands/MobileMenu';
+
+const WA_LINK =
+  'https://wa.me/5511918952921?text=Oi%2C%20vi%20voc%C3%AA%20no%20Google%20e%20gostaria%20de%20saber%20mais%20sobre%20a%20imers%C3%A3o%20Training%20Camping';
+
+const navLinks = [
+  { label: 'A imersão', href: '#servico' },
+  { label: 'Como funciona', href: '#como-funciona' },
+  { label: 'FAQ', href: '#faq' },
+];
+---
+
+<header
+  id="site-header"
+  class="fixed top-0 left-0 right-0 z-40 transition-all duration-200 bg-transparent"
+  role="banner"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16 md:h-20">
+
+      <!-- Logo -->
+      <a
+        href="#top"
+        class="flex items-center gap-2 group focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-secondary rounded"
+        aria-label="Training Camping — voltar ao topo"
+      >
+        <span
+          class="inline-block w-1.5 h-6 bg-secondary rounded-full group-hover:h-8 transition-all duration-200"
+          aria-hidden="true"
+        ></span>
+        <span class="font-display font-semibold text-lg text-white tracking-tight">
+          Training Camping
+        </span>
+      </a>
+
+      <!-- Nav desktop -->
+      <nav
+        class="hidden md:flex items-center gap-8"
+        aria-label="Navegação principal"
+      >
+        {
+          navLinks.map((link) => (
+            <a
+              href={link.href}
+              class="text-sm font-medium text-white/75 hover:text-white transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary rounded"
+            >
+              {link.label}
+            </a>
+          ))
+        }
+      </nav>
+
+      <!-- CTA desktop -->
+      <div class="hidden md:block">
+        <Button
+          label="Falar pelo WhatsApp"
+          href={WA_LINK}
+          variant="secondary"
+          trackingId="btn-header-wpp"
+          trackingAction="click-whatsapp-header"
+          section="header"
+          external
+        />
+      </div>
+
+      <!-- Mobile menu island -->
+      <MobileMenu
+        client:visible
+        links={navLinks}
+        ctaLabel="Falar pelo WhatsApp"
+        ctaHref={WA_LINK}
+      />
+    </div>
+  </div>
+</header>
+
+<script>
+  import { gsap } from 'gsap';
+
+  const header = document.getElementById('site-header');
+  if (!header) throw new Error('[Header] elemento #site-header não encontrado');
+
+  let lastScroll = 0;
+  let isHidden = false;
+  const prefersReduced = window.matchMedia(
+    '(prefers-reduced-motion: reduce)'
+  ).matches;
+
+  function updateHeader() {
+    const currentScroll = window.scrollY;
+
+    // Fundo após 80px de scroll
+    if (currentScroll > 80) {
+      header.classList.add('bg-primary', 'shadow-sm');
+      header.classList.remove('bg-transparent');
+    } else {
+      header.classList.add('bg-transparent');
+      header.classList.remove('bg-primary', 'shadow-sm');
+    }
+
+    // Esconde ao rolar para baixo / reaparece ao rolar para cima
+    if (!prefersReduced) {
+      if (currentScroll > lastScroll && currentScroll > 250 && !isHidden) {
+        gsap.to(header, { y: '-100%', duration: 0.3, ease: 'power2.inOut' });
+        isHidden = true;
+      } else if (currentScroll < lastScroll && isHidden) {
+        gsap.to(header, { y: '0%', duration: 0.3, ease: 'power2.inOut' });
+        isHidden = false;
+      }
+    }
+
+    lastScroll = currentScroll <= 0 ? 0 : currentScroll;
+  }
+
+  window.addEventListener('scroll', updateHeader, { passive: true });
+  updateHeader();
+</script>

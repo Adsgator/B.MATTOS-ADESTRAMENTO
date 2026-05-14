@@ -1,0 +1,176 @@
+---
+import '@fontsource-variable/bricolage-grotesque/wght.css';
+import '@fontsource-variable/inter/wght.css';
+import GTM from './GTM.astro';
+import Header from './Header.astro';
+import Footer from './Footer.astro';
+import WhatsAppFloat from './WhatsAppFloat.astro';
+import CookieBanner from '../islands/CookieBanner';
+import { Analytics } from '@vercel/analytics/astro';
+import { SpeedInsights } from '@vercel/speed-insights/astro';
+
+export interface Props {
+  title: string;
+  description: string;
+  keywords?: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  canonical?: string;
+  noindex?: boolean;
+  showHeader?: boolean;
+  showFooter?: boolean;
+}
+
+const {
+  title,
+  description,
+  keywords,
+  ogTitle,
+  ogDescription,
+  canonical,
+  noindex = false,
+  showHeader = true,
+  showFooter = true,
+} = Astro.props;
+
+const SITE = 'https://imersao.abeak9adestramento.com.br';
+const canonicalURL = canonical ?? `${SITE}${Astro.url.pathname}`;
+const gtmId = import.meta.env.PUBLIC_GTM_ID ?? 'GTM-XXXXXXX';
+
+const schema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: 'Training Camping',
+  description:
+    'Imersão presencial de treinamento comportamental para cães em São José dos Campos. Você treina junto com seu cão e sai com uma nova forma de se comunicar com ele.',
+  url: SITE,
+  telephone: '+5511918952921',
+  image: `${SITE}/og-image.webp`,
+  sameAs: ['https://www.instagram.com/abeak9'],
+});
+---
+
+<!doctype html>
+<html lang="pt-BR" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Consent Mode v2 — DEVE vir antes do GTM -->
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('consent', 'default', {
+        analytics_storage: 'denied',
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        wait_for_update: 500,
+      });
+      gtag('js', new Date());
+    </script>
+
+    <!-- Google Tag Manager -->
+    <GTM id={gtmId} />
+
+    <!-- SEO principal -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {keywords && <meta name="keywords" content={keywords} />}
+    {noindex ? <meta name="robots" content="noindex, follow" /> : <meta name="robots" content="index, follow" />}
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={ogTitle ?? title} />
+    <meta property="og:description" content={ogDescription ?? description} />
+    <meta property="og:image" content={`${SITE}/og-image.webp`} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:site_name" content="Training Camping" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={ogTitle ?? title} />
+    <meta name="twitter:description" content={ogDescription ?? description} />
+    <meta name="twitter:image" content={`${SITE}/og-image.webp`} />
+
+    <!-- Favicon e Manifest -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#1a1d23" />
+
+    <!-- Preconnect fontes variáveis -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Preload hero — fetchpriority high para LCP -->
+    <link
+      rel="preload"
+      as="image"
+      href="/images/hero-principal.webp"
+      fetchpriority="high"
+    />
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json" set:html={schema} />
+  </head>
+
+  <body class="bg-background text-text-main font-sans antialiased overflow-x-hidden">
+    <!-- GTM noscript — imediatamente após <body> -->
+    <noscript>
+      <iframe
+        src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`}
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden"
+        title="Google Tag Manager"
+      ></iframe>
+    </noscript>
+
+    {showHeader && <Header />}
+
+    <main id="main-content" tabindex="-1">
+      <slot />
+    </main>
+
+    {showFooter && <Footer />}
+
+    <WhatsAppFloat />
+
+    <CookieBanner client:idle gtmId={gtmId} />
+
+    <Analytics />
+    <SpeedInsights />
+
+    <!-- Lenis smooth scroll + GSAP ScrollTrigger — init global -->
+    <script>
+      import Lenis from '@studio-freight/lenis';
+      import { gsap } from 'gsap';
+      import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+      gsap.registerPlugin(ScrollTrigger);
+
+      const lenis = new Lenis({
+        duration: 1.2,
+        easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        smoothWheel: true,
+        syncTouch: false,
+      });
+
+      lenis.on('scroll', ScrollTrigger.update);
+
+      gsap.ticker.add((time: number) => {
+        lenis.raf(time * 1000);
+      });
+
+      gsap.ticker.lagSmoothing(0);
+
+      // Expor globalmente para outros scripts do projeto
+      (window as any).__lenis = lenis;
+    </script>
+  </body>
+</html>

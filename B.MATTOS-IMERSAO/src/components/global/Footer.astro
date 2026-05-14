@@ -1,0 +1,111 @@
+---
+const WA_LINK =
+  'https://wa.me/5511918952921?text=Oi%2C%20vi%20voc%C3%AA%20no%20Google%20e%20gostaria%20de%20saber%20mais%20sobre%20a%20imers%C3%A3o%20Training%20Camping';
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="bg-primary text-white" role="contentinfo">
+  <!-- Accent line topo -->
+  <div class="h-1 bg-secondary" aria-hidden="true"></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+    <div class="grid md:grid-cols-3 gap-12 md:gap-8">
+
+      <!-- Coluna 1: Marca -->
+      <div>
+        <div class="flex items-center gap-2 mb-4">
+          <span class="inline-block w-1.5 h-6 bg-secondary rounded-full" aria-hidden="true"></span>
+          <span class="font-display font-semibold text-lg tracking-tight">Training Camping</span>
+        </div>
+        <p class="text-white/60 text-sm leading-relaxed">
+          Imersão presencial de treinamento comportamental para cães. SJC e região.
+        </p>
+        <p class="text-white/40 text-2xs mt-4 font-mono">
+          CNPJ: 49.081.534/0001-89
+        </p>
+      </div>
+
+      <!-- Coluna 2: Links -->
+      <div>
+        <p class="text-2xs font-medium uppercase tracking-widest text-white/40 mb-5">
+          Contato
+        </p>
+        <nav aria-label="Links do rodapé">
+          <ul class="flex flex-col gap-3">
+            <li>
+              <a
+                href={WA_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+                id="btn-footer-wpp"
+                data-tracking="click-whatsapp-footer"
+                data-section="footer"
+                class="text-sm text-white/75 hover:text-secondary transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary rounded"
+              >
+                WhatsApp: (11) 91895-2921
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://www.instagram.com/abeak9"
+                target="_blank"
+                rel="noopener noreferrer"
+                id="btn-footer-instagram"
+                data-tracking="click-instagram-footer"
+                data-section="footer"
+                class="text-sm text-white/75 hover:text-secondary transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary rounded"
+              >
+                Instagram: @abeak9
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+      <!-- Coluna 3: Legal -->
+      <div>
+        <p class="text-2xs font-medium uppercase tracking-widest text-white/40 mb-5">
+          Legal
+        </p>
+        <nav aria-label="Links legais">
+          <ul class="flex flex-col gap-3">
+            <li>
+              <a
+                href="/politica-de-privacidade"
+                class="text-sm text-white/75 hover:text-secondary transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary rounded"
+              >
+                Política de privacidade
+              </a>
+            </li>
+            <li>
+              <a
+                href="/termos-de-uso"
+                class="text-sm text-white/75 hover:text-secondary transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary rounded"
+              >
+                Termos de uso
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+    <!-- Bottom bar -->
+    <div
+      class="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
+    >
+      <p class="text-white/40 text-2xs">
+        © {currentYear} Training Camping. Todos os direitos reservados.
+      </p>
+      <a
+        href="https://adsgator.com.br"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-white/30 hover:text-white/60 transition-colors duration-150 text-2xs font-medium focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary rounded"
+        aria-label="Site criado pela agência Adsgator"
+      >
+        Criado pela Adsgator
+      </a>
+    </div>
+  </div>
+</footer>

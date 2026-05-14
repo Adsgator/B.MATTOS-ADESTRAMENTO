@@ -1,0 +1,27 @@
+---
+export interface Props {
+  icon: string; // SVG inline string
+  title: string;
+  description: string;
+  class?: string;
+}
+
+const { icon, title, description, class: extraClass = '' } = Astro.props;
+---
+
+<article
+  class={`js-card group bg-background border border-border rounded p-6 transition-transform duration-200 hover:-translate-y-1 hover:scale-[1.01] ${extraClass}`}
+>
+  <div
+    class="w-10 h-10 flex items-center justify-center text-secondary mb-5"
+    aria-hidden="true"
+  >
+    <Fragment set:html={icon} />
+  </div>
+  <h3 class="font-display font-semibold text-lg text-text-main mb-2 leading-snug">
+    {title}
+  </h3>
+  <p class="text-text-support leading-relaxed text-sm">
+    {description}
+  </p>
+</article>
