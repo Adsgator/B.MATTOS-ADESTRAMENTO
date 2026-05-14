@@ -1,0 +1,105 @@
+---
+import FAQAccordion from '@/components/islands/FAQAccordion';
+
+const faqs = [
+  {
+    question: 'Meu cão vai ficar sozinho durante a imersão?',
+    answer:
+      'Não. Você se hospeda comigo na chácara e participa ativamente de todo o treinamento. Não existe fase de "deixar o cão lá" e buscar no final.',
+  },
+  {
+    question: 'Qualquer cão pode participar?',
+    answer:
+      'Ao reservar a vaga, você já ganha uma avaliação online onde analisamos juntos o caso do seu cão. Para entrar na chácara, o cão precisa estar com vacinação atualizada, vermifugado e com antiparasitário em dia. Se houver alguma condição de saúde, preciso saber com antecedência.',
+  },
+  {
+    question: 'O que acontece depois que voltar para casa?',
+    answer:
+      'Ao final da imersão você sai com um novo manejo e uma rotina estruturada. Se quiser acompanhamento contínuo, há uma opção de suporte adicional com aulas online quinzenais durante um mês e acompanhamento pelo WhatsApp.',
+  },
+  {
+    question: 'Quanto tempo dura a imersão?',
+    answer:
+      'De 2 a 4 dias. O tempo é definido de acordo com o caso do seu cão e o que precisamos trabalhar juntos.',
+  },
+  {
+    question: 'Funciona para cães muito agressivos ou com histórico de mordidas?',
+    answer:
+      'Esse é exatamente o tipo de caso que precisa de avaliação cuidadosa antes. Me conta no WhatsApp o histórico do seu cão, incluindo se há mordidas efetivas, e eu te digo com honestidade se a imersão faz sentido para vocês.',
+  },
+];
+---
+
+<section
+  id="faq"
+  class="bg-background overflow-hidden"
+  aria-labelledby="faq-titulo"
+  data-section="faq"
+>
+  <!-- Top border -->
+  <div class="h-px bg-border"></div>
+
+  <div class="max-w-7xl mx-auto px-6 lg:px-12 py-24 lg:py-32">
+
+    <div class="grid lg:grid-cols-[380px_1fr] xl:grid-cols-[440px_1fr] gap-12 xl:gap-20 items-start">
+
+      <!-- Left: sticky header -->
+      <div class="lg:sticky lg:top-28">
+        <span class="faq-reveal inline-block font-sans font-semibold text-xs tracking-[0.2em] uppercase text-secondary mb-3">
+          Perguntas frequentes
+        </span>
+        <h2
+          id="faq-titulo"
+          class="faq-reveal font-display font-bold text-3xl sm:text-4xl lg:text-[2.4rem] text-text-main leading-[1.1] tracking-tight"
+        >
+          O que você precisa saber antes de entrar em contato
+        </h2>
+        <!-- Decorative accent -->
+        <div class="mt-8 w-12 h-1 bg-secondary rounded-full faq-reveal"></div>
+      </div>
+
+      <!-- Right: accordion -->
+      <div class="faq-accordion">
+        <FAQAccordion client:visible items={faqs} />
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  import gsap from 'gsap';
+  import ScrollTrigger from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (!prefersReduced) {
+    gsap.utils.toArray<HTMLElement>('.faq-reveal').forEach((el) => {
+      gsap.from(el, {
+        opacity: 0,
+        y: 24,
+        duration: 0.6,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 85%',
+          toggleActions: 'play none none none',
+        },
+      });
+    });
+
+    gsap.from('.faq-accordion', {
+      opacity: 0,
+      y: 30,
+      duration: 0.7,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: '.faq-accordion',
+        start: 'top 85%',
+        toggleActions: 'play none none none',
+      },
+    });
+  }
+</script>

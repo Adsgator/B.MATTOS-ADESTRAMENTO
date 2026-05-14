@@ -1,0 +1,148 @@
+---
+const WA_LINK =
+  'https://wa.me/5511918952921?text=Oi%2C%20vi%20voc%C3%AA%20no%20Google%20e%20gostaria%20de%20saber%20mais%20sobre%20a%20imers%C3%A3o%20Training%20Camping';
+
+const diferenciais = [
+  {
+    icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>`,
+    title: 'Sem reservas de conhecimento',
+    description:
+      'Você entende o que está sendo feito e por quê, em cada momento.',
+  },
+  {
+    icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>`,
+    title: 'Abordagem empática e objetiva',
+    description:
+      'Sem métodos que geram medo ou estresse desnecessário, e sem ingenuidade sobre o que o cão precisa.',
+  },
+  {
+    icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>`,
+    title: 'Ambiente controlado e seguro',
+    description:
+      'A Chácara Recanto Feliz tem estrutura pensada para acolher cão e dono, com espaços de descompressão para os dois.',
+  },
+  {
+    icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><path d="M9 9h6M9 12h6M9 15h4"/></svg>`,
+    title: 'Avaliação online de brinde',
+    description:
+      'Ao reservar sua vaga, você já ganha uma avaliação antes da imersão para entrarmos alinhados.',
+  },
+  {
+    icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>`,
+    title: 'Foco nos problemas reais',
+    description:
+      'Reatividade com cães, reatividade com pessoas, puxões na guia, ansiedade de separação e ansiedade generalizada.',
+  },
+];
+---
+
+<section
+  id="diferenciais"
+  class="bg-primary overflow-hidden"
+  aria-labelledby="diferenciais-titulo"
+  data-section="diferenciais"
+>
+  <div class="max-w-7xl mx-auto px-6 lg:px-12 py-24 lg:py-32">
+
+    <!-- Header -->
+    <div class="max-w-3xl mb-16">
+      <span class="diferenciais-reveal inline-block font-sans font-semibold text-xs tracking-[0.2em] uppercase text-secondary mb-3">
+        Por que funciona
+      </span>
+      <h2
+        id="diferenciais-titulo"
+        class="diferenciais-reveal font-display font-bold text-3xl sm:text-4xl lg:text-[2.6rem] text-background leading-[1.1] tracking-tight mb-6"
+      >
+        O problema não é só o seu cão.<br />É a comunicação entre vocês dois.
+      </h2>
+      <p class="diferenciais-reveal font-sans text-base sm:text-lg text-background/60 leading-relaxed">
+        Treinar o cão sem ensinar o dono não resolve. Eu trago você para dentro do processo
+        porque é você que vai conviver com ele depois que a imersão acabar.
+      </p>
+    </div>
+
+    <!-- Cards grid -->
+    <div
+      class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5 mb-14"
+      role="list"
+    >
+      {diferenciais.map((item, i) => (
+        <div
+          class="diferencial-card group relative bg-white/[0.04] border border-white/[0.07] rounded p-6 hover:-translate-y-1 hover:bg-white/[0.07] transition-all duration-200"
+          role="listitem"
+          style={`--i: ${i}`}
+        >
+          <div
+            class="w-10 h-10 rounded bg-secondary/10 flex items-center justify-center text-secondary mb-5"
+            aria-hidden="true"
+            set:html={item.icon}
+          />
+          <h3 class="font-display font-semibold text-base text-background mb-2 leading-snug">
+            {item.title}
+          </h3>
+          <p class="font-sans text-sm text-background/55 leading-relaxed">
+            {item.description}
+          </p>
+        </div>
+      ))}
+    </div>
+
+    <!-- CTA -->
+    <div class="diferenciais-reveal flex justify-start">
+      <a
+        href={WA_LINK}
+        id="btn-diferenciais"
+        data-tracking="click-whatsapp-diferenciais"
+        data-section="diferenciais"
+        rel="noopener noreferrer"
+        target="_blank"
+        class="inline-flex items-center gap-3 bg-secondary text-background font-sans font-semibold text-base px-8 py-4 rounded transition-transform duration-150 hover:scale-[1.03] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary"
+        aria-label="Falar pelo WhatsApp — abre WhatsApp"
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+        </svg>
+        Falar pelo WhatsApp
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  import gsap from 'gsap';
+  import ScrollTrigger from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (!prefersReduced) {
+    gsap.utils.toArray<HTMLElement>('.diferenciais-reveal').forEach((el) => {
+      gsap.from(el, {
+        opacity: 0,
+        y: 30,
+        duration: 0.6,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 85%',
+          toggleActions: 'play none none none',
+        },
+      });
+    });
+
+    gsap.from('.diferencial-card', {
+      opacity: 0,
+      y: 30,
+      duration: 0.55,
+      ease: 'power2.out',
+      stagger: 0.08,
+      scrollTrigger: {
+        trigger: '.diferencial-card',
+        start: 'top 85%',
+        toggleActions: 'play none none none',
+      },
+    });
+  }
+</script>

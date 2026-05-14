@@ -1,0 +1,31 @@
+---
+import Layout from '@/components/global/Layout.astro';
+import HeroSection from '@/sections/HeroSection.astro';
+import ServicoSection from '@/sections/ServicoSection.astro';
+import DiferenciaisSection from '@/sections/DiferenciaisSection.astro';
+import ComoFuncionaSection from '@/sections/ComoFuncionaSection.astro';
+import InstagramSection from '@/sections/InstagramSection.astro';
+import FAQSection from '@/sections/FAQSection.astro';
+import CTAFinalSection from '@/sections/CTAFinalSection.astro';
+
+const seo = {
+  title: 'Cão Reativo em SJC? Training Camping Imersão Presencial',
+  description:
+    'Seu cão puxa, late ou reage? Na imersão Training Camping em SJC você treina junto e sai sabendo lidar com ele. Fale agora pelo WhatsApp.',
+  canonical: 'https://imersao.abeak9adestramento.com.br/',
+  ogTitle: 'Training Camping Imersão Presencial em SJC',
+  ogDescription:
+    'Você treina junto com seu cão. Sem reservas de conhecimento. Saindo com uma nova forma de se comunicar com ele. SJC, presencial.',
+  ogImage: '/og-image.webp',
+};
+---
+
+<Layout {...seo}>
+  <HeroSection />
+  <ServicoSection />
+  <DiferenciaisSection />
+  <ComoFuncionaSection />
+  <InstagramSection />
+  <FAQSection />
+  <CTAFinalSection />
+</Layout>

@@ -11,19 +11,20 @@ export default defineConfig({
   integrations: [
     tailwind({ applyBaseStyles: true }),
     react(),
-    sitemap({
-      filter: (page) =>
-        ![
-          `${SITE}/links/`,
-          `${SITE}/politica-de-privacidade/`,
-          `${SITE}/termos-de-uso/`,
-          `${SITE}/404/`,
-        ].includes(page),
-      i18n: {
-        defaultLocale: 'pt',
-        locales: { pt: 'pt-BR' },
-      },
-    }),
+    // sitemap habilitado na Parte 4 após criar páginas adicionais
+    // sitemap({
+    //   filter: (page) =>
+    //     ![
+    //       `${SITE}/links/`,
+    //       `${SITE}/politica-de-privacidade/`,
+    //       `${SITE}/termos-de-uso/`,
+    //       `${SITE}/404/`,
+    //     ].includes(page),
+    //   i18n: {
+    //     defaultLocale: 'pt',
+    //     locales: { pt: 'pt-BR' },
+    //   },
+    // }),
   ],
   vite: {
     optimizeDeps: {

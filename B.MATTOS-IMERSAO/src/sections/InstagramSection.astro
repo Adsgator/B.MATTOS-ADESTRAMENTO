@@ -1,0 +1,90 @@
+---
+import InstagramFeed from '@/components/islands/InstagramFeed';
+
+const INSTAGRAM_TOKEN = import.meta.env.INSTAGRAM_TOKEN ?? '';
+const INSTAGRAM_USERNAME = 'abeak9';
+const INSTAGRAM_PROFILE = 'https://www.instagram.com/abeak9';
+---
+
+<section
+  id="instagram"
+  class="bg-surface overflow-hidden"
+  aria-labelledby="instagram-titulo"
+  data-section="instagram"
+>
+  <!-- Top border -->
+  <div class="h-px bg-border"></div>
+
+  <div class="max-w-7xl mx-auto px-6 lg:px-12 py-24 lg:py-32">
+
+    <!-- Header -->
+    <div class="instagram-reveal flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-12">
+      <div class="max-w-xl">
+        <span class="inline-block font-sans font-semibold text-xs tracking-[0.2em] uppercase text-secondary mb-3">
+          Acompanhe o trabalho
+        </span>
+        <h2
+          id="instagram-titulo"
+          class="font-display font-bold text-3xl sm:text-4xl text-text-main leading-[1.1] tracking-tight mb-3"
+        >
+          Veja como é na prática
+        </h2>
+        <p class="font-sans text-base text-text-support leading-relaxed">
+          No Instagram você encontra registros reais da imersão, dos cães e dos processos de
+          treinamento.
+        </p>
+      </div>
+
+      <a
+        href={INSTAGRAM_PROFILE}
+        id="btn-instagram"
+        data-tracking="click-instagram"
+        data-section="instagram"
+        rel="noopener noreferrer"
+        target="_blank"
+        class="flex-shrink-0 inline-flex items-center gap-2 border border-border bg-background text-text-main font-sans font-semibold text-sm px-6 py-3 rounded transition-all duration-150 hover:border-text-support hover:bg-surface focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary whitespace-nowrap"
+        aria-label={`Ver no Instagram @${INSTAGRAM_USERNAME} — abre em nova aba`}
+      >
+        <!-- Instagram icon -->
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+          <circle cx="12" cy="12" r="4"/>
+          <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/>
+        </svg>
+        Ver no Instagram @{INSTAGRAM_USERNAME}
+      </a>
+    </div>
+
+    <!-- Feed island -->
+    <InstagramFeed
+      client:visible
+      token={INSTAGRAM_TOKEN}
+      username={INSTAGRAM_USERNAME}
+      profileUrl={INSTAGRAM_PROFILE}
+    />
+
+  </div>
+</section>
+
+<script>
+  import gsap from 'gsap';
+  import ScrollTrigger from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (!prefersReduced) {
+    gsap.from('.instagram-reveal', {
+      opacity: 0,
+      y: 30,
+      duration: 0.6,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: '.instagram-reveal',
+        start: 'top 85%',
+        toggleActions: 'play none none none',
+      },
+    });
+  }
+</script>

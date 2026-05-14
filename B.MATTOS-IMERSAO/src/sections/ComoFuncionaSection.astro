@@ -1,0 +1,147 @@
+---
+const WA_LINK =
+  'https://wa.me/5511918952921?text=Oi%2C%20vi%20voc%C3%AA%20no%20Google%20e%20gostaria%20de%20saber%20mais%20sobre%20a%20imers%C3%A3o%20Training%20Camping';
+
+const steps = [
+  {
+    number: '01',
+    text: 'Você entra em contato pelo WhatsApp e me conta o principal problema do seu cão. Raça, idade e histórico comportamental já me ajudam a entender o caso antes de conversar.',
+  },
+  {
+    number: '02',
+    text: 'Você ganha uma avaliação online de brinde ao reservar a vaga. Assim chegamos alinhados no primeiro dia.',
+  },
+  {
+    number: '03',
+    text: 'Você e seu cão se hospedam na Chácara Recanto Feliz por 2 a 4 dias. O ambiente é seguro, acolhedor e projetado para esse tipo de trabalho.',
+  },
+  {
+    number: '04',
+    text: 'Você treina junto comigo desde o primeiro momento. Passeios externos fazem parte da imersão para praticar o que foi aprendido.',
+  },
+  {
+    number: '05',
+    text: 'Na finalização, reestruturamos o manejo e a rotina que você vai levar para casa. Você sai com clareza do que fazer, não só com um cão diferente.',
+  },
+];
+---
+
+<section
+  id="como-funciona"
+  class="bg-background overflow-hidden"
+  aria-labelledby="como-funciona-titulo"
+  data-section="como-funciona"
+>
+  <!-- Top border -->
+  <div class="h-px bg-border"></div>
+
+  <div class="max-w-7xl mx-auto px-6 lg:px-12 py-24 lg:py-32">
+
+    <!-- Header -->
+    <div class="max-w-2xl mb-16">
+      <span class="como-reveal inline-block font-sans font-semibold text-xs tracking-[0.2em] uppercase text-secondary mb-3">
+        Como funciona
+      </span>
+      <h2
+        id="como-funciona-titulo"
+        class="como-reveal font-display font-bold text-3xl sm:text-4xl lg:text-[2.6rem] text-text-main leading-[1.1] tracking-tight mb-4"
+      >
+        Do primeiro contato até você em casa, no controle
+      </h2>
+      <p class="como-reveal font-sans text-base sm:text-lg text-text-support leading-relaxed">
+        O processo é direto. Sem etapas desnecessárias.
+      </p>
+    </div>
+
+    <!-- Steps -->
+    <div class="relative max-w-3xl">
+      <!-- Linha conectora vertical (desktop) -->
+      <div
+        class="absolute left-[1.75rem] top-8 bottom-8 w-px bg-border hidden md:block"
+        aria-hidden="true"
+      ></div>
+
+      <ol class="space-y-10" role="list">
+        {steps.map((step, i) => (
+          <li
+            class="como-step relative flex gap-6 md:gap-8 items-start"
+            style={`--i: ${i}`}
+          >
+            <!-- Número -->
+            <div
+              class="flex-shrink-0 w-14 h-14 rounded-full border-2 border-border bg-background flex items-center justify-center relative z-10"
+              aria-hidden="true"
+            >
+              <span class="font-display font-bold text-sm text-secondary">{step.number}</span>
+            </div>
+
+            <!-- Texto -->
+            <div class="flex-1 pt-3 pb-2">
+              <p class="font-sans text-base text-text-main leading-relaxed">
+                {step.text}
+              </p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+
+    <!-- CTA -->
+    <div class="como-reveal mt-16">
+      <a
+        href={WA_LINK}
+        id="btn-como-funciona"
+        data-tracking="click-whatsapp-como-funciona"
+        data-section="como-funciona"
+        rel="noopener noreferrer"
+        target="_blank"
+        class="inline-flex items-center gap-2 bg-primary text-background font-sans font-semibold text-base px-8 py-4 rounded transition-transform duration-150 hover:scale-[1.03] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+        aria-label="Quero reservar minha vaga — abre WhatsApp"
+      >
+        Quero reservar minha vaga
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M3 8H13M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  import gsap from 'gsap';
+  import ScrollTrigger from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (!prefersReduced) {
+    gsap.utils.toArray<HTMLElement>('.como-reveal').forEach((el) => {
+      gsap.from(el, {
+        opacity: 0,
+        y: 30,
+        duration: 0.6,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 85%',
+          toggleActions: 'play none none none',
+        },
+      });
+    });
+
+    gsap.from('.como-step', {
+      opacity: 0,
+      x: -24,
+      duration: 0.55,
+      ease: 'power2.out',
+      stagger: 0.1,
+      scrollTrigger: {
+        trigger: '.como-step',
+        start: 'top 85%',
+        toggleActions: 'play none none none',
+      },
+    });
+  }
+</script>
