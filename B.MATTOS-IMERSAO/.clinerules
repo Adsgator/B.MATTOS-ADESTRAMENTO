@@ -1,0 +1,43 @@
+# Roo Code — Regras do Projeto Training Camping
+# Adsgator · 2026
+
+## Stack obrigatória
+- Astro (output: static)
+- Tailwind CSS — tokens em tailwind.config.js, nunca HEX hardcoded
+- React (apenas islands: MobileMenu, FAQAccordion, InstagramFeed, CookieBanner, LinksPage)
+- GSAP + ScrollTrigger — em <script> bundled nos .astro, nunca em bundle React
+- Framer Motion — dentro de islands React
+- Lenis — <script> bundled no Layout.astro
+- Vercel (deploy target)
+
+## Ordem de implementação
+1. Parte 1: Fundação (este arquivo)
+2. npm install
+3. Parte 2: Layout + Componentes Globais
+4. Parte 3: Seções da Landing Page
+5. Parte 4: Integrações + Páginas Adicionais
+6. npm run build — zero erros antes de entregar
+
+## Regras absolutas
+- NUNCA alterar nenhuma palavra da copy do DOC-1
+- NUNCA HEX hardcoded no código — sempre via token Tailwind
+- NUNCA console.log em produção
+- NUNCA client:load sem justificativa documentada em comentário
+- NUNCA <div> clicável no lugar de <button> ou <a>
+- NUNCA <form> HTML nativo em islands React — usar event handlers
+- NUNCA imagem sem width, height e alt descritivo
+- SEMPRE prefers-reduced-motion check antes de qualquer animação GSAP
+- SEMPRE data-tracking e data-section em todos os CTAs e links WhatsApp
+- SEMPRE focus-visible em todos os elementos interativos
+- SEMPRE rel="noopener noreferrer" em links externos
+
+## Convenção de nomes de arquivos
+- Componentes Astro: PascalCase.astro
+- Islands React: PascalCase.tsx
+- Seções: NomeSection.astro (em src/sections/)
+- Páginas: kebab-case.astro (em src/pages/)
+
+## Variáveis de ambiente
+- PUBLIC_GTM_ID → GTM ID
+- INSTAGRAM_TOKEN → token da API do Instagram
+- Nunca hardcodar valores de .env no código
