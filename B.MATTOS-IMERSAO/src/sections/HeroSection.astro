@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import heroImg from '@/assets/images/hero-principal.svg';
+import heroBg from '@/assets/images/img-hero-background.webp';
 
 const WA_LINK =
   'https://wa.me/5511918952921?text=Oi%2C%20vi%20voc%C3%AA%20no%20Google%20e%20gostaria%20de%20saber%20mais%20sobre%20a%20imers%C3%A3o%20Training%20Camping';
@@ -12,17 +12,14 @@ const WA_LINK =
   aria-label="Hero — Training Camping"
   data-section="hero"
 >
-  <!-- Background image with overlay -->
+  <!-- Background overlay -->
   <div class="absolute inset-0 z-0">
+    <!-- Imagem de fundo -->
     <Image
-      src={heroImg}
-      alt=""
-      width={1200}
-      height={1400}
-      loading="eager"
-      format="webp"
-      class="w-full h-full object-cover object-center"
-      style="opacity: 0.22;"
+      src={heroBg}
+      alt="Fundo do hero — Training Camping"
+      fill
+      class="w-full h-full object-cover"
     />
     <!-- Gradient overlay para legibilidade -->
     <div
@@ -32,11 +29,11 @@ const WA_LINK =
   </div>
 
   <!-- Content -->
-  <div class="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-12 pt-32 pb-24 lg:pt-40 lg:pb-32">
-    <div class="grid lg:grid-cols-[1fr_420px] xl:grid-cols-[1fr_480px] gap-12 xl:gap-20 items-center">
+  <div class="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-12 pt-20 pb-16 sm:pt-32 sm:pb-24 lg:pt-40 lg:pb-32">
+    <div class="flex items-center justify-center">
 
-      <!-- Text column -->
-      <div class="space-y-8" id="hero-text">
+      <!-- Text column - centered -->
+      <div class="space-y-8 max-w-2xl text-center" id="hero-text">
 
         <span
           class="inline-block font-sans font-semibold text-xs tracking-[0.2em] uppercase text-secondary opacity-0 translate-y-4"
@@ -47,22 +44,20 @@ const WA_LINK =
         </span>
 
         <h1
-          class="font-display font-bold text-[2.5rem] sm:text-5xl lg:text-6xl xl:text-[4rem] leading-[1.06] tracking-tight text-background opacity-0 translate-y-6"
+          class="font-display font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[4rem] leading-[1.06] tracking-[0.05em] text-background opacity-0 translate-y-6 mx-auto"
           id="hero-h1"
         >
           Seu cão é reativo, ansioso ou impossível de passear?
         </h1>
 
         <p
-          class="font-sans text-base sm:text-lg text-background/70 max-w-[540px] leading-relaxed opacity-0 translate-y-4"
+          class="font-sans text-base sm:text-lg text-background/70 max-w-[540px] leading-relaxed opacity-0 translate-y-4 mx-auto"
           id="hero-subtitle"
         >
-          Você não precisa mandar ele embora para ser adestrado enquanto fica sem entender o que
-          aconteceu. No Training Camping você fica junto, aprende na prática e sai com uma nova
-          forma de lidar com o seu cão de verdade.
+          No Training Camping você fica junto, aprende na prática e sai com uma nova forma de se comunicar com o seu cão de verdade.
         </p>
 
-        <div class="opacity-0 translate-y-4" id="hero-cta">
+        <div class="opacity-0 translate-y-4 flex justify-center" id="hero-cta">
           <a
             href={WA_LINK}
             id="btn-hero"
@@ -91,62 +86,9 @@ const WA_LINK =
 
       </div>
 
-      <!-- Image column (desktop) -->
-      <div
-        class="hidden lg:block opacity-0 translate-x-8"
-        id="hero-image"
-        aria-hidden="true"
-      >
-        <div class="relative rounded overflow-hidden border border-white/[0.08] shadow-2xl" style="height: 580px;">
-          <Image
-            src={heroImg}
-            alt="Beatriz Mattos realizando imersão de treinamento comportamental com cão"
-            width={480}
-            height={580}
-            loading="eager"
-            format="webp"
-            class="w-full h-full object-cover object-top"
-          />
-          <!-- Bottom fade -->
-          <div
-            class="absolute bottom-0 left-0 right-0 h-32"
-            style="background: linear-gradient(to top, rgba(26,29,35,0.7) 0%, transparent 100%);"
-          ></div>
-          <!-- Badge -->
-          <div
-            class="absolute bottom-6 left-6 right-6 flex items-center gap-3 bg-background/10 backdrop-blur-sm border border-white/10 rounded px-4 py-3"
-          >
-            <div class="w-2 h-2 rounded-full bg-secondary animate-pulse-soft flex-shrink-0"></div>
-            <span class="font-sans text-sm text-background/80 font-medium">
-              Imersão presencial de 2 a 4 dias · SJC
-            </span>
-          </div>
-        </div>
-      </div>
-
     </div>
   </div>
 
-  <!-- Scroll cue -->
-  <div
-    class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 opacity-0"
-    id="hero-scroll-cue"
-    aria-hidden="true"
-  >
-    <span class="font-sans text-[10px] text-background/30 tracking-[0.25em] uppercase">Role</span>
-    <svg width="16" height="24" viewBox="0 0 16 24" fill="none" aria-hidden="true">
-      <rect x="1" y="1" width="14" height="22" rx="7" stroke="rgba(255,255,255,0.2)" stroke-width="1.2" />
-      <rect
-        x="7"
-        y="5"
-        width="2"
-        height="5"
-        rx="1"
-        fill="rgba(255,255,255,0.4)"
-        class="animate-[scrollDot_2s_ease-in-out_infinite]"
-      />
-    </svg>
-  </div>
 </section>
 
 <style>
@@ -162,7 +104,7 @@ const WA_LINK =
 
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  const allEls = ['#hero-label', '#hero-h1', '#hero-subtitle', '#hero-cta', '#hero-image', '#hero-scroll-cue'];
+  const allEls = ['#hero-label', '#hero-h1', '#hero-subtitle', '#hero-cta'];
 
   if (prefersReduced) {
     allEls.forEach((sel) => {
@@ -200,16 +142,6 @@ const WA_LINK =
       y: 0,
       duration: 0.5,
       ease: 'power2.out',
-    }, '-=0.35')
-    .to('#hero-image', {
-      opacity: 1,
-      x: 0,
-      duration: 0.8,
-      ease: 'power2.out',
-    }, '-=0.55')
-    .to('#hero-scroll-cue', {
-      opacity: 1,
-      duration: 0.4,
-    }, '-=0.1');
+    }, '-=0.35');
   }
 </script>

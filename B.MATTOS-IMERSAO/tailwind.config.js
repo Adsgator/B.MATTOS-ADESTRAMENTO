@@ -19,7 +19,7 @@ export default {
       fontFamily: {
         sans: ['"Inter Variable"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
         display: [
-          '"Bricolage Grotesque Variable"',
+          '"Bebas Neue"',
           'ui-sans-serif',
           'system-ui',
           'sans-serif',

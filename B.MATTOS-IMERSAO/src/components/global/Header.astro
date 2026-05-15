@@ -1,6 +1,8 @@
 ---
+import { Image } from 'astro:assets';
 import Button from './Button.astro';
 import MobileMenu from '../islands/MobileMenu';
+import logoTrainingCamping from '@/assets/images/logo-training-camping-azul.svg';
 
 const WA_LINK =
   'https://wa.me/5511918952921?text=Oi%2C%20vi%20voc%C3%AA%20no%20Google%20e%20gostaria%20de%20saber%20mais%20sobre%20a%20imers%C3%A3o%20Training%20Camping';
@@ -8,6 +10,7 @@ const WA_LINK =
 const navLinks = [
   { label: 'A imersão', href: '#servico' },
   { label: 'Como funciona', href: '#como-funciona' },
+  { label: 'Localização', href: '#localidade' },
   { label: 'FAQ', href: '#faq' },
 ];
 ---
@@ -18,21 +21,19 @@ const navLinks = [
   role="banner"
 >
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex items-center justify-between h-16 md:h-20">
+    <div class="flex items-center justify-center h-20 md:h-24 relative">
 
       <!-- Logo -->
       <a
         href="#top"
-        class="flex items-center gap-2 group focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-secondary rounded"
+        class="absolute left-0 flex items-center focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-secondary rounded"
         aria-label="Training Camping — voltar ao topo"
       >
-        <span
-          class="inline-block w-1.5 h-6 bg-secondary rounded-full group-hover:h-8 transition-all duration-200"
-          aria-hidden="true"
-        ></span>
-        <span class="font-display font-semibold text-lg text-white tracking-tight">
-          Training Camping
-        </span>
+        <Image
+          src={logoTrainingCamping}
+          alt="Logo Training Camping"
+          class="h-14 md:h-20 w-auto"
+        />
       </a>
 
       <!-- Nav desktop -->
@@ -53,7 +54,7 @@ const navLinks = [
       </nav>
 
       <!-- CTA desktop -->
-      <div class="hidden md:block">
+      <div class="absolute right-0 hidden md:block">
         <Button
           label="Falar pelo WhatsApp"
           href={WA_LINK}

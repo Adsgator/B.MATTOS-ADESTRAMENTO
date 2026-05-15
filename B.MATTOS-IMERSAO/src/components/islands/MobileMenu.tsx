@@ -14,114 +14,106 @@ interface Props {
 
 export default function MobileMenu({ links, ctaLabel, ctaHref }: Props) {
   const [isOpen, setIsOpen] = useState(false);
-  const shouldReduce = useReducedMotion();
-  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const prefersReduced = useReducedMotion();
+  const closeRef = useRef<HTMLButtonElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
 
-  const close = () => setIsOpen(false);
-
-  // Bloqueia scroll do body quando menu aberto
+  // Bloquear scroll do body quando aberto
   useEffect(() => {
     if (isOpen) {
       document.documentElement.style.overflow = 'hidden';
-      closeButtonRef.current?.focus();
+      document.body.style.overflow = 'hidden';
+      closeRef.current?.focus();
     } else {
       document.documentElement.style.overflow = '';
+      document.body.style.overflow = '';
     }
     return () => {
       document.documentElement.style.overflow = '';
+      document.body.style.overflow = '';
     };
   }, [isOpen]);
 
-  // Focus trap + Escape
+  // Fechar com Escape
   useEffect(() => {
-    if (!isOpen) return;
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setIsOpen(false);
+    };
+    window.addEventListener('keydown', handleKey);
+    return () => window.removeEventListener('keydown', handleKey);
+  }, []);
 
-    function handleKeyDown(e: KeyboardEvent) {
-      if (e.key === 'Escape') {
-        close();
-        return;
-      }
-      if (e.key === 'Tab' && menuRef.current) {
-        const focusable = menuRef.current.querySelectorAll<HTMLElement>(
-          'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
-        );
-        const first = focusable[0];
-        const last = focusable[focusable.length - 1];
+  // Focus trap
+  useEffect(() => {
+    if (!isOpen || !menuRef.current) return;
+    const focusable = menuRef.current.querySelectorAll<HTMLElement>(
+      'a[href], button, [tabindex]:not([tabindex="-1"])'
+    );
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
 
-        if (e.shiftKey && document.activeElement === first) {
+    const trap = (e: KeyboardEvent) => {
+      if (e.key !== 'Tab') return;
+      if (e.shiftKey) {
+        if (document.activeElement === first) {
           e.preventDefault();
           last.focus();
-        } else if (!e.shiftKey && document.activeElement === last) {
+        }
+      } else {
+        if (document.activeElement === last) {
           e.preventDefault();
           first.focus();
         }
       }
-    }
-
-    document.addEventListener('keydown', handleKeyDown);
-    return () => document.removeEventListener('keydown', handleKeyDown);
+    };
+    window.addEventListener('keydown', trap);
+    return () => window.removeEventListener('keydown', trap);
   }, [isOpen]);
 
   const overlayVariants = {
     hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { duration: 0.25 } },
-    exit: { opacity: 0, transition: { duration: 0.2 } },
+    visible: { opacity: 1, transition: { duration: prefersReduced ? 0.01 : 0.3 } },
+    exit: { opacity: 0, transition: { duration: prefersReduced ? 0.01 : 0.25 } },
   };
 
-  const linkVariants = (i: number) => ({
-    hidden: shouldReduce ? {} : { opacity: 0, y: 24 },
-    visible: shouldReduce
-      ? {}
-      : {
-          opacity: 1,
-          y: 0,
-          transition: { delay: 0.1 + i * 0.06, duration: 0.35 },
-        },
-  });
-
-  const barVariants = {
-    top: {
-      closed: { rotate: 0, y: 0 },
-      open: { rotate: 45, y: shouldReduce ? 0 : 7 },
-    },
-    mid: {
-      closed: { opacity: 1 },
-      open: { opacity: 0 },
-    },
-    bot: {
-      closed: { rotate: 0, y: 0 },
-      open: { rotate: -45, y: shouldReduce ? 0 : -7 },
-    },
+  const linkVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: (i: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: prefersReduced ? 0.01 : 0.4,
+        delay: prefersReduced ? 0 : i * 0.05,
+        ease: [0.22, 1, 0.36, 1],
+      },
+    }),
+    exit: { opacity: 0, y: -10, transition: { duration: 0.2 } },
   };
 
   return (
-    <div className="md:hidden">
-      {/* Botão hambúrguer */}
+    <>
+      {/* Botão hambúrguer com morphing */}
       <button
-        onClick={() => setIsOpen((v) => !v)}
+        onClick={() => setIsOpen((o) => !o)}
         aria-label={isOpen ? 'Fechar menu' : 'Abrir menu'}
         aria-expanded={isOpen}
-        aria-controls="mobile-menu-overlay"
-        className="relative w-10 h-10 flex flex-col items-center justify-center gap-[5px] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary rounded"
+        aria-controls="mobile-nav"
+        className="relative w-10 h-10 flex items-center justify-center md:hidden focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary"
       >
         <motion.span
-          animate={isOpen ? 'open' : 'closed'}
-          variants={barVariants.top}
-          transition={{ duration: 0.2 }}
-          className="block w-6 h-0.5 bg-white origin-center"
+          className="absolute block w-6 h-0.5 bg-white rounded-full"
+          animate={isOpen ? { rotate: 45, y: 0, width: '24px' } : { rotate: 0, y: -6, width: '24px' }}
+          transition={{ duration: 0.3 }}
         />
         <motion.span
-          animate={isOpen ? 'open' : 'closed'}
-          variants={barVariants.mid}
-          transition={{ duration: 0.1 }}
-          className="block w-6 h-0.5 bg-white"
+          className="absolute block w-6 h-0.5 bg-white rounded-full"
+          animate={{ opacity: isOpen ? 0 : 1, scaleX: isOpen ? 0 : 1 }}
+          transition={{ duration: 0.2 }}
         />
         <motion.span
-          animate={isOpen ? 'open' : 'closed'}
-          variants={barVariants.bot}
-          transition={{ duration: 0.2 }}
-          className="block w-6 h-0.5 bg-white origin-center"
+          className="absolute block w-6 h-0.5 bg-white rounded-full"
+          animate={isOpen ? { rotate: -45, y: 0, width: '24px' } : { rotate: 0, y: 6, width: '24px' }}
+          transition={{ duration: 0.3 }}
         />
       </button>
 
@@ -129,76 +121,64 @@ export default function MobileMenu({ links, ctaLabel, ctaHref }: Props) {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            id="mobile-menu-overlay"
             ref={menuRef}
+            id="mobile-nav"
             role="dialog"
             aria-modal="true"
             aria-label="Menu de navegação"
-            variants={shouldReduce ? {} : overlayVariants}
+            variants={overlayVariants}
             initial="hidden"
             animate="visible"
             exit="exit"
-            className="fixed inset-0 z-50 bg-primary flex flex-col px-8 pt-8 pb-10"
+            className="fixed inset-0 z-[100] bg-primary flex flex-col justify-between px-8 py-32 min-h-screen w-full"
+            onClick={(e) => {
+              if (e.target === e.currentTarget) setIsOpen(false);
+            }}
           >
             {/* Botão fechar */}
-            <div className="flex justify-between items-center mb-14">
-              <span className="font-display font-semibold text-base text-white tracking-tight">
-                Training Camping
-              </span>
-              <button
-                ref={closeButtonRef}
-                onClick={close}
-                aria-label="Fechar menu"
-                className="w-10 h-10 flex items-center justify-center text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary rounded"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  aria-hidden="true"
-                >
-                  <line x1="18" y1="6" x2="6" y2="18" />
-                  <line x1="6" y1="6" x2="18" y2="18" />
-                </svg>
-              </button>
-            </div>
+            <button
+              ref={closeRef}
+              onClick={() => setIsOpen(false)}
+              aria-label="Fechar menu"
+              className="absolute top-5 right-6 w-10 h-10 flex items-center justify-center text-white/60 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary"
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M18 6L6 18M6 6l12 12" />
+              </svg>
+            </button>
 
             {/* Links de navegação */}
-            <nav aria-label="Menu mobile" className="flex-1">
-              <ul className="flex flex-col gap-2">
-                {links.map((link, i) => (
-                  <li key={link.href}>
-                    <motion.a
-                      href={link.href}
-                      onClick={close}
-                      initial="hidden"
-                      animate="visible"
-                      variants={linkVariants(i)}
-                      className="block font-display font-semibold text-4xl text-white hover:text-secondary transition-colors duration-150 py-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary rounded"
-                    >
-                      {link.label}
-                    </motion.a>
-                  </li>
-                ))}
-              </ul>
+            <nav className="flex flex-col gap-6">
+              {links.map(({ label, href }, i) => (
+                <motion.a
+                  key={href}
+                  href={href}
+                  custom={i}
+                  variants={linkVariants}
+                  initial="hidden"
+                  animate="visible"
+                  exit="exit"
+                  onClick={() => setIsOpen(false)}
+                  className="font-display font-semibold text-3xl text-white leading-none hover:text-secondary transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-secondary"
+                >
+                  {label}
+                </motion.a>
+              ))}
             </nav>
 
             {/* CTA no fundo */}
             <motion.div
+              custom={links.length}
+              variants={linkVariants}
               initial="hidden"
               animate="visible"
-              variants={linkVariants(links.length + 1)}
+              exit="exit"
             >
               <a
                 href={ctaHref}
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={close}
+                onClick={() => setIsOpen(false)}
                 id="btn-mobile-menu-wpp"
                 data-tracking="click-whatsapp-mobile-menu"
                 data-section="mobile-menu"
@@ -206,13 +186,11 @@ export default function MobileMenu({ links, ctaLabel, ctaHref }: Props) {
               >
                 {ctaLabel}
               </a>
-              <p className="text-white/40 text-xs text-center mt-4">
-                (11) 91895-2921
-              </p>
+              <p className="text-white/40 text-xs text-center mt-4">(11) 91895-2921</p>
             </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
-    </div>
+    </>
   );
 }

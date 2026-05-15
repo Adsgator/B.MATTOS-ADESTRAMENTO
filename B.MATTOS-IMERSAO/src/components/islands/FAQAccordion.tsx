@@ -59,7 +59,7 @@ export default function FAQAccordion({ items }: FAQAccordionProps) {
                 aria-controls={itemId}
                 className="flex w-full items-start justify-between gap-6 text-left group focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary rounded"
               >
-                <span className="font-display font-semibold text-base sm:text-lg text-text-main leading-snug group-hover:text-secondary transition-colors duration-150">
+                <span className="font-sans font-semibold text-sm uppercase text-text-main leading-snug group-hover:text-secondary transition-colors duration-150">
                   {item.question}
                 </span>
                 <span
