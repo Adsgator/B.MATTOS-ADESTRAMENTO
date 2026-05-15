@@ -98,7 +98,7 @@ export default function MobileMenu({ links, ctaLabel, ctaHref }: Props) {
         aria-label={isOpen ? 'Fechar menu' : 'Abrir menu'}
         aria-expanded={isOpen}
         aria-controls="mobile-nav"
-        className="relative w-10 h-10 flex items-center justify-center md:hidden focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary"
+        className="absolute right-6 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center md:hidden focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary"
       >
         <motion.span
           className="absolute block w-6 h-0.5 bg-white rounded-full"
