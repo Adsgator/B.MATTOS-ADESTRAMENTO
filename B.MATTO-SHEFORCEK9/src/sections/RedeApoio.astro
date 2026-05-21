@@ -80,7 +80,7 @@ import SectionHeader from '../components/global/SectionHeader.astro';
       <div class="lg:col-span-5" id="rede-apoio-visual">
         <div class="relative">
           <div class="absolute -inset-10 bg-gold/10 rounded-full blur-[100px] opacity-20" style="animation: gentle-glow 6s ease-in-out infinite;"></div>
-          <div class="relative bg-[#1a1d23] border border-white/5 p-10 rounded-sm shadow-2xl">
+          <div class="rede-apoio-float relative bg-[#1a1d23] border border-white/5 p-10 rounded-sm shadow-2xl">
             <p class="font-display text-display-md text-gold leading-tight mb-6">
               "Juntas somos a proteção que antes buscávamos fora."
             </p>
@@ -92,6 +92,33 @@ import SectionHeader from '../components/global/SectionHeader.astro';
     </div>
   </div>
 </section>
+
+<style>
+  @keyframes rede-apoio-float {
+    0%, 100% {
+      transform: translateY(0) scale(1);
+      filter: brightness(1);
+    }
+    50% {
+      transform: translateY(-14px) scale(1.03);
+      filter: brightness(1.06);
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .rede-apoio-float {
+      animation: rede-apoio-float 4.8s ease-in-out infinite;
+      will-change: transform;
+      transform-origin: center;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .rede-apoio-float {
+      animation: none;
+    }
+  }
+</style>
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
