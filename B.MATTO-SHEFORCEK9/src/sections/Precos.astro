@@ -3,122 +3,490 @@ import Button from '../components/global/Button.astro';
 import SectionHeader from '../components/global/SectionHeader.astro';
 
 const whatsappHref = 'https://wa.me/5511918952921?text=Oi%2C%20vi%20voc%C3%AA%20no%20Google%20e%20gostaria%20de%20saber%20mais%20sobre%20o%20curso%20She%20ForceK9';
+const timeZone = 'America/Sao_Paulo';
 
-const incluso = [
-  'Café da manhã, lanche e almoço inclusos nos 4 dias',
-  'Conteúdo prático com cães de proteção de elite',
-  'Módulo de Psicologia com profissional habilitada',
-  'Módulo de Direito: uso legal de cães no Brasil',
-  'Certificação SheForceK9 de participação',
-  'Acesso ao grupo exclusivo de alunas pós-curso',
+const lots = [
+  {
+    label: 'Lote 1',
+    period: '29/04 a 15/05',
+    start: '2026-04-29',
+    end: '2026-05-15',
+    payment: 'Encerrado',
+    prices: [
+      {
+        label: 'Valor único',
+        value: 'R$ 1.747,00',
+      },
+    ],
+    note: 'Primeiro lote encerrado.',
+  },
+  {
+    label: 'Lote 2',
+    period: '16/05 a 10/06',
+    start: '2026-05-16',
+    end: '2026-06-10',
+    payment: 'Até 2x no cartão',
+    prices: [
+      {
+        label: 'Sem cão',
+        value: 'R$ 1.647,00',
+        detail: 'até 2x no cartão',
+      },
+      {
+        label: 'Com cão',
+        value: 'R$ 2.047,00',
+        detail: 'até 2x no cartão',
+      },
+    ],
+    note: 'Diferença de R$ 400 entre as opções.',
+  },
+  {
+    label: 'Lote 3',
+    period: '11/06 a 30/06',
+    start: '2026-06-11',
+    end: '2026-06-30',
+    payment: 'Até 2x no cartão',
+    prices: [
+      {
+        label: 'Sem cão',
+        value: 'R$ 1.947,00',
+        detail: 'até 2x no cartão',
+      },
+      {
+        label: 'Com cão',
+        value: 'R$ 2.247,00',
+        detail: 'até 2x no cartão',
+      },
+    ],
+    note: 'Diferença de R$ 300 entre as opções.',
+  },
+  {
+    label: 'Lote 4',
+    period: '01/07 a 08/07',
+    start: '2026-07-01',
+    end: '2026-07-08',
+    payment: 'À vista no cartão ou Pix',
+    prices: [
+      {
+        label: 'Sem cão',
+        value: 'R$ 2.047,00',
+        detail: 'à vista no cartão ou Pix',
+      },
+      {
+        label: 'Com cão',
+        value: 'R$ 2.347,00',
+        detail: 'à vista no cartão ou Pix',
+      },
+    ],
+    note: 'Última faixa de investimento antes do encerramento.',
+  },
 ];
+
+function getDateKeyInTimeZone(date, zone) {
+  const parts = new Intl.DateTimeFormat('en-CA', {
+    timeZone: zone,
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  }).formatToParts(date);
+
+  let year = '';
+  let month = '';
+  let day = '';
+
+  for (const part of parts) {
+    if (part.type === 'year') year = part.value;
+    if (part.type === 'month') month = part.value;
+    if (part.type === 'day') day = part.value;
+  }
+
+  return `${year}-${month}-${day}`;
+}
+
+function getLotState(lot, todayKey) {
+  if (todayKey < lot.start) return 'upcoming';
+  if (todayKey > lot.end) return 'closed';
+  return 'active';
+}
+
+function resolveCurrentLot(list, todayKey) {
+  const activeLot = list.find((lot) => getLotState(lot, todayKey) === 'active');
+  if (activeLot) return activeLot;
+
+  const upcomingLot = list.find((lot) => getLotState(lot, todayKey) === 'upcoming');
+  if (upcomingLot) return upcomingLot;
+
+  return list[list.length - 1];
+}
+
+const buildTodayKey = getDateKeyInTimeZone(new Date(), timeZone);
+const currentLot = resolveCurrentLot(lots, buildTodayKey);
+const currentLotState = getLotState(currentLot, buildTodayKey);
+const currentLotBadge = currentLotState === 'active'
+  ? 'Lote atual'
+  : currentLotState === 'upcoming'
+    ? 'Próximo lote'
+    : 'Encerrado';
 ---
 
 <section id="precos" class="py-16 sm:py-24 lg:py-40 bg-dark relative overflow-hidden -mt-px" aria-label="Investimento">
-  
-  <!-- Textura de fundo sutil -->
-  <div class="absolute inset-0 opacity-[0.02] pointer-events-none grayscale invert" style="background-image: url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E\"); background-size: 200px;"></div>
+  <div class="absolute inset-0 opacity-[0.04] pointer-events-none grayscale invert" style="background-image: url(&quot;data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E&quot;); background-size: 200px;"></div>
+  <div class="absolute top-0 left-1/3 w-72 h-72 bg-primary/5 rounded-full blur-[120px] pointer-events-none"></div>
+  <div class="absolute bottom-0 right-0 w-80 h-80 bg-primary/4 rounded-full blur-[140px] pointer-events-none"></div>
 
   <div class="container-content relative z-10">
-
     <div class="flex justify-center">
       <SectionHeader
-        label="O Investimento"
+        label="Investimento"
         title="Invista na sua segurança e autonomia"
-        subtitle="Vagas limitadas. O curso acontece em São José dos Campos/SP, nos dias 09 a 12 de julho de 2026."
+        subtitle="Vagas limitadas. A turma acontece em São José dos Campos/SP, de 9 a 12 de julho de 2026."
         align="center"
         dark={true}
       />
     </div>
 
-    <!-- Card de Preço Premium -->
-    <div
-      class="
-        max-w-xl mx-auto
-        bg-[#23262d] border border-white/5 rounded-sm
-        shadow-2xl overflow-hidden
-      "
-      id="preco-card"
-    >
-      <!-- Header do Card com Gradiente Gold -->
-      <div class="bg-gold-gradient px-6 sm:px-10 py-8 sm:py-12 text-center relative overflow-hidden group">
-        <div class="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-        <p class="font-sans text-white/80 text-label uppercase tracking-[0.3em] mb-2 sm:mb-4 text-sm sm:text-sm">Plano Único Imersão</p>
-        <div class="flex items-start justify-center gap-2 text-white">
-          <span class="font-display text-xl sm:text-2xl mt-1 sm:mt-2">R$</span>
-          <span class="font-display text-5xl sm:text-7xl lg:text-8xl leading-none">1.747</span>
+    <div class="max-w-4xl mx-auto">
+      <div
+        id="preco-card"
+        data-current-card
+        data-state={currentLotState}
+        class="overflow-hidden rounded-sm border border-white/10 bg-[#20232b] shadow-2xl"
+      >
+        <div class="relative overflow-hidden bg-gold-gradient px-6 py-8 sm:px-10 sm:py-10 text-center">
+          <div class="absolute inset-0 bg-white/8 opacity-0 transition-opacity duration-500 hover:opacity-100"></div>
+          <div class="relative z-10">
+            <p data-current-badge class="font-sans text-[0.7rem] sm:text-label font-bold uppercase tracking-[0.35em] text-white/90">
+              {currentLotBadge}
+            </p>
+            <h3 data-current-label class="mt-3 font-display text-3xl sm:text-4xl lg:text-5xl text-white leading-none">
+              {currentLot.label}
+            </h3>
+            <p data-current-period class="mt-3 font-sans text-sm sm:text-base text-white/80 uppercase tracking-[0.18em]">
+              {currentLot.period}
+            </p>
+
+            <div
+              data-current-prices
+              class:list={[
+                'mt-7 grid gap-3 sm:gap-4',
+                currentLot.prices.length > 1 ? 'sm:grid-cols-2' : 'max-w-md mx-auto',
+              ]}
+            >
+              {currentLot.prices.map((price) => (
+                <div class="rounded-sm border border-white/15 bg-white/8 px-4 py-4 text-left backdrop-blur-[2px]">
+                  <p class="font-sans text-[0.65rem] uppercase tracking-[0.25em] text-white/70">
+                    {price.label}
+                  </p>
+                  <p class="mt-2 font-display text-3xl sm:text-4xl text-white leading-none">
+                    {price.value}
+                  </p>
+                  {price.detail && (
+                    <p class="mt-2 font-sans text-sm text-white/80">
+                      {price.detail}
+                    </p>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
-        <p class="font-sans text-white/70 text-body-sm mt-2 sm:mt-4 text-sm sm:text-sm">
-          <span class="text-white font-bold">5% de desconto no Pix</span><br/>
-          ou parcelamento no cartão (com juros da operadora)
-        </p>
-      </div>
 
-      <!-- Corpo do Card -->
-      <div class="px-6 sm:px-10 py-8 sm:py-12 bg-dark">
-        <h3 class="font-display text-xl sm:text-2xl text-white uppercase tracking-widest mb-6 sm:mb-8 border-b border-white/5 pb-3 sm:pb-4">
-          Tudo o que você recebe
-        </h3>
-        
-        <ul class="space-y-3 sm:space-y-6 mb-8 sm:mb-12">
-          {incluso.map((item) => (
-            <li class="flex items-start gap-2 sm:gap-4">
-              <div class="flex-shrink-0 w-4 h-4 sm:w-5 sm:h-5 rounded-full border border-gold/30 flex items-center justify-center mt-0.5 sm:mt-1">
-                <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#c5ab78" stroke-width="3" aria-hidden="true" class="sm:w-[10px] sm:h-[10px]">
-                  <polyline points="20 6 9 17 4 12" />
+        <div class="px-6 py-8 sm:px-10 sm:py-10">
+          <div class="border-b border-white/10 pb-5 sm:pb-6">
+            <h3 class="font-display text-xl sm:text-2xl text-white uppercase tracking-widest">
+              Tudo o que você recebe
+            </h3>
+          </div>
+
+          <ul class="mt-6 space-y-4 sm:space-y-5">
+            {[
+              'Café da manhã, lanche e almoço inclusos nos 4 dias',
+              'Conteúdo prático com cães de proteção de elite',
+              'Módulo de Psicologia com profissional habilitada',
+              'Módulo de Direito: uso legal de cães no Brasil',
+              'Certificação SheForceK9 de participação',
+              'Acesso ao grupo exclusivo de alunas pós-curso',
+            ].map((item) => (
+              <li class="flex items-start gap-3 sm:gap-4">
+                <div class="mt-1 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full border border-primary/60 bg-primary/20">
+                  <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#ff4d00" stroke-width="3" aria-hidden="true">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                </div>
+                <span class="font-sans text-[0.98rem] sm:text-body-md text-white leading-relaxed">
+                  {item}
+                </span>
+              </li>
+            ))}
+          </ul>
+
+          <div class="mt-8 rounded-sm border border-white/10 bg-white/5 px-4 py-4 sm:px-5 sm:py-5">
+            <p class="font-sans text-[0.68rem] uppercase tracking-[0.28em] text-white/45">
+              Serviço adicional
+            </p>
+            <p class="mt-2 font-sans text-[0.95rem] sm:text-body-md text-white/75 leading-relaxed">
+              Locação da caixa de transporte (opcional): <span class="text-white font-semibold">R$ 200,00</span>.
+            </p>
+            <p class="mt-1 font-sans text-sm text-white/50">
+              Disponível para 2 alunas, com estoque limitado.
+            </p>
+          </div>
+
+          <div class="mt-8 sm:mt-10 space-y-4 sm:space-y-6">
+            <Button
+              label="Quero garantir minha vaga"
+              href={whatsappHref}
+              variant="gold"
+              trackingId="precos-cta"
+              section="precos"
+              size="lg"
+              fullWidth={true}
+            />
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 text-white/70 text-[0.66rem] sm:text-[0.62rem] uppercase tracking-widest text-center">
+              <span class="flex items-center gap-1.5">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" class="text-white/80">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                  <path d="M7 11V7a5 5 0 0110 0v4"></path>
                 </svg>
-              </div>
-              <span class="font-sans text-[1rem] text-white/60 leading-relaxed">{item}</span>
-            </li>
-          ))}
-        </ul>
-
-        <div class="space-y-4 sm:space-y-6">
-          <Button
-            label="Quero garantir minha vaga"
-            href={whatsappHref}
-            variant="gold"
-            trackingId="precos-cta"
-            section="precos"
-            size="lg"
-            fullWidth={true}
-          />
-
-          <div class="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 text-white/30 text-[0.65rem] sm:text-[0.6rem] uppercase tracking-widest">
-            <span class="flex items-center gap-1">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0110 0v4"></path></svg>
-              Pagamento Seguro
-            </span>
-            <span class="w-1 h-1 bg-white/10 rounded-full"></span>
-            <span>Vagas por Ordem de Reserva</span>
+                Pagamento seguro
+              </span>
+              <span class="hidden sm:block w-1 h-1 bg-white/20 rounded-full"></span>
+              <span>Vagas por ordem de reserva</span>
+            </div>
           </div>
         </div>
       </div>
+
+      <div class="mt-10 sm:mt-12" data-no-animate>
+        <div class="rounded-sm border border-white/10 bg-bg px-5 py-6 sm:px-8 sm:py-8 shadow-card overflow-visible">
+          <div class="max-w-3xl">
+            <p class="section-label">Investimento</p>
+            <h3 class="mt-2 font-display text-2xl sm:text-3xl text-text">
+              Valores por lote — Edição Julho/2026
+            </h3>
+          </div>
+
+          <ul class="mt-6 space-y-4">
+            {lots.map((lot) => {
+              const state = getLotState(lot, buildTodayKey);
+
+              return (
+                <li
+                  data-lot-row
+                  data-start={lot.start}
+                  data-end={lot.end}
+                  data-name={lot.label}
+                  data-period={lot.period}
+                  data-payment={lot.payment}
+                  data-prices={JSON.stringify(lot.prices)}
+                  data-note={lot.note}
+                  data-state={state}
+                  class:list={[
+                    'rounded-sm border-l-4 pl-4 sm:pl-5 py-1 transition-all duration-300',
+                    state === 'active' ? 'border-primary bg-primary/5' : 'border-transparent',
+                  ]}
+                >
+                  <div class="flex items-start gap-3">
+                    <span class="mt-2 h-2 w-2 rounded-full bg-primary flex-shrink-0"></span>
+                    <div class="min-w-0 flex-1">
+                      <div class="flex items-center gap-3 flex-wrap">
+                        <p data-lot-title class="font-sans text-[1.03rem] sm:text-[1.08rem] text-text leading-relaxed">
+                          <span class="font-semibold">{lot.label} ({lot.period}):</span>
+                        </p>
+                        <span data-lot-tag class="hidden text-xs font-semibold px-2.5 py-1 rounded-full">
+                          {/* Tag será preenchida via JS */}
+                        </span>
+                      </div>
+
+                      <div class="mt-1 space-y-1.5">
+                        {lot.prices.map((price) => (
+                          <p data-lot-price class="font-sans text-[0.98rem] sm:text-[1.04rem] text-text leading-relaxed">
+                            <span data-lot-price-value class="font-medium">
+                              {price.value}
+                            </span>
+                            <span class="text-text/75">
+                              {price.detail ? ` — ${price.detail}` : ''}
+                            </span>
+                          </p>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      </div>
+
+      <p class="mt-8 sm:mt-10 text-center font-sans text-[0.98rem] text-white/75 max-w-2xl mx-auto">
+        Precisa de condições especiais para grupos de mulheres?{' '}
+        <a href={whatsappHref} class="text-primary border-b border-primary/25 hover:border-primary transition-colors">
+          Fale comigo
+        </a>
+        .
+      </p>
     </div>
-
-    <!-- Garantia/Aviso sutil -->
-    <p class="text-center mt-8 sm:mt-12 font-sans text-[1rem] text-white/30 max-w-lg mx-auto">
-      Precisa de condições especiais para grupos de mulheres? <a href={whatsappHref} class="text-gold border-b border-gold/20 hover:border-gold transition-all">Fale comigo</a>.
-    </p>
-
   </div>
 </section>
 
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReduced) return;
+<script define:vars={{ timeZone }}>
+  const normalizeDateKey = (date, zone) => {
+    const parts = new Intl.DateTimeFormat('en-CA', {
+      timeZone: zone,
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+    }).formatToParts(date);
 
-    gsap.from('#preco-card', {
-      scrollTrigger: { 
-        trigger: '#preco-card', 
-        start: 'top 85%' 
-      },
-      opacity: 0, 
-      scale: 0.9,
-      y: 40, 
-      duration: 1, 
-      ease: 'power3.out'
+    let year = '';
+    let month = '';
+    let day = '';
+
+    for (const part of parts) {
+      if (part.type === 'year') year = part.value;
+      if (part.type === 'month') month = part.value;
+      if (part.type === 'day') day = part.value;
+    }
+
+    return `${year}-${month}-${day}`;
+  };
+
+  const getLotState = (lot, todayKey) => {
+    if (todayKey < lot.start) return 'upcoming';
+    if (todayKey > lot.end) return 'closed';
+    return 'active';
+  };
+
+  const renderPriceCards = (prices, state) => {
+    const items = prices.map((price) => {
+      const valueClass = state === 'closed'
+        ? 'line-through decoration-white/55 decoration-2 opacity-75'
+        : '';
+
+      return `
+        <div class="rounded-sm border border-white/15 bg-white/8 px-4 py-4 text-left backdrop-blur-[2px]">
+          <p class="font-sans text-[0.65rem] uppercase tracking-[0.25em] text-white/70">${price.label}</p>
+          <p class="mt-2 font-display text-3xl sm:text-4xl text-white leading-none ${valueClass}">${price.value}</p>
+          ${price.detail ? `<p class="mt-2 font-sans text-sm text-white/80">${price.detail}</p>` : ''}
+        </div>
+      `;
+    }).join('');
+
+    return prices.length > 1
+      ? `<div class="grid gap-3 sm:gap-4 sm:grid-cols-2">${items}</div>`
+      : `<div class="grid gap-3 sm:gap-4 max-w-md mx-auto">${items}</div>`;
+  };
+
+  const updateCard = () => {
+    const currentCard = document.querySelector('[data-current-card]');
+    if (!currentCard) return;
+
+    const rows = Array.from(document.querySelectorAll('[data-lot-row]'));
+    const todayKey = normalizeDateKey(new Date(), timeZone);
+
+    let currentRow = null;
+    let nextRow = null;
+
+    rows.forEach((row) => {
+      const start = row.dataset.start || '';
+      const end = row.dataset.end || '';
+      const state = getLotState({ start, end }, todayKey);
+
+      row.dataset.state = state;
+
+      // Atualizar tags
+      const tagEl = row.querySelector('[data-lot-tag]');
+      if (tagEl) {
+        if (state === 'active') {
+          tagEl.className = 'inline-flex text-xs font-semibold px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800';
+          tagEl.textContent = 'Lote em andamento';
+        } else if (state === 'closed') {
+          tagEl.className = 'inline-flex text-xs font-semibold px-2.5 py-1 rounded-full bg-red-100 text-red-800';
+          tagEl.textContent = 'Lote encerrado';
+        } else {
+          tagEl.className = 'hidden';
+          tagEl.textContent = '';
+        }
+      }
+
+      if (state === 'active' && !currentRow) currentRow = row;
+      if (state === 'upcoming' && !nextRow) nextRow = row;
     });
+
+    if (!currentRow) {
+      currentRow = nextRow || rows[rows.length - 1] || null;
+    }
+
+    if (!currentRow) return;
+
+    const currentState = currentRow.dataset.state || 'closed';
+    const prices = JSON.parse(currentRow.dataset.prices || '[]');
+    const badge = currentState === 'active'
+      ? 'Lote atual'
+      : currentState === 'upcoming'
+        ? 'Próximo lote'
+        : 'Encerrado';
+
+    const badgeEl = currentCard.querySelector('[data-current-badge]');
+    const labelEl = currentCard.querySelector('[data-current-label]');
+    const periodEl = currentCard.querySelector('[data-current-period]');
+    const pricesEl = currentCard.querySelector('[data-current-prices]');
+
+    currentCard.dataset.state = currentState;
+    if (badgeEl) badgeEl.textContent = badge;
+    if (labelEl) labelEl.textContent = currentRow.dataset.name || '';
+    if (periodEl) periodEl.textContent = currentRow.dataset.period || '';
+    if (pricesEl) pricesEl.outerHTML = renderPriceCards(prices, currentState);
+  };
+
+  document.addEventListener('DOMContentLoaded', () => {
+    updateCard();
+
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!prefersReduced) {
+      gsap.from('#preco-card', {
+        scrollTrigger: {
+          trigger: '#preco-card',
+          start: 'top 85%',
+        },
+        opacity: 0,
+        scale: 0.94,
+        y: 40,
+        duration: 1,
+        ease: 'power3.out',
+      });
+    }
+
+    setInterval(updateCard, 5_000);
   });
 </script>
+
+<style>
+  [data-lot-row][data-state='closed'] [data-lot-title],
+  [data-lot-row][data-state='closed'] [data-lot-price-value] {
+    text-decoration-line: line-through;
+    text-decoration-thickness: 2px;
+    text-decoration-color: rgba(45, 45, 43, 0.55);
+  }
+
+  [data-lot-row][data-state='closed'] [data-lot-title],
+  [data-lot-row][data-state='closed'] [data-lot-price-value] {
+    color: rgba(45, 45, 43, 0.9);
+  }
+
+  [data-lot-row][data-state='upcoming'] [data-lot-title],
+  [data-lot-row][data-state='upcoming'] [data-lot-price-value] {
+    color: rgba(45, 45, 43, 0.96);
+  }
+
+  [data-lot-row][data-state='active'] {
+    box-shadow: 0 0 0 1px rgba(255, 77, 0, 0.18);
+  }
+
+  [data-lot-row][data-state='active'] [data-lot-title],
+  [data-lot-row][data-state='active'] [data-lot-price-value] {
+    color: #1a1d23;
+  }
+</style>
