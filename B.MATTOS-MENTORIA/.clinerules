@@ -1,4 +1,5 @@
 # Adsgator — Regras de Desenvolvimento
+
 # Não editar por projeto — é o padrão global da agência.
 
 ---
@@ -78,6 +79,7 @@ SEMPRE classe Tailwind mapeada para token em tailwind.config.js.
 Header: sticky top-0 z-50, hide/show no scroll via GSAP, backdrop após 80px, CTA sempre visível
 
 WhatsApp flutuante:
+
 - fixed, bottom-6 right-6 / bottom-8 right-8
 - oculto no load, aparece quando Hero sai do viewport (IntersectionObserver)
 - desaparece quando footer entra no viewport
@@ -94,12 +96,14 @@ CTA final: imediatamente antes do footer, maior contraste da página, headline d
 ## ANIMAÇÕES GSAP
 
 ```js
-const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+const prefersReduced = window.matchMedia(
+  "(prefers-reduced-motion: reduce)",
+).matches;
 // Envolver TODAS as animações neste check
 
-const EASING   = { enter: 'power2.out', exit: 'power2.in' }
-const DURATION = { fast: 0.3, normal: 0.5, slow: 0.7 }
-const OFFSET   = { y: 30 }
+const EASING = { enter: "power2.out", exit: "power2.in" };
+const DURATION = { fast: 0.3, normal: 0.5, slow: 0.7 };
+const OFFSET = { y: 30 };
 ```
 
 - Hero: timeline na entrada, elementos com delay escalonado
