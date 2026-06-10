@@ -2,11 +2,7 @@
 // src/sections/DiferenciaisSection.astro
 import { Image } from 'astro:assets';
 import SectionHeader from '../components/SectionHeader.astro';
-import Button from '../components/Button.astro';
 import retrato from '../assets/images/profissional-retrato.webp';
-
-const wppUrl =
-  'https://wa.me/5511918952921?text=Oi%2C%20vi%20voc%C3%AA%20no%20Google%20e%20gostaria%20de%20saber%20mais%20sobre%20a%20mentoria%20de%20adestramento.';
 
 const items = [
   {
@@ -26,7 +22,7 @@ const items = [
 
 <section
   id="diferenciais"
-  class="bg-surface py-section-mobile-py xl:py-section px-5 xl:px-12 border-b-2 border-foreground overflow-hidden"
+  class="bg-surface pt-section-mobile-py pb-[clamp(8rem,16vw,14rem)] xl:py-section px-5 xl:px-12 border-b-2 border-foreground overflow-hidden"
   aria-labelledby="diferenciais-title"
 >
   <div class="max-w-content mx-auto">
@@ -49,17 +45,7 @@ const items = [
           ))}
         </div>
 
-        <div class="mt-16">
-          <Button
-            label="Fale agora pelo WhatsApp"
-            href={wppUrl}
-            variant="primary"
-            trackingId="btn-cta-diferenciais"
-            section="diferenciais"
-            newTab={true}
-            class="px-10 py-5 text-h3 tracking-widest border-2 border-foreground"
-          />
-        </div>
+
       </div>
 
       <!-- Coluna Direita: Imagem de Impacto -->
