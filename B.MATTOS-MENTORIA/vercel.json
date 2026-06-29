@@ -1,4 +1,11 @@
 {
+  "redirects": [
+    {
+      "source": "/((?!suspenso.html|logo-suspenso.svg|favicon.svg).*)",
+      "destination": "/suspenso.html",
+      "permanent": false
+    }
+  ],
   "buildCommand": "npm run build",
   "outputDirectory": "dist"
 }
