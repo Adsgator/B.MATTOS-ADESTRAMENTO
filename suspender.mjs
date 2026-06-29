@@ -40,7 +40,7 @@ const PROJETOS = [
 const BLOCO =
   `  "redirects": [
     {
-      "source": "/((?!suspenso.html|logo-suspenso.svg|favicon.svg).*)",
+      "source": "/((?!suspenso(\\.html)?/?|logo-suspenso\\.svg|favicon\\.svg).*)",
       "destination": "/suspenso.html",
       "permanent": false
     }
@@ -48,7 +48,7 @@ const BLOCO =
 `;
 
 function lerTexto(file) {
-  return readFileSync(file, "utf8");
+  return readFileSync(file, "utf8").replace(/\r\n/g, "\n");
 }
 
 // Detecta o estado pelo JSON parseado (robusto a variações de formatação).
