@@ -1,11 +1,4 @@
 {
-  "redirects": [
-    {
-      "source": "/((?!suspenso(.html)?/?|logo-suspenso.svg|favicon.svg).*)",
-      "destination": "/suspenso.html",
-      "permanent": false
-    }
-  ],
   "cleanUrls": true,
   "trailingSlash": true,
   "headers": [
