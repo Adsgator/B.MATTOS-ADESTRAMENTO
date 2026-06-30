@@ -38,14 +38,13 @@ const PROJETOS = [
 // config existente de cada projeto fica intacta. O bloco é uma string literal
 // fixa: a remoção casa exatamente esse mesmo texto.
 const BLOCO =
-  `  "redirects": [
-    {
-      "source": "/((?!suspenso(\\.html)?/?|logo-suspenso\\.svg|favicon\\.svg).*)",
-      "destination": "/suspenso.html",
-      "permanent": false
-    }
-  ],
-`;
+  '  "redirects": [\n' +
+  '    {\n' +
+  '      "source": "/((?!suspenso(.html)?/?|logo-suspenso.svg|favicon.svg).*)",\n' +
+  '      "destination": "/suspenso.html",\n' +
+  '      "permanent": false\n' +
+  '    }\n' +
+  '  ],\n';
 
 function lerTexto(file) {
   return readFileSync(file, "utf8").replace(/\r\n/g, "\n");
