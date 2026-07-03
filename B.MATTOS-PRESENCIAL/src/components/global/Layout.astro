@@ -1,0 +1,289 @@
+---
+import Analytics from '@vercel/analytics/astro';
+import SpeedInsights from '@vercel/speed-insights/astro';
+import GTM from './GTM.astro';
+import Header from './Header.astro';
+import Footer from './Footer.astro';
+import StickyCTA from './StickyCTA.astro';
+import CookieBanner from '../islands/CookieBanner';
+import '@fontsource/fraunces/400.css';
+import '@fontsource/fraunces/500.css';
+import '@fontsource/fraunces/600.css';
+import '@fontsource/inter/400.css';
+import '@fontsource/inter/500.css';
+import '@fontsource/inter/600.css';
+import '@fontsource/inter/700.css';
+import '../../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  canonical?: string;
+  noindex?: boolean;
+}
+
+const {
+  title       = 'Adestramento e Mentoria Canina Presencial - Bea Mattos K9 SJC',
+  description = 'Treinamento e mentoria presencial para donos e cães em São José dos Campos. Desenvolva autonomia e construa uma convivência equilibrada com seu cão. Mais de 6 anos de experiência.',
+  ogTitle     = 'Bea Mattos Adestramento — Atendimento Presencial em São José dos Campos',
+  ogDescription = 'Atendimento presencial individualizado para você entender seu cão, aplicar as estratégias certas e construir uma convivência equilibrada, sem depender para sempre de um treinador.',
+  canonical   = 'https://presencial.abeak9adestramento.com.br',
+  noindex     = false,
+} = Astro.props;
+
+const gtmId = import.meta.env.GTM_ID ?? 'GTM-W7CBVWFX';
+const siteUrl = 'https://presencial.abeak9adestramento.com.br';
+---
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+
+  <!-- GTM Head — imediatamente após charset, conforme padrão Adsgator -->
+  <GTM id={gtmId} />
+
+  <!-- Google Consent Mode v2 — antes de qualquer tag de analytics -->
+  <script is:inline>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      'ad_storage':            'denied',
+      'ad_user_data':          'denied',
+      'ad_personalization':    'denied',
+      'analytics_storage':     'denied',
+      'wait_for_update':       500,
+    });
+  </script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <!-- SEO Primário -->
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <meta name="keywords" content="adestramento SJC, adestramento São José dos Campos, treinamento de cães SJC, comportamento canino SJC, adestrador presencial, Bea Mattos, problemas de comportamento cães, obediência canina, reatividade em cães, adestramento de filhotes SJC" />
+  {noindex && <meta name="robots" content="noindex, follow" />}
+  <link rel="canonical" href={canonical} />
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content={canonical} />
+  <meta property="og:title"       content={ogTitle} />
+  <meta property="og:description" content={ogDescription} />
+  <meta property="og:image"       content={`${siteUrl}/og-image.jpg`} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale"      content="pt_BR" />
+  <meta property="og:site_name"   content="Bea Mattos Adestramento" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content={ogTitle} />
+  <meta name="twitter:description" content={ogDescription} />
+  <meta name="twitter:image"       content={`${siteUrl}/og-image.jpg`} />
+  <meta name="twitter:site"        content="@abeak9" />
+  <meta name="twitter:creator"     content="@abeak9" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#24211D" />
+
+  <!-- Schema.org JSON-LD — LocalBusiness -->
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Bea Mattos Adestramento",
+    "description": "Adestramento presencial individualizado em São José dos Campos, focado em comportamento e convivência entre donos e cães.",
+    "url": "https://presencial.abeak9adestramento.com.br",
+    "telephone": "+5511918952921",
+    "email": "abeamattosk9@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "São José dos Campos",
+      "addressRegion": "SP",
+      "addressCountry": "BR"
+    },
+    "openingHours": "Mo-Fr 09:00-19:00",
+    "sameAs": [
+      "https://www.instagram.com/abeak9"
+    ]
+  }
+  </script>
+</head>
+
+<body class="bg-bg text-text font-sans antialiased overflow-x-hidden">
+
+  <!-- GTM Body Noscript — imediatamente após <body> -->
+  <noscript>
+    <iframe
+      src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`}
+      height="0"
+      width="0"
+      style="display:none;visibility:hidden"
+      title="Google Tag Manager"
+    ></iframe>
+  </noscript>
+
+  <Header />
+
+  <main id="main-content">
+    <slot />
+  </main>
+
+  <Footer />
+
+  <StickyCTA />
+
+  <!-- Botão WhatsApp Flutuante -->
+  <a
+    id="btn-wpp-floating"
+    href="https://wa.me/5511918952921?text=Ol%C3%A1%21%20Vi%20o%20site%20e%20quero%20saber%20mais."
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Falar pelo WhatsApp"
+    data-tracking="click-whatsapp-flutuante"
+    data-section="floating"
+    class="
+      fixed bottom-6 right-6 z-40
+      w-14 h-14 md:w-16 md:h-16
+      flex items-center justify-center
+      rounded-full
+      bg-[#25D366] text-white
+      shadow-xl
+      hover:scale-110 active:scale-95
+      transition-all duration-300
+      focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#25D366]
+      opacity-0 scale-0
+    "
+  >
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+  </a>
+
+  <!-- Cookie Banner LGPD -->
+  <CookieBanner client:idle gtmId={gtmId} />
+
+  <script is:inline src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.45/dist/lenis.min.js"></script>
+  <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <script is:inline>
+    if (typeof gsap !== 'undefined') {
+      gsap.registerPlugin(ScrollTrigger);
+    }
+
+    var prefersReducedGlobal = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Fade-up genérico para todo título de seção (SectionHeader) — convenção
+    // compartilhada entre as seções, cada elemento anima de forma independente.
+    if (typeof gsap !== 'undefined' && !prefersReducedGlobal) {
+      gsap.utils.toArray('.gsap-fade-up').forEach((el) => {
+        gsap.from(el, {
+          opacity: 0,
+          y: 24,
+          duration: 0.7,
+          ease: 'power3.out',
+          scrollTrigger: { trigger: el, start: 'top 85%' },
+        });
+      });
+    }
+
+    function initLenis() {
+      if (typeof Lenis === 'undefined') return;
+
+      const lenis = new Lenis({
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        smooth: true,
+      });
+
+      lenis.on('scroll', ScrollTrigger.update);
+
+      gsap.ticker.add((time) => {
+        lenis.raf(time * 1000);
+      });
+
+      gsap.ticker.lagSmoothing(0);
+      window.__lenis = lenis;
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initLenis);
+    } else {
+      initLenis();
+    }
+
+    // Floating Button — aparece após sair do Hero
+    const floatingBtn = document.getElementById('btn-wpp-floating');
+    const heroSection = document.getElementById('hero-section');
+    const footerEl = document.getElementById('footer');
+
+    if (heroSection && floatingBtn) {
+      ScrollTrigger.create({
+        trigger: heroSection,
+        start: 'bottom 20%',
+        onEnter: () => gsap.to(floatingBtn, { opacity: 1, scale: 1, duration: 0.3, ease: 'power2.out' }),
+        onLeaveBack: () => gsap.to(floatingBtn, { opacity: 0, scale: 0, duration: 0.3, ease: 'power2.in' }),
+      });
+    }
+
+    // Some junto ao Footer para não sobrepor o CTA final
+    if (footerEl && floatingBtn) {
+      ScrollTrigger.create({
+        trigger: footerEl,
+        start: 'top 90%',
+        onEnter: () => gsap.to(floatingBtn, { opacity: 0, scale: 0, duration: 0.3, ease: 'power2.in' }),
+        onLeaveBack: () => gsap.to(floatingBtn, { opacity: 1, scale: 1, duration: 0.3, ease: 'power2.out' }),
+      });
+    }
+
+    // Header inteligente — esconde ao scrollar pra baixo, reaparece ao subir
+    (function initSmartHeader() {
+      const header = document.getElementById('site-header');
+      if (!header) return;
+
+      let lastY = 0;
+      let ticking = false;
+
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      window.addEventListener('scroll', () => {
+        if (ticking) return;
+        window.requestAnimationFrame(() => {
+          const currentY = window.scrollY;
+
+          if (currentY > 80) {
+            header.classList.add('header-scrolled');
+          } else {
+            header.classList.remove('header-scrolled');
+          }
+
+          if (!prefersReduced) {
+            if (currentY > lastY && currentY > 100) {
+              gsap.to(header, { y: '-100%', duration: 0.3, ease: 'power2.inOut' });
+            } else {
+              gsap.to(header, { y: '0%', duration: 0.3, ease: 'power2.inOut' });
+            }
+          }
+
+          lastY = currentY;
+          ticking = false;
+        });
+        ticking = true;
+      }, { passive: true });
+    })();
+
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: 'view_content' });
+  </script>
+
+  <Analytics />
+  <SpeedInsights />
+</body>
+</html>

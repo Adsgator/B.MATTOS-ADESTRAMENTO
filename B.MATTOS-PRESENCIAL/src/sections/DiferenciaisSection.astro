@@ -1,0 +1,90 @@
+---
+import SectionHeader from '../components/global/SectionHeader.astro';
+import Button from '../components/global/Button.astro';
+
+const whatsappHref = 'https://wa.me/5511918952921?text=Ol%C3%A1%21%20Vi%20o%20site%20e%20quero%20saber%20mais.';
+
+const pilares = [
+  {
+    numero: '01',
+    titulo: 'Atendimento Individualizado',
+    itens: [
+      'Atendimento individualizado, pensado só para o seu cão e para a sua rotina',
+      'Estratégias adaptadas à realidade de cada família, sem fórmula pronta',
+    ],
+  },
+  {
+    numero: '02',
+    titulo: 'Metodologia Clara e Prática',
+    itens: [
+      'Explicações claras, você entende o porquê de cada exercício',
+      'Compartilhamento de conhecimento sem reservas, para você ganhar autonomia de verdade',
+    ],
+  },
+  {
+    numero: '03',
+    titulo: 'Expertise e Atualização Contínua',
+    itens: [
+      'Experiência com diferentes raças e perfis comportamentais, do filhote ao cão de trabalho',
+      'Atualização constante através de cursos, mentorias e competições',
+    ],
+  },
+];
+---
+
+<section id="diferenciais" class="py-16 sm:py-24 lg:py-32 bg-bg relative overflow-hidden" aria-label="Diferenciais">
+  <div class="glow-orb w-96 h-96 top-1/3 -left-32 animate-glow-pulse" aria-hidden="true"></div>
+
+  <div class="container-content relative z-10">
+
+    <SectionHeader
+      label="Diferenciais"
+      title="Por que treinar com a Beatriz faz diferença"
+      subtitle="Atendimento individualizado, estratégias adaptadas à realidade de cada cliente, explicações claras e sem fórmulas prontas, experiência com diferentes raças e perfis comportamentais, e compartilhamento de conhecimento sem reservas."
+    />
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-10 sm:mb-14">
+      {pilares.map((pilar) => (
+        <div class="tilt-card gsap-stagger-item bg-white rounded-card p-7 sm:p-8 border border-surface">
+          <span class="font-display italic text-3xl text-primary/40 block mb-4">{pilar.numero}</span>
+          <h3 class="font-display text-xl sm:text-display-md text-dark mb-4">{pilar.titulo}</h3>
+          <ul class="flex flex-col gap-3">
+            {pilar.itens.map((item) => (
+              <li class="flex items-start gap-2.5 font-sans text-body-sm text-muted leading-relaxed">
+                <span class="elegant-line !w-4 mt-2.5 flex-shrink-0" aria-hidden="true"></span>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+
+    <div class="flex justify-center">
+      <Button
+        label="Quero começar meu atendimento"
+        href={whatsappHref}
+        variant="primary"
+        trackingId="diferenciais-cta"
+        section="diferenciais"
+      />
+    </div>
+
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced || typeof gsap === 'undefined') return;
+
+    gsap.from('#diferenciais .gsap-stagger-item', {
+      scrollTrigger: { trigger: '#diferenciais', start: 'top 70%' },
+      opacity: 0,
+      y: 30,
+      duration: 0.7,
+      ease: 'power3.out',
+      stagger: 0.12,
+    });
+  });
+</script>

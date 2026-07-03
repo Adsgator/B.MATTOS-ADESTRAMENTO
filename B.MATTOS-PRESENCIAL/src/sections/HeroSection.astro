@@ -1,0 +1,142 @@
+---
+import Button from '../components/global/Button.astro';
+import { Image } from 'astro:assets';
+import heroImage from '../assets/images/beatriz_mattos_instrutora.webp';
+
+const whatsappHref = 'https://wa.me/5511918952921?text=Ol%C3%A1%21%20Vi%20o%20site%20e%20quero%20saber%20mais.';
+
+const trustPoints = [
+  'Mais de 6 anos de experiência em comportamento canino',
+  'Atendimento presencial individualizado, sem fórmula pronta',
+  'Conversa inicial de 15 minutos sem custo',
+];
+---
+
+<section
+  id="hero-section"
+  class="relative overflow-hidden bg-dark pt-32 pb-20 sm:pt-40 sm:pb-28 lg:pt-48 lg:pb-32"
+  aria-label="Apresentação principal"
+>
+  <!-- Glow orbs — motivo visual recorrente desta LP -->
+  <div class="glow-orb w-[420px] h-[420px] -top-24 -right-24 animate-glow-pulse" aria-hidden="true"></div>
+  <div class="glow-orb w-[280px] h-[280px] bottom-0 left-[-6rem] animate-glow-pulse" style="animation-delay:1.5s" aria-hidden="true"></div>
+
+  <div class="container-content relative z-10">
+    <div class="grid grid-cols-1 lg:grid-cols-[54%_46%] gap-12 lg:gap-16 items-center">
+
+      <!-- Coluna texto -->
+      <div class="relative">
+        <div class="flex items-center gap-3 mb-6" id="hero-label">
+          <div class="w-8 h-px bg-primary/60"></div>
+          <p class="section-label !text-primary/90 !mb-0">Atendimento Presencial · São José dos Campos</p>
+        </div>
+
+        <h1 id="hero-title" class="font-display text-4xl sm:text-display-xl text-bg mb-6 max-w-xl leading-[1.1]">
+          Cão reativo, puxando na guia ou difícil de controlar?
+          <span class="relative inline-block text-primary">
+            Isso tem solução
+            <svg class="absolute left-0 -bottom-1 w-full h-3" viewBox="0 0 300 16" preserveAspectRatio="none" aria-hidden="true">
+              <path
+                id="hero-underline"
+                class="hand-underline"
+                d="M4 10.5C60 3.5 150 2 200 7C230 10.5 270 9 296 6.5"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="5"
+                stroke-linecap="round"
+              />
+            </svg>
+          </span>
+        </h1>
+
+        <p id="hero-subtitle" class="font-sans text-body-lg text-bg/70 leading-relaxed mb-8 max-w-lg">
+          Atendimento presencial personalizado em São José dos Campos para você entender seu cão, aplicar as
+          estratégias certas e construir uma convivência equilibrada, sem depender para sempre de um treinador.
+        </p>
+
+        <div id="hero-cta" class="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 mb-10">
+          <Button
+            label="Quero resolver isso agora"
+            href={whatsappHref}
+            variant="gold"
+            trackingId="hero-cta"
+            section="hero"
+            size="lg"
+          />
+          <a
+            href="#precos"
+            class="font-sans text-body-md text-bg/70 hover:text-bg underline underline-offset-4 transition-colors"
+          >
+            Ver valores dos atendimentos
+          </a>
+        </div>
+
+        <ul id="hero-trust" class="flex flex-col gap-3">
+          {trustPoints.map((point) => (
+            <li class="flex items-start gap-3 font-sans text-body-sm text-bg/60">
+              <svg class="flex-shrink-0 mt-0.5 text-primary" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M20 6L9 17l-5-5" />
+              </svg>
+              {point}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Coluna imagem -->
+      <div class="relative" id="hero-image-wrapper">
+        <div class="absolute -inset-4 border border-primary/15 rounded-card translate-x-3 translate-y-3 hidden lg:block" aria-hidden="true"></div>
+        <div class="relative w-full aspect-[4/5] rounded-card shadow-2xl overflow-hidden" id="hero-image-parallax">
+          <Image
+            src={heroImage}
+            alt="Beatriz Mattos conduzindo um atendimento presencial de adestramento"
+            width={800}
+            height={1000}
+            loading="eager"
+            fetchpriority="high"
+            class="w-full h-full object-cover"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-dark/50 via-transparent to-transparent"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (typeof gsap !== 'undefined' && !prefersReduced) {
+      const tl = gsap.timeline({ defaults: { ease: 'power2.out' } });
+
+      tl.from('#hero-label', { opacity: 0, y: 16, duration: 0.6 }, 0.1)
+        .from('#hero-title', { opacity: 0, y: 30, duration: 0.7 }, 0.25)
+        .from('#hero-subtitle', { opacity: 0, y: 20, duration: 0.6 }, 0.45)
+        .from('#hero-cta', { opacity: 0, y: 16, duration: 0.5 }, 0.6)
+        .from('#hero-trust li', { opacity: 0, x: -10, duration: 0.4, stagger: 0.08 }, 0.75)
+        .from('#hero-image-wrapper', { opacity: 0, x: 30, duration: 0.8 }, 0.4)
+        .add(() => {
+          document.getElementById('hero-underline')?.classList.add('is-drawn');
+        }, 0.9);
+    } else {
+      document.getElementById('hero-underline')?.classList.add('is-drawn');
+    }
+
+    // Parallax sutil no retrato — reage ao mouse, sem efeito no touch
+    const wrapper = document.getElementById('hero-image-parallax');
+    if (wrapper && !prefersReduced && window.matchMedia('(hover: hover)').matches) {
+      const section = document.getElementById('hero-section');
+      section?.addEventListener('mousemove', (e) => {
+        const rect = section.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        gsap.to(wrapper, { x: x * 14, y: y * 14, duration: 0.6, ease: 'power2.out' });
+      });
+      section?.addEventListener('mouseleave', () => {
+        gsap.to(wrapper, { x: 0, y: 0, duration: 0.6, ease: 'power2.out' });
+      });
+    }
+  });
+</script>

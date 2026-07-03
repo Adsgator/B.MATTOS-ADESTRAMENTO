@@ -1,0 +1,121 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        scroll-behavior: auto;
+    }
+
+    html {
+        @apply bg-bg text-text;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Focus visible global */
+    *:focus-visible {
+        @apply outline-2 outline-offset-2 outline-primary;
+    }
+
+    /* Selection color */
+    ::selection {
+        @apply bg-primary/20 text-text;
+    }
+
+    /* Títulos globais — serifada, sem uppercase agressivo (identidade acolhedora) */
+    h1, h2, h3, h4, h5, h6 {
+        @apply font-display;
+    }
+}
+
+@layer components {
+    /* Container padrão do projeto */
+    .container-content {
+        @apply mx-auto max-w-content px-4 sm:px-6 lg:px-12;
+    }
+
+    /* Label de seção — texto pequeno uppercase acima dos títulos */
+    .section-label {
+        @apply font-sans text-[0.7rem] lg:text-label font-semibold uppercase tracking-[0.18em] text-primary;
+    }
+
+    /* Título de seção */
+    .section-title {
+        @apply font-display text-display-lg text-dark;
+    }
+
+    /* Subtítulo de seção */
+    .section-subtitle {
+        @apply font-sans text-body-lg text-muted leading-relaxed;
+    }
+
+    /* Botão Premium — gradiente terracota com shimmer no hover */
+    .btn-gold {
+        @apply relative overflow-hidden bg-gold text-white font-sans font-semibold tracking-wide px-8 py-4 rounded-pill transition-all duration-300;
+        background-image: theme('backgroundImage.gold-gradient');
+        box-shadow: 0 8px 24px rgba(198, 84, 31, 0.25);
+    }
+
+    .btn-gold:hover {
+        @apply -translate-y-0.5 scale-[1.02];
+        box-shadow: 0 12px 32px rgba(198, 84, 31, 0.35);
+    }
+
+    .btn-gold::after {
+        content: '';
+        @apply absolute inset-0 opacity-0 transition-opacity duration-500;
+        background-image: theme('backgroundImage.gold-shimmer');
+    }
+
+    .btn-gold:hover::after {
+        @apply opacity-100;
+        animation: shimmer 1.5s infinite;
+    }
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* Glassmorphism utility */
+.glass {
+    @apply backdrop-blur-md bg-white/10 border border-white/20;
+}
+
+/* Linha decorativa elegante */
+.elegant-line {
+    @apply h-px w-20 bg-primary opacity-30;
+}
+
+/* Glow orb — motivo recorrente desta LP (Hero, CTA Final) */
+.glow-orb {
+    @apply absolute rounded-full pointer-events-none;
+    background: radial-gradient(circle, rgba(198, 84, 31, 0.35) 0%, rgba(198, 84, 31, 0) 70%);
+    filter: blur(40px);
+}
+
+/* Sublinhado desenhado à mão — traço SVG animado sob palavras-chave */
+.hand-underline {
+    stroke-dasharray: 340;
+    stroke-dashoffset: 340;
+}
+
+.hand-underline.is-drawn {
+    animation: draw-underline 1s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+
+@keyframes draw-underline {
+    to { stroke-dashoffset: 0; }
+}
+
+/* Card com tilt suave no hover — Serviços/Diferenciais */
+.tilt-card {
+    @apply transition-transform duration-300 ease-out;
+    transform-style: preserve-3d;
+}
+
+.tilt-card:hover {
+    @apply shadow-card-hover -translate-y-1;
+}

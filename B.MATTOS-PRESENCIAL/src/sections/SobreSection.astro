@@ -1,0 +1,134 @@
+---
+import SectionHeader from '../components/global/SectionHeader.astro';
+import Button from '../components/global/Button.astro';
+import { Image } from 'astro:assets';
+import beatrizImage from '../assets/images/beatriz_mattos.webp';
+
+const whatsappHref = 'https://wa.me/5511918952921?text=Ol%C3%A1%21%20Vi%20o%20site%20e%20quero%20saber%20mais.';
+
+const paragrafos = [
+  'Minha história com os cães começou muito antes da profissão, mas foi o Eros quem transformou completamente minha forma de enxergar o comportamento canino.',
+  'Quando decidi ter um American Staffordshire Terrier, eu morava sozinha na capital e buscava mais segurança para o meu dia a dia. No entanto, minha motivação nunca foi apenas ter um cão de proteção.',
+  'O Eros pertence a um grupo de cães frequentemente julgados, estigmatizados e mal compreendidos pela sociedade. Meu objetivo era mostrar que um cão com força, instinto e personalidade também poderia ser equilibrado, resiliente e capaz de conviver em harmonia no ambiente urbano.',
+  'Ao longo dos anos, investimos incontáveis horas em treinamento, manejo e desenvolvimento comportamental. Trabalhamos não apenas obediência e controle, mas também autocontrole, neutralidade e capacidade de adaptação. O resultado foi um cão capaz de me acompanhar em diferentes ambientes, conviver de forma estável na rotina da cidade e ignorar distrações e estímulos que muitos considerariam impossíveis para um cão do seu perfil.',
+  'Hoje, tenho orgulho de dizer que o Eros não é apenas meu companheiro. Ele é meu principal professor, responsável por grande parte do conhecimento que aplico e compartilho com meus alunos.',
+  'Ele cumpre sua função de me proporcionar segurança, mas acima de tudo me ensinou que compreender o comportamento de um cão é muito mais poderoso do que simplesmente controlá-lo.',
+  'A maior admiradora do Eros sou eu. E é justamente essa experiência prática, construída ao longo dos anos, que levo para cada pessoa que confia no meu trabalho.',
+];
+
+const complementos = [
+  'Ao longo da minha trajetória atendi diferentes raças, perfis comportamentais e objetivos, acumulando experiência tanto em atendimento domiciliar quanto em escolas de treinamento, mentorias, cursos e competições.',
+  'Meu diferencial está em como ensino. Não me limito a executar técnicas ou corrigir comportamentos, ajudo você a entender por que cada estratégia funciona, para aplicar isso na rotina real com segurança e confiança.',
+];
+---
+
+<section id="sobre" class="py-16 sm:py-24 lg:py-32 bg-bg" aria-label="Sobre Beatriz Mattos">
+  <div class="container-content">
+
+    <SectionHeader
+      label="Sobre a Beatriz"
+      title="Quem vai te ensinar a conduzir o seu cão"
+      subtitle="Sou treinadora comportamental há mais de seis anos, com experiência em cães de companhia, cães de trabalho e casos de agressividade, reatividade e problemas de convivência."
+      align="left"
+    />
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+
+      <!-- Foto com reveal em clip-path -->
+      <div class="lg:col-span-5 lg:sticky lg:top-32">
+        <div class="relative" id="sobre-foto-wrapper">
+          <div class="absolute -inset-3 border border-primary/15 rounded-card -translate-x-2 translate-y-2 hidden lg:block" aria-hidden="true"></div>
+          <div class="relative aspect-[4/5] rounded-card overflow-hidden shadow-card" id="sobre-foto-mask">
+            <Image
+              src={beatrizImage}
+              alt="Beatriz Mattos, treinadora comportamental canina"
+              width={640}
+              height={800}
+              class="w-full h-full object-cover"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- História com timeline de scroll-scrub -->
+      <div class="lg:col-span-7 relative pl-8 sm:pl-10" id="sobre-timeline">
+        <!-- Trilho -->
+        <div class="absolute left-0 top-1 bottom-1 w-px bg-surface" aria-hidden="true"></div>
+        <!-- Progresso preenchido via scroll-scrub -->
+        <div class="absolute left-0 top-1 w-px bg-primary origin-top" id="sobre-progress" style="height:0%" aria-hidden="true"></div>
+
+        <div class="flex flex-col gap-6 sm:gap-7">
+          {paragrafos.map((texto) => (
+            <p class="sobre-paragrafo font-sans text-body-md text-muted leading-relaxed">
+              {texto}
+            </p>
+          ))}
+        </div>
+
+        <div class="mt-10 grid sm:grid-cols-2 gap-6 pt-8 border-t border-surface">
+          {complementos.map((texto) => (
+            <p class="font-sans text-body-sm text-muted leading-relaxed border-l-2 border-primary/30 pl-4">
+              {texto}
+            </p>
+          ))}
+        </div>
+
+        <div class="mt-10">
+          <Button
+            label="Quero uma solução assim para o meu cão"
+            href={whatsappHref}
+            variant="primary"
+            trackingId="sobre-cta"
+            section="sobre"
+          />
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+
+    if (prefersReduced) {
+      gsap.set('#sobre-progress', { height: '100%' });
+      return;
+    }
+
+    // Timeline com scroll-scrub — a linha se preenche em sincronia com a leitura da história
+    gsap.to('#sobre-progress', {
+      height: '100%',
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '#sobre-timeline',
+        start: 'top 60%',
+        end: 'bottom 70%',
+        scrub: 0.6,
+      },
+    });
+
+    // Reveal em clip-path da foto
+    gsap.fromTo(
+      '#sobre-foto-mask',
+      { clipPath: 'inset(0 0 100% 0)' },
+      {
+        clipPath: 'inset(0 0 0% 0)',
+        duration: 1.1,
+        ease: 'power3.out',
+        scrollTrigger: { trigger: '#sobre-foto-wrapper', start: 'top 75%' },
+      }
+    );
+
+    gsap.from('.sobre-paragrafo', {
+      opacity: 0,
+      y: 20,
+      duration: 0.6,
+      stagger: 0.08,
+      ease: 'power2.out',
+      scrollTrigger: { trigger: '#sobre-timeline', start: 'top 70%' },
+    });
+  });
+</script>

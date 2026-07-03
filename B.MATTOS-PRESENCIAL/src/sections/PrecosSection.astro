@@ -1,0 +1,105 @@
+---
+import SectionHeader from '../components/global/SectionHeader.astro';
+import Button from '../components/global/Button.astro';
+
+const waBase = 'https://wa.me/5511918952921?text=';
+
+const planos = [
+  { nome: 'Aula Avulsa', aulas: null, preco: '300', destaque: false },
+  { nome: 'Pacote Essencial', aulas: 4, preco: '1.140', destaque: false },
+  { nome: 'Pacote Evolução', aulas: 6, preco: '1.650', destaque: true },
+  { nome: 'Pacote Desenvolvimento', aulas: 8, preco: '2.120', destaque: false },
+  { nome: 'Pacote Transformação', aulas: 10, preco: '2.550', destaque: false },
+];
+
+const ctaHref = (nome: string) =>
+  `${waBase}${encodeURIComponent(`Olá! Vi o site e tenho interesse no ${nome}.`)}`;
+
+const ctaGratuitaHref = `${waBase}${encodeURIComponent('Olá! Vi o site e quero agendar a conversa inicial gratuita de 15 minutos.')}`;
+---
+
+<section id="precos" class="py-16 sm:py-24 lg:py-32 bg-dark text-bg relative overflow-hidden" aria-label="Valores dos atendimentos">
+  <div class="glow-orb w-[420px] h-[420px] top-0 right-0 animate-glow-pulse" aria-hidden="true"></div>
+
+  <div class="container-content relative z-10">
+
+    <SectionHeader
+      label="Investimento"
+      title="Escolha o formato que faz sentido para você"
+      subtitle="Pagamento em 2x sem juros no cartão ou 5% de desconto no pix."
+      dark={true}
+    />
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5 sm:gap-6 mb-10 sm:mb-14">
+      {planos.map((plano) => (
+        <div
+          class:list={[
+            'relative rounded-card p-6 sm:p-7 flex flex-col gap-5 tilt-card gsap-stagger-item',
+            plano.destaque
+              ? 'bg-primary/10 border-2 border-primary shadow-glow'
+              : 'bg-dark-lighter border border-white/10',
+          ]}
+        >
+          {plano.destaque && (
+            <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-white text-[0.65rem] font-sans font-semibold uppercase tracking-widest px-4 py-1 rounded-pill whitespace-nowrap">
+              Mais Popular
+            </span>
+          )}
+
+          <div>
+            <h3 class="font-display text-lg sm:text-xl text-bg mb-1">{plano.nome}</h3>
+            <p class="font-sans text-body-sm text-bg/50">
+              {plano.aulas ? `${plano.aulas} aulas` : 'sessão única'}
+            </p>
+          </div>
+
+          <div class="mt-auto">
+            <p class="font-display text-2xl sm:text-3xl text-bg mb-4">
+              <span class="text-body-sm text-bg/50 font-sans align-top mr-1">R$</span>{plano.preco}
+            </p>
+            <Button
+              label="Escolher"
+              href={ctaHref(plano.nome)}
+              variant={plano.destaque ? 'gold' : 'secondary'}
+              trackingId={`precos-${plano.nome.toLowerCase().replace(/\s+/g, '-')}`}
+              section="precos"
+              size="sm"
+              fullWidth={true}
+            />
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="text-center">
+      <a
+        id="btn-precos-duvida"
+        href={ctaGratuitaHref}
+        target="_blank"
+        rel="noopener noreferrer"
+        data-tracking="click-precos-duvida"
+        data-section="precos"
+        class="font-sans text-body-md text-bg/70 hover:text-bg underline underline-offset-4 transition-colors"
+      >
+        Não sabe qual pacote é ideal? Agende uma conversa gratuita de 15 minutos
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced || typeof gsap === 'undefined') return;
+
+    gsap.from('#precos .gsap-stagger-item', {
+      scrollTrigger: { trigger: '#precos', start: 'top 70%' },
+      opacity: 0,
+      y: 24,
+      duration: 0.6,
+      ease: 'power3.out',
+      stagger: 0.08,
+    });
+  });
+</script>

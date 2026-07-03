@@ -1,0 +1,31 @@
+---
+import SectionHeader from '../components/global/SectionHeader.astro';
+import Button from '../components/global/Button.astro';
+import InstagramFeed from '../components/islands/InstagramFeed';
+
+const profileUrl = 'https://www.instagram.com/abeak9/';
+---
+
+<section id="instagram" class="py-16 sm:py-24 lg:py-28 bg-surface" aria-label="Instagram">
+  <div class="container-content">
+
+    <SectionHeader
+      label="Instagram"
+      title="Acompanhe o dia a dia dos atendimentos"
+      subtitle="No Instagram você acompanha bastidores dos atendimentos, dicas práticas e a rotina de treinamento comportamental."
+    />
+
+    <InstagramFeed client:visible username="abeak9" profileUrl={profileUrl} />
+
+    <div class="flex justify-center mt-10 sm:mt-12">
+      <Button
+        label="Seguir no Instagram"
+        href={profileUrl}
+        variant="secondary"
+        trackingId="instagram-cta"
+        section="instagram"
+      />
+    </div>
+
+  </div>
+</section>

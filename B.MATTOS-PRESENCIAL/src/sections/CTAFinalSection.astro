@@ -1,0 +1,37 @@
+---
+import Button from '../components/global/Button.astro';
+
+const whatsappHref = 'https://wa.me/5511918952921?text=Ol%C3%A1%21%20Vi%20o%20site%20e%20quero%20saber%20mais.';
+---
+
+<section class="relative overflow-hidden bg-dark py-20 sm:py-28 lg:py-36" aria-label="Chamada final para contato">
+  <div class="glow-orb w-[500px] h-[500px] -top-32 left-1/4 animate-glow-pulse" aria-hidden="true"></div>
+  <div class="glow-orb w-[320px] h-[320px] bottom-0 right-1/4 animate-glow-pulse" style="animation-delay:2s" aria-hidden="true"></div>
+
+  <div class="container-content relative z-10 text-center max-w-2xl mx-auto">
+    <h2 class="font-display text-3xl sm:text-display-xl text-bg mb-6 leading-tight gsap-fade-up">
+      Pronto para ter uma convivência equilibrada com o seu cão?
+    </h2>
+    <p class="font-sans text-body-lg text-bg/70 leading-relaxed mb-10 gsap-fade-up">
+      Não sabe qual serviço é ideal para o seu caso? Agende uma conversa inicial gratuita de 15 minutos e descubra
+      o melhor caminho para você e seu cão.
+    </p>
+
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-5 gsap-fade-up">
+      <Button
+        label="Agendar conversa gratuita agora"
+        href={whatsappHref}
+        variant="gold"
+        trackingId="cta-final"
+        section="cta-final"
+        size="lg"
+      />
+      <a
+        href="mailto:abeamattosk9@gmail.com"
+        class="font-sans text-body-md text-bg/60 hover:text-bg underline underline-offset-4 transition-colors"
+      >
+        Enviar e-mail: abeamattosk9@gmail.com
+      </a>
+    </div>
+  </div>
+</section>

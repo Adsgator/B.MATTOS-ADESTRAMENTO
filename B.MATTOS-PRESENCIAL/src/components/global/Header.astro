@@ -1,0 +1,100 @@
+---
+import { Image } from 'astro:assets';
+import Button from './Button.astro';
+import logoBranca from '../../assets/logo-branca.svg';
+
+const whatsappHref = 'https://wa.me/5511918952921?text=Ol%C3%A1%21%20Vi%20o%20site%20e%20quero%20saber%20mais.';
+
+const navLinks = [
+  { label: 'Sobre',        href: '#sobre' },
+  { label: 'Serviços',     href: '#servicos' },
+  { label: 'Diferenciais', href: '#diferenciais' },
+  { label: 'Valores',      href: '#precos' },
+  { label: 'Dúvidas',      href: '#faq' },
+];
+---
+
+<header
+  id="site-header"
+  class="
+    fixed top-0 left-0 right-0 z-50
+    transition-colors duration-200
+    bg-dark
+    [&.header-scrolled]:backdrop-blur-md [&.header-scrolled]:bg-dark/95
+  "
+>
+  <div class="container-content flex items-center justify-between h-auto py-4 lg:py-5 gap-8">
+
+    <!-- Logo -->
+    <a
+      href="#top"
+      aria-label="Bea Mattos Adestramento — ir para o topo"
+      class="flex items-center group flex-shrink-0"
+    >
+      <Image
+        src={logoBranca}
+        alt="Bea Mattos Adestramento"
+        width={160}
+        height={50}
+        class="h-12 lg:h-14 w-auto object-contain"
+      />
+    </a>
+
+    <!-- Nav Desktop -->
+    <nav aria-label="Navegação principal" class="hidden lg:flex items-center gap-8">
+      {navLinks.map(({ label, href }) => (
+        <a
+          href={href}
+          class="
+            font-sans text-body-sm font-medium text-bg/70
+            hover:text-bg transition-colors duration-150
+            focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary
+          "
+        >
+          {label}
+        </a>
+      ))}
+    </nav>
+
+    <!-- CTA Desktop -->
+    <div class="hidden lg:block flex-shrink-0">
+      <Button
+        label="Falar no WhatsApp"
+        href={whatsappHref}
+        variant="gold"
+        trackingId="header-cta"
+        section="header"
+        size="sm"
+      />
+    </div>
+
+    <!-- Hambúrguer Mobile — island React com Framer Motion -->
+    <div class="lg:hidden ml-auto" id="mobile-menu-trigger">
+      <!-- MobileMenu.tsx montado via island client:load -->
+    </div>
+
+  </div>
+</header>
+
+<!-- Island MobileMenu React -->
+<script>
+  import MobileMenu from '../islands/MobileMenu';
+  import { createElement } from 'react';
+  import { createRoot } from 'react-dom/client';
+
+  const trigger = document.getElementById('mobile-menu-trigger');
+  if (trigger) {
+    const root = createRoot(trigger);
+    root.render(
+      createElement(MobileMenu, {
+        links: [
+          { label: 'Sobre',        href: '#sobre' },
+          { label: 'Serviços',     href: '#servicos' },
+          { label: 'Diferenciais', href: '#diferenciais' },
+          { label: 'Valores',      href: '#precos' },
+          { label: 'Dúvidas',      href: '#faq' },
+        ],
+      })
+    );
+  }
+</script>

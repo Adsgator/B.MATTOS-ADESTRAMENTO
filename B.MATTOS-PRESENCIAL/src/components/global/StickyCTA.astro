@@ -1,0 +1,46 @@
+---
+import Button from './Button.astro';
+
+const whatsappHref = 'https://wa.me/5511918952921?text=Ol%C3%A1%21%20Vi%20o%20site%20e%20quero%20saber%20mais.';
+---
+
+<div
+  id="sticky-cta-container"
+  class="fixed bottom-0 left-0 w-full p-4 z-[90] translate-y-full lg:hidden"
+>
+  <div class="max-w-md mx-auto">
+    <Button
+      label="Quero resolver isso agora"
+      href={whatsappHref}
+      variant="gold"
+      trackingId="sticky-cta"
+      section="sticky-footer"
+      fullWidth={true}
+      size="md"
+    />
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const stickyCta = document.getElementById('sticky-cta-container');
+    const heroCta = document.getElementById('btn-hero-cta');
+
+    if (!stickyCta || !heroCta || typeof gsap === 'undefined') return;
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Aparece após um pequeno atraso no carregamento
+    gsap.to(stickyCta, { y: 0, duration: 0.6, delay: 1.2, ease: 'power3.out' });
+
+    // Some quando o CTA do Hero entra em vista; volta se o usuário rolar para cima antes dele
+    ScrollTrigger.create({
+      trigger: heroCta,
+      start: 'top 90%',
+      onEnter:     () => gsap.to(stickyCta, { y: '120%', duration: 0.4, ease: 'power2.in', overwrite: true }),
+      onLeaveBack: () => gsap.to(stickyCta, { y: 0,      duration: 0.4, ease: 'power2.out', overwrite: true }),
+      onEnterBack: () => gsap.to(stickyCta, { y: '120%', duration: 0.4, ease: 'power2.in', overwrite: true }),
+      onLeave:     () => gsap.to(stickyCta, { y: '120%', duration: 0.4, ease: 'power2.in', overwrite: true }),
+    });
+  });
+</script>
