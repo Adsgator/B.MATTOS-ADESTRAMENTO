@@ -1,88 +1,115 @@
 ---
-import SectionHeader from '../components/global/SectionHeader.astro';
+import SectionHeader from "../components/global/SectionHeader.astro";
 
-const whatsappHref = 'https://wa.me/5511918952921?text=Ol%C3%A1%21%20Vi%20o%20site%20e%20quero%20saber%20mais.';
+const whatsappHref =
+  "https://wa.me/5511918952921?text=Ol%C3%A1%21%20Vi%20o%20site%20e%20quero%20saber%20mais.";
 
 const faqs = [
   {
-    pergunta: 'Dá para adestrar cães idosos?',
-    resposta: 'Sim. Cães idosos podem ter limitações físicas, mas continuam capazes de aprender durante toda a vida. O treinamento ajuda a estimular o raciocínio, fortalecer a comunicação com você e melhorar a qualidade de vida no dia a dia. Cada caso é avaliado individualmente, respeitando a idade, a condição física e o histórico do cão.',
+    pergunta: "Dá para adestrar cães idosos?",
+    resposta:
+      "Sim. Cães idosos podem ter limitações físicas, mas continuam capazes de aprender durante toda a vida. O treinamento ajuda a estimular o raciocínio, fortalecer a comunicação com você e melhorar a qualidade de vida no dia a dia. Cada caso é avaliado individualmente, respeitando a idade, a condição física e o histórico do cão.",
   },
   {
-    pergunta: 'Em quanto tempo eu vejo resultado?',
-    resposta: 'As primeiras mudanças costumam aparecer já nas primeiras aulas, principalmente quando ajustamos a comunicação e o manejo no dia a dia. A transformação completa é gradual e depende da repetição e da consistência da família em aplicar o que é ensinado. Meu papel é te dar o conhecimento e o acompanhamento certos, o restante acontece com a prática.',
+    pergunta: "Em quanto tempo eu vejo resultado?",
+    resposta:
+      "As primeiras mudanças costumam aparecer já nas primeiras aulas, principalmente quando ajustamos a comunicação e o manejo no dia a dia. A transformação completa é gradual e depende da repetição e da consistência da família em aplicar o que é ensinado. Meu papel é te dar o conhecimento e o acompanhamento certos, o restante acontece com a prática.",
   },
   {
-    pergunta: 'O treinamento serve só para cães grandes?',
-    resposta: 'Não. Funciona para cães de qualquer porte, raça ou idade. Além de melhorar o comportamento e a comunicação entre vocês, o treinamento contribui para a saúde física e mental do cão, reduzindo estresse e trazendo mais equilíbrio para a convivência.',
+    pergunta: "O treinamento serve só para cães grandes?",
+    resposta:
+      "Não. Funciona para cães de qualquer porte, raça ou idade. Além de melhorar o comportamento e a comunicação entre vocês, o treinamento contribui para a saúde física e mental do cão, reduzindo estresse e trazendo mais equilíbrio para a convivência.",
   },
   {
-    pergunta: 'Não sei qual serviço é ideal para o meu caso, e agora?',
-    resposta: 'Sem problema, é exatamente para isso que existe a conversa inicial gratuita de 15 minutos. Nela eu avalio o seu caso e indico o caminho mais adequado, seja uma aula avulsa, um dos pacotes ou um atendimento mais específico para a sua necessidade.',
+    pergunta: "Não sei qual serviço é ideal para o meu caso, e agora?",
+    resposta:
+      "Sem problema, é exatamente para isso que existe a conversa inicial gratuita de 15 minutos. Nela eu avalio o seu caso e indico o caminho mais adequado, seja uma aula avulsa, um dos pacotes ou um atendimento mais específico para a sua necessidade.",
   },
   {
-    pergunta: 'Como funciona a conversa inicial gratuita?',
-    resposta: 'É uma conversa de 15 minutos, sem custo, para eu entender a rotina do seu cão e o que você está buscando, antes de você se comprometer com qualquer atendimento. A partir dela, te oriento sobre o melhor formato para começar.',
+    pergunta: "Como funciona a conversa inicial gratuita?",
+    resposta:
+      "É uma conversa de 15 minutos, sem custo, para eu entender a rotina do seu cão e o que você está buscando, antes de você se comprometer com qualquer atendimento. A partir dela, te oriento sobre o melhor formato para começar.",
   },
   {
-    pergunta: 'Quais são as formas de pagamento?',
-    resposta: 'Você pode pagar em até 2x sem juros no cartão ou com 5% de desconto à vista no pix. As condições são as mesmas para aula avulsa e para os pacotes.',
+    pergunta: "Quais são as formas de pagamento?",
+    resposta:
+      "Você pode pagar em até 2x sem juros no cartão ou com 5% de desconto à vista no pix. As condições são as mesmas para aula avulsa e para os pacotes.",
   },
 ];
 ---
 
-<section id="faq" class="py-16 sm:py-24 lg:py-32 bg-bg" aria-label="Perguntas frequentes">
+<section
+  id="faq"
+  class="py-16 sm:py-24 lg:py-32 bg-bg"
+  aria-label="Perguntas frequentes"
+>
   <div class="container-content max-w-3xl">
-
-    <SectionHeader
-      label="Dúvidas"
-      title="Perguntas antes de agendar"
-    />
+    <SectionHeader label="Dúvidas" title="Perguntas frequentes" />
 
     <div class="flex flex-col gap-4">
-      {faqs.map((faq, i) => (
-        <details class="faq-item group bg-white rounded-card border border-surface overflow-hidden" data-index={i}>
-          <summary class="flex items-center justify-between gap-4 p-5 sm:p-6 cursor-pointer list-none font-display text-lg sm:text-xl text-dark">
-            {faq.pergunta}
-            <svg class="faq-chevron flex-shrink-0 text-primary transition-transform duration-300" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M6 9l6 6 6-6" />
-            </svg>
-          </summary>
-          <div class="faq-content px-5 sm:px-6">
-            <p class="font-sans text-body-md text-muted leading-relaxed pb-5 sm:pb-6">
-              {faq.resposta}
-            </p>
-          </div>
-        </details>
-      ))}
+      {
+        faqs.map((faq, i) => (
+          <details
+            class="faq-item group bg-white rounded-card border border-surface overflow-hidden"
+            data-index={i}
+          >
+            <summary class="flex items-center justify-between gap-4 p-5 sm:p-6 cursor-pointer list-none font-display text-lg sm:text-xl text-dark">
+              {faq.pergunta}
+              <svg
+                class="faq-chevron flex-shrink-0 text-primary transition-transform duration-300"
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M6 9l6 6 6-6" />
+              </svg>
+            </summary>
+            <div class="faq-content px-5 sm:px-6">
+              <p class="font-sans text-body-md text-muted leading-relaxed pb-5 sm:pb-6">
+                {faq.resposta}
+              </p>
+            </div>
+          </details>
+        ))
+      }
     </div>
 
     <p class="text-center font-sans text-body-md text-muted mt-10">
       Ainda com dúvidas?
-      <a href={whatsappHref} target="_blank" rel="noopener noreferrer" class="text-primary underline underline-offset-4 hover:text-primary-hover">
+      <a
+        href={whatsappHref}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-primary underline underline-offset-4 hover:text-primary-hover"
+      >
         Fale comigo no WhatsApp
       </a>
     </p>
-
   </div>
 </section>
 
 <script>
   // Accordion nativo <details>/<summary> com abertura/fechamento suave via WAAPI
-  document.addEventListener('DOMContentLoaded', () => {
-    const items = document.querySelectorAll<HTMLDetailsElement>('.faq-item');
+  document.addEventListener("DOMContentLoaded", () => {
+    const items = document.querySelectorAll<HTMLDetailsElement>(".faq-item");
 
     items.forEach((details) => {
-      const summary = details.querySelector('summary')!;
-      const content = details.querySelector<HTMLElement>('.faq-content')!;
-      const chevron = details.querySelector<SVGElement>('.faq-chevron')!;
+      const summary = details.querySelector("summary")!;
+      const content = details.querySelector<HTMLElement>(".faq-content")!;
+      const chevron = details.querySelector<SVGElement>(".faq-chevron")!;
       let animation: Animation | null = null;
       let isClosing = false;
       let isExpanding = false;
 
-      summary.addEventListener('click', (e) => {
+      summary.addEventListener("click", (e) => {
         e.preventDefault();
-        details.style.overflow = 'hidden';
+        details.style.overflow = "hidden";
 
         if (isClosing || !details.open) {
           openItem();
@@ -93,7 +120,7 @@ const faqs = [
 
       function openItem() {
         details.open = true;
-        chevron.style.transform = 'rotate(180deg)';
+        chevron.style.transform = "rotate(180deg)";
         isExpanding = true;
 
         const startHeight = `${details.offsetHeight}px`;
@@ -102,14 +129,14 @@ const faqs = [
         animation?.cancel();
         animation = details.animate(
           { height: [startHeight, endHeight] },
-          { duration: 300, easing: 'cubic-bezier(0.22, 1, 0.36, 1)' }
+          { duration: 300, easing: "cubic-bezier(0.22, 1, 0.36, 1)" },
         );
         animation.onfinish = () => onAnimationFinish(true);
       }
 
       function closeItem() {
         isClosing = true;
-        chevron.style.transform = 'rotate(0deg)';
+        chevron.style.transform = "rotate(0deg)";
 
         const startHeight = `${details.offsetHeight}px`;
         const endHeight = `${summary.offsetHeight}px`;
@@ -117,7 +144,7 @@ const faqs = [
         animation?.cancel();
         animation = details.animate(
           { height: [startHeight, endHeight] },
-          { duration: 250, easing: 'cubic-bezier(0.22, 1, 0.36, 1)' }
+          { duration: 250, easing: "cubic-bezier(0.22, 1, 0.36, 1)" },
         );
         animation.onfinish = () => onAnimationFinish(false);
       }
@@ -127,8 +154,8 @@ const faqs = [
         animation = null;
         isClosing = false;
         isExpanding = false;
-        details.style.height = '';
-        details.style.overflow = '';
+        details.style.height = "";
+        details.style.overflow = "";
       }
     });
   });
