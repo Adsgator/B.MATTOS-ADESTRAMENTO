@@ -19,7 +19,7 @@ const ctaGratuitaHref = `${waBase}${encodeURIComponent('Olá! Vi o site e quero 
 ---
 
 <section id="precos" class="py-16 sm:py-24 lg:py-32 bg-dark text-bg relative overflow-hidden" aria-label="Valores dos atendimentos">
-  <div class="glow-orb w-[420px] h-[420px] top-0 right-0 animate-glow-pulse" aria-hidden="true"></div>
+  <div class="glow-orb w-[240px] h-[240px] sm:w-[420px] sm:h-[420px] top-0 right-0 animate-glow-pulse" aria-hidden="true"></div>
 
   <div class="container-content relative z-10">
 
@@ -30,24 +30,28 @@ const ctaGratuitaHref = `${waBase}${encodeURIComponent('Olá! Vi o site e quero 
       dark={true}
     />
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5 sm:gap-6 mb-10 sm:mb-14">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5 sm:gap-6 mb-10 sm:mb-14 lg:items-stretch">
       {planos.map((plano) => (
         <div
           class:list={[
-            'relative rounded-card p-6 sm:p-7 flex flex-col gap-5 tilt-card gsap-stagger-item',
+            'relative rounded-card p-6 sm:p-7 pt-8 sm:pt-9 flex flex-col gap-5 h-full tilt-card gsap-stagger-item',
             plano.destaque
-              ? 'bg-primary/10 border-2 border-primary shadow-glow'
+              ? 'bg-primary/10 border border-primary'
               : 'bg-dark-lighter border border-white/10',
           ]}
         >
-          {plano.destaque && (
-            <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-white text-[0.65rem] font-sans font-semibold uppercase tracking-widest px-4 py-1 rounded-pill whitespace-nowrap">
-              Mais Popular
-            </span>
-          )}
+          <span
+            class:list={[
+              'absolute -top-3 left-1/2 -translate-x-1/2 text-[0.65rem] font-sans font-semibold uppercase tracking-widest px-4 py-1 rounded-pill whitespace-nowrap',
+              plano.destaque ? 'bg-primary text-white' : 'opacity-0 pointer-events-none select-none',
+            ]}
+            aria-hidden={!plano.destaque}
+          >
+            Mais Popular
+          </span>
 
-          <div>
-            <h3 class="font-display text-lg sm:text-xl text-bg mb-1">{plano.nome}</h3>
+          <div class="min-h-[3.25rem] sm:min-h-[3.75rem]">
+            <h3 class="font-display text-lg sm:text-xl text-bg mb-1 leading-tight">{plano.nome}</h3>
             <p class="font-sans text-body-sm text-bg/50">
               {plano.aulas ? `${plano.aulas} aulas` : 'sessão única'}
             </p>
@@ -96,10 +100,10 @@ const ctaGratuitaHref = `${waBase}${encodeURIComponent('Olá! Vi o site e quero 
     gsap.from('#precos .gsap-stagger-item', {
       scrollTrigger: { trigger: '#precos', start: 'top 70%' },
       opacity: 0,
-      y: 24,
-      duration: 0.6,
+      y: 16,
+      duration: 0.45,
       ease: 'power3.out',
-      stagger: 0.08,
+      stagger: 0.05,
     });
   });
 </script>

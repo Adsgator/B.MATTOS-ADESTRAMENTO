@@ -1,0 +1,222 @@
+---
+import SectionHeader from '../components/global/SectionHeader.astro';
+
+// TODO: substituir pela URL real do perfil da Beatriz no Google (Google Business / Maps)
+const googleReviewsUrl = 'https://www.google.com/search?q=Bea+Mattos+Adestramento+S%C3%A3o+Jos%C3%A9+dos+Campos';
+
+// Depoimentos reais, copiados do Google (Bea Mattos Adestramento)
+const avaliacoes = [
+  {
+    nome: 'Raquel Luize C. de Lima',
+    iniciais: 'RL',
+    texto: 'Bea é uma ótima profissional. Além de ser dona do maninho da Hope, ela é uma profissional incrível. Uma mulher, forte e guerreira. Gostei muito de conhecer e aprender com ela. Hoje levo comigo todos ensinamentos que ela trouxe para a minha vida. Obrigada Bea 🙏❤️🐾',
+  },
+  {
+    nome: 'Maria Clara Gerin',
+    iniciais: 'MG',
+    texto: 'Beatriz é uma ótima profissional, foi e está sendo uma experiência excelente. Mesmo sendo online, o suporte foi muito próximo e eficiente. As dicas e exercícios foram adaptados à nossa realidade e rotina, com o auxílio dela consegui entender melhor o comportamento do meu cão e construir um ótimo relacionamento com ele. Hoje graças a ela nossa convivência está muito mais tranquila e harmoniosa. Sou muito grata pela dedicação, profissionalismo e carinho com que conduziu todo o processo. Obrigada mais uma vez! 🥰',
+  },
+  {
+    nome: 'Aline Scheid',
+    iniciais: 'AS',
+    texto: 'Queria ter conhecido a Bia antes de ter o meu primeiro cão. Estávamos em uma jornada de 3 anos de estudos, adestramento, muita melhora mas ainda faltavam alguns detalhes na nossa condução com nossos cães. Comecei com a consultoria on-line até que um dia a Bia me mandou um áudio sugerindo o training camping, e falou exatamente o que eu sentia: "eu sinto que tu tem conhecimento mas tem algum detalhe faltando". Fomos eu, meu marido e meus dois cães e foi sucesso! Não imaginei que em um final de semana poderia mudar completamente a forma como manejo e me comunico com meus cachorros. Descobri muito sobre mim como condutora, também. Eu indico o trabalho da Bia de olhos fechados, graças a ela, estamos em outro patamar com nossos cães, o que torna nossa vida muito mais harmoniosa, feliz e conectada com eles.',
+  },
+  {
+    nome: 'Mariana Chiodini',
+    iniciais: 'MC',
+    texto: 'Bea salvou o "drama" de casa. Cachorrinha idosa, já cheia de manias, com ansiedade de separação em razão de uma mudança... Estávamos certos que nada poderia ser feito. Até conhecermos a Bea! Nossa idosinha Bela se acostumou a ficar um tempo só em casa, aprendeu a dormir na caixa (AMOU a caixa) e melhorou a qualidade de vida dela e de toda família. Melhor coisa que fizemos pra Bela e pra nós, foi chamar a Bea pra nos ajudar. Recomendo MUITO. Vale MUITO a pena.',
+  },
+  {
+    nome: 'Natasha Oliveira Pereira',
+    iniciais: 'NP',
+    texto: 'Profissional dedicada, atenciosa e transparente. A todo momento está disposta a entender as necessidades do seu animalzinho e entender seu estilo de vida para melhor desempenho do seu trabalho. Realmente indico para quem está disposto a compreender melhor seu cão e proporcionar melhor estilo de vida para ele. Com os ensinamentos, consigo entender minha cachorrinha, ter um grande vínculo com ela, proporcionar o que ela precisa e conseguir administrar melhor manejo que ela precisa.',
+  },
+];
+
+// 3 cópias do conjunto para o loop infinito — o track começa no conjunto do meio
+// e "teleporta" de volta quando chega perto das bordas (imperceptível ao usuário)
+const conjuntos = [0, 1, 2];
+---
+
+<section id="avaliacoes" class="py-16 sm:py-24 lg:py-32 bg-surface overflow-hidden" aria-label="Avaliações">
+  <div class="container-content">
+
+    <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-8 sm:mb-10">
+      <div>
+        <SectionHeader
+          label="Avaliações"
+          title="O que dizem sobre o meu trabalho"
+          subtitle="Histórias reais de tutores e cães que já passaram pelo atendimento presencial."
+          align="left"
+          spaced={false}
+        />
+        <a
+          id="btn-avaliacoes-google"
+          href={googleReviewsUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-tracking="click-avaliacoes-google"
+          data-section="avaliacoes"
+          class="inline-flex items-center gap-2.5 mt-5 font-sans text-body-sm font-medium text-dark hover:text-primary transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+          </svg>
+          <span class="text-primary" aria-label="5 estrelas">★★★★★</span>
+          Ver avaliações no Google
+        </a>
+      </div>
+
+      <div class="hidden sm:flex gap-3 flex-shrink-0 mb-1">
+        <button
+          type="button"
+          id="avaliacoes-prev"
+          aria-label="Avaliação anterior"
+          class="w-11 h-11 rounded-pill border border-dark/15 text-dark flex items-center justify-center hover:bg-dark hover:text-bg hover:border-dark transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6" /></svg>
+        </button>
+        <button
+          type="button"
+          id="avaliacoes-next"
+          aria-label="Próxima avaliação"
+          class="w-11 h-11 rounded-pill border border-dark/15 text-dark flex items-center justify-center hover:bg-dark hover:text-bg hover:border-dark transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6" /></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="relative -mx-4 sm:-mx-6 lg:-mx-12">
+      <!-- Gradientes de borda indicando conteúdo rolável -->
+      <div class="pointer-events-none absolute inset-y-0 left-0 z-10 w-8 sm:w-16 bg-gradient-to-r from-surface to-transparent" aria-hidden="true"></div>
+      <div class="pointer-events-none absolute inset-y-0 right-0 z-10 w-8 sm:w-16 bg-gradient-to-l from-surface to-transparent" aria-hidden="true"></div>
+
+      <div
+        id="avaliacoes-track"
+        class="flex gap-5 overflow-x-auto pt-2 pb-8 px-4 sm:px-6 lg:px-12 cursor-grab select-none [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+      >
+        {conjuntos.map((conjunto) => (
+          avaliacoes.map((avaliacao) => (
+            <div
+              class="flex-shrink-0 w-[82%] sm:w-[46%] lg:w-[31%] tilt-card bg-white rounded-card p-6 sm:p-7 border border-surface flex flex-col gap-4"
+              aria-hidden={conjunto !== 1 ? 'true' : undefined}
+            >
+              <div class="flex gap-0.5 text-primary" aria-label="5 de 5 estrelas">
+                {Array.from({ length: 5 }).map(() => (
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z" />
+                  </svg>
+                ))}
+              </div>
+
+              <p class="font-sans text-body-sm text-muted leading-relaxed flex-1 line-clamp-6">
+                "{avaliacao.texto}"
+              </p>
+
+              <div class="flex items-center gap-3 pt-4 border-t border-surface">
+                <div class="w-9 h-9 rounded-pill bg-primary/10 text-primary flex items-center justify-center font-sans text-xs font-semibold flex-shrink-0">
+                  {avaliacao.iniciais}
+                </div>
+                <span class="font-sans text-body-sm text-dark font-medium">{avaliacao.nome}</span>
+              </div>
+            </div>
+          ))
+        ))}
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const track = document.getElementById('avaliacoes-track');
+    const prevBtn = document.getElementById('avaliacoes-prev');
+    const nextBtn = document.getElementById('avaliacoes-next');
+    if (!track || !prevBtn || !nextBtn) return;
+
+    // ── Loop infinito ─────────────────────────────────────────────────────
+    // O track tem 3 cópias do conjunto; começa no conjunto do meio e, quando o
+    // scroll se afasta dele, reposiciona uma cópia inteira para trás/frente —
+    // o conteúdo é idêntico, então o salto é invisível.
+    const setWidth = () => track.scrollWidth / 3;
+
+    const jumpToMiddle = () => { track.scrollLeft = setWidth(); };
+    jumpToMiddle();
+
+    const wrap = () => {
+      const w = setWidth();
+      if (track.scrollLeft < w * 0.5) track.scrollLeft += w;
+      else if (track.scrollLeft > w * 1.5) track.scrollLeft -= w;
+    };
+    track.addEventListener('scroll', wrap, { passive: true });
+    window.addEventListener('resize', jumpToMiddle);
+
+    // ── Setas ─────────────────────────────────────────────────────────────
+    const scrollByCard = (direction: number) => {
+      const card = track.querySelector<HTMLElement>(':scope > div');
+      const distance = card ? card.getBoundingClientRect().width + 20 : track.clientWidth * 0.8;
+      track.scrollBy({ left: distance * direction, behavior: 'smooth' });
+    };
+    prevBtn.addEventListener('click', () => scrollByCard(-1));
+    nextBtn.addEventListener('click', () => scrollByCard(1));
+
+    // ── Clicar e arrastar (mouse) ─────────────────────────────────────────
+    // No touch o navegador já faz o pan horizontal nativamente.
+    let isDragging = false;
+    let dragStartX = 0;
+    let dragStartScroll = 0;
+    let dragMoved = 0;
+
+    track.addEventListener('pointerdown', (e) => {
+      if (e.pointerType !== 'mouse') return;
+      isDragging = true;
+      dragMoved = 0;
+      dragStartX = e.clientX;
+      dragStartScroll = track.scrollLeft;
+      track.setPointerCapture(e.pointerId);
+      track.classList.remove('cursor-grab');
+      track.classList.add('cursor-grabbing');
+    });
+
+    track.addEventListener('pointermove', (e) => {
+      if (!isDragging) return;
+      const dx = e.clientX - dragStartX;
+      dragMoved = Math.max(dragMoved, Math.abs(dx));
+      track.scrollLeft = dragStartScroll - dx;
+    });
+
+    const endDrag = () => {
+      isDragging = false;
+      track.classList.remove('cursor-grabbing');
+      track.classList.add('cursor-grab');
+    };
+    track.addEventListener('pointerup', endDrag);
+    track.addEventListener('pointercancel', endDrag);
+
+    // Após arrastar, suprime o clique acidental em links/cards
+    track.addEventListener('click', (e) => {
+      if (dragMoved > 8) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    }, true);
+
+    // ── Entrada animada ───────────────────────────────────────────────────
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced || typeof gsap === 'undefined') return;
+
+    gsap.from('#avaliacoes-track > div', {
+      scrollTrigger: { trigger: '#avaliacoes', start: 'top 70%' },
+      opacity: 0,
+      y: 16,
+      duration: 0.45,
+      ease: 'power3.out',
+      stagger: { each: 0.05, from: 'center' },
+    });
+  });
+</script>

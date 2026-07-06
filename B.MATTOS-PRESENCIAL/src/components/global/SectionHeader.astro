@@ -5,28 +5,31 @@ interface Props {
   subtitle?: string;
   align?:    'left' | 'center';
   dark?:     boolean;  // true = texto claro (para fundos escuros)
+  spaced?:   boolean;  // false = sem margem inferior (quando o layout pai controla o espaçamento)
 }
 
 const {
   label,
   title,
   subtitle,
-  align = 'center',
-  dark  = false,
+  align  = 'center',
+  dark   = false,
+  spaced = true,
 } = Astro.props;
 
 const alignClass = align === 'center' ? 'text-center mx-auto' : 'text-left';
 ---
 
-<div class:list={['max-w-3xl mb-12 lg:mb-16 gsap-fade-up', alignClass]}>
+<div class:list={['max-w-3xl gsap-fade-up', spaced && 'mb-12 lg:mb-16', alignClass]}>
   {label && (
     <span class:list={['section-label block mb-3', dark && 'text-primary']}>
       {label}
     </span>
   )}
-  <h2 class:list={['font-display text-3xl sm:text-display-lg lg:text-display-xl mb-4', dark ? 'text-bg' : 'text-dark']}>
-    {title}
-  </h2>
+  <h2
+    class:list={['font-display text-3xl sm:text-display-xl mb-4', dark ? 'text-bg' : 'text-dark']}
+    set:html={title}
+  />
   {subtitle && (
     <p class:list={['font-sans text-body-lg leading-relaxed', dark ? 'text-bg/70' : 'text-muted']}>
       {subtitle}

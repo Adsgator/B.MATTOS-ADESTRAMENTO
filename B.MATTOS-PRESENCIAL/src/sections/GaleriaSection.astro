@@ -1,0 +1,226 @@
+---
+import Button from '../components/global/Button.astro';
+import { Image } from 'astro:assets';
+import slide1 from '../assets/images/img_slide_1.webp';
+import slide2 from '../assets/images/img_slide_2.webp';
+import slide3 from '../assets/images/img_slide_3.webp';
+import slide4 from '../assets/images/img_slide_4.webp';
+
+const whatsappHref = 'https://wa.me/5511918952921?text=Ol%C3%A1%21%20Vi%20o%20site%20e%20quero%20saber%20mais.';
+
+// O carrossel é data-driven: a barra de progresso no topo e o loop do
+// autoplay se ajustam sozinhos para quantas fotos existirem neste array.
+const fotos = [
+  {
+    src: slide1,
+    alt: 'Beatriz Mattos conduzindo um atendimento presencial de adestramento',
+  },
+  {
+    src: slide2,
+    alt: 'Beatriz Mattos em exercício de manejo com guia durante um atendimento',
+  },
+  {
+    src: slide3,
+    alt: 'Beatriz Mattos trabalhando o comportamento de um cão em campo',
+  },
+  {
+    src: slide4,
+    alt: 'Beatriz Mattos entre um atendimento e outro',
+  },
+];
+---
+
+<section id="galeria" class="relative py-16 sm:py-24 lg:py-32 bg-bg overflow-hidden" aria-label="Dedicação em cada atendimento">
+  <div class="glow-orb w-[220px] h-[220px] sm:w-[380px] sm:h-[380px] top-1/4 -right-16 sm:-right-24 animate-glow-pulse" aria-hidden="true"></div>
+
+  <div class="container-content relative z-10">
+
+    <div class="flex flex-col lg:flex-row lg:justify-center gap-10 lg:gap-14 items-center">
+
+      <!-- Carrossel estilo "stories" — mecânica exclusiva desta seção -->
+      <div class="relative mx-auto w-full max-w-[420px] lg:shrink-0" id="galeria-stage">
+        <div class="relative aspect-[4/5] rounded-card shadow-card">
+          <div class="relative w-full h-full rounded-card overflow-hidden bg-dark" id="galeria-photo">
+
+            <!-- Barra de progresso segmentada, tipo stories -->
+            <div class="absolute top-3 inset-x-3 z-20 flex gap-1.5" role="tablist" aria-label="Fotos dos atendimentos">
+              {fotos.map((_, i) => (
+                <button
+                  type="button"
+                  class="galeria-segmento flex-1 h-1 rounded-pill bg-white/30 overflow-hidden focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                  data-index={i}
+                  role="tab"
+                  aria-label={`Ir para foto ${i + 1}`}
+                >
+                  <span class="galeria-fill block h-full w-0 bg-white rounded-pill"></span>
+                </button>
+              ))}
+            </div>
+
+            <!-- Slides -->
+            {fotos.map((foto, i) => (
+              <div class="galeria-slide absolute inset-0 transition-opacity duration-500" data-index={i} style={i === 0 ? '' : 'opacity:0'}>
+                <Image
+                  src={foto.src}
+                  alt={foto.alt}
+                  width={640}
+                  height={800}
+                  loading={i === 0 ? 'eager' : 'lazy'}
+                  class="w-full h-full object-cover"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-dark/80 via-transparent to-dark/10"></div>
+              </div>
+            ))}
+
+            <!-- Zonas de toque anterior/próxima -->
+            <button type="button" class="absolute inset-y-0 left-0 w-1/2 z-10" id="galeria-prev-zone" aria-label="Foto anterior"></button>
+            <button type="button" class="absolute inset-y-0 right-0 w-1/2 z-10" id="galeria-next-zone" aria-label="Próxima foto"></button>
+          </div>
+        </div>
+
+        <!-- Setas visíveis -->
+        <div class="flex justify-center gap-3 mt-4">
+          <button
+            type="button"
+            id="galeria-prev"
+            aria-label="Foto anterior"
+            class="w-9 h-9 rounded-pill border border-dark/15 text-dark flex items-center justify-center hover:bg-dark hover:text-bg hover:border-dark transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6" /></svg>
+          </button>
+          <button
+            type="button"
+            id="galeria-next"
+            aria-label="Próxima foto"
+            class="w-9 h-9 rounded-pill border border-dark/15 text-dark flex items-center justify-center hover:bg-dark hover:text-bg hover:border-dark transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6" /></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Texto de apoio ao lado do carrossel -->
+      <div class="max-w-xl text-center lg:text-left">
+        <span class="section-label block mb-3">Dedicação em cada atendimento</span>
+
+        <h2 class="font-display text-3xl sm:text-display-lg lg:text-display-xl text-dark mb-4 text-balance">
+          Cada atendimento é conduzido por mim, do início ao fim
+        </h2>
+
+        <p class="font-sans text-body-lg text-muted leading-relaxed mb-6">
+          Sem repasse para equipe júnior, sem fórmula pronta: acompanho pessoalmente cada etapa do treinamento comportamental do seu cão.
+        </p>
+
+        <div class="flex flex-wrap justify-center lg:justify-start gap-2 mb-8">
+          <span class="inline-flex items-center gap-1.5 rounded-pill border border-primary/25 bg-primary/10 px-3 py-1.5 font-sans text-[0.75rem] font-medium text-primary">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10" /><path d="M12 6v6l4 2" /></svg>
+            Atendimento em tempo real
+          </span>
+          <span class="inline-flex items-center gap-1.5 rounded-pill border border-primary/25 bg-primary/10 px-3 py-1.5 font-sans text-[0.75rem] font-medium text-primary">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5" /></svg>
+            Atendimento 100% individual
+          </span>
+        </div>
+
+        <div class="flex justify-center lg:justify-start">
+          <Button
+            label="Quero agendar meu atendimento"
+            href={whatsappHref}
+            variant="secondary"
+            trackingId="galeria-cta"
+            section="galeria"
+          />
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .galeria-fill {
+    transition: none;
+  }
+  .galeria-fill.is-filling {
+    animation: galeria-progress linear forwards;
+  }
+  .galeria-fill.is-done {
+    width: 100%;
+  }
+  @keyframes galeria-progress {
+    from { width: 0%; }
+    to { width: 100%; }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const stage = document.getElementById('galeria-stage');
+    if (!stage) return;
+
+    const slides = Array.from(stage.querySelectorAll<HTMLElement>('.galeria-slide'));
+    const segmentos = Array.from(stage.querySelectorAll<HTMLElement>('.galeria-segmento'));
+    const total = slides.length;
+    if (total <= 1) return; // nada a carrossear com 0 ou 1 foto
+
+    const SLIDE_MS = 4500;
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    let current = 0;
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    let paused = false;
+
+    function render(advanceAutomatically = true) {
+      slides.forEach((slide, i) => {
+        slide.style.opacity = i === current ? '1' : '0';
+      });
+
+      segmentos.forEach((seg, i) => {
+        const fill = seg.querySelector<HTMLElement>('.galeria-fill')!;
+        fill.classList.remove('is-filling', 'is-done');
+        fill.style.animationDuration = '';
+        if (i < current) {
+          fill.classList.add('is-done');
+        } else if (i === current && !prefersReduced) {
+          // reflow força reiniciar a animação do zero a cada troca de slide
+          void fill.offsetWidth;
+          fill.style.animationDuration = `${SLIDE_MS}ms`;
+          fill.classList.add('is-filling');
+        } else if (i === current) {
+          fill.classList.add('is-done');
+        }
+      });
+
+      if (advanceAutomatically) restartTimer();
+    }
+
+    function goTo(index: number, advanceAutomatically = true) {
+      current = (index + total) % total;
+      render(advanceAutomatically);
+    }
+
+    function restartTimer() {
+      clearTimeout(timer);
+      if (prefersReduced || paused) return;
+      timer = setTimeout(() => goTo(current + 1), SLIDE_MS);
+    }
+
+    stage.querySelector('#galeria-prev')?.addEventListener('click', () => goTo(current - 1));
+    stage.querySelector('#galeria-next')?.addEventListener('click', () => goTo(current + 1));
+    stage.querySelector('#galeria-prev-zone')?.addEventListener('click', () => goTo(current - 1));
+    stage.querySelector('#galeria-next-zone')?.addEventListener('click', () => goTo(current + 1));
+
+    segmentos.forEach((seg, i) => {
+      seg.addEventListener('click', () => goTo(i));
+    });
+
+    // Pausa só ao passar o mouse sobre a foto — não sobre as setas de navegação
+    // abaixo dela, senão clicar numa seta e deixar o cursor ali trava o autoplay.
+    const photo = stage.querySelector('#galeria-photo');
+    photo?.addEventListener('mouseenter', () => { paused = true; clearTimeout(timer); });
+    photo?.addEventListener('mouseleave', () => { paused = false; restartTimer(); });
+
+    render();
+  });
+</script>

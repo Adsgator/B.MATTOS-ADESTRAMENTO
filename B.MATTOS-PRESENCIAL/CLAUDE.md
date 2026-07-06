@@ -8,7 +8,7 @@ das irmãs, mas com identidade visual própria (ver "Design System" abaixo).
 ## Stack
 
 - **Astro 4** — gerador de site estático (output: static)
-- **React 18** — apenas para islands interativos (MobileMenu, CookieBanner, InstagramFeed)
+- **React 18** — apenas para islands interativos (MobileMenu, CookieBanner)
 - **Tailwind CSS 3** — estilização via tokens centralizados em `tailwind.config.js`
 - **GSAP + ScrollTrigger + Lenis** — animações e scroll suave
 - **Framer Motion** — animações dos islands React (menu mobile, cookie banner)
@@ -28,11 +28,11 @@ npm run preview  # Preview do build
 src/
   components/global/   Layout, Header, Footer, Button, SectionHeader, FeatureCard,
                         GTM, StickyCTA
-  components/islands/  React islands: MobileMenu, CookieBanner, InstagramFeed
+  components/islands/  React islands: MobileMenu, CookieBanner
   pages/                index.astro, 404.astro, politica, termos
   sections/             HeroSection, SobreSection, ServicosSection,
-                        DiferenciaisSection, PrecosSection, FAQSection,
-                        InstagramSection, CTAFinalSection
+                        DiferenciaisSection, AvaliacoesSection, PrecosSection,
+                        FAQSection, GaleriaSection, CTAFinalSection
   styles/global.css     Tailwind directives + classes utilitárias customizadas
   assets/               Imagens e logo (reaproveitados das LPs irmãs — ver abaixo)
 ```
@@ -95,13 +95,14 @@ sombras suaves e difusas — nunca duras ou deslocadas.
 10. IDs obrigatórios: Hero com `id="hero-section"`, Footer com `id="footer"`,
     main com `id="main-content"`
 11. Sem dark mode — nenhuma das LPs irmãs tem, mantém-se a consistência do ecossistema
+12. Copy sempre em primeira pessoa ("comigo", "eu ensino"), nunca em terceira pessoa
+    referindo-se à Beatriz como se fosse outra pessoa falando por ela
 
 ## Variáveis de Ambiente
 
 Ver `.env.example`. Principais:
 - `GTM_ID` — GTM-W7CBVWFX
 - `WHATSAPP_NUMBER` / `WHATSAPP_MESSAGE`
-- `INSTAGRAM_TOKEN` — opcional; sem token, o feed cai no fallback estático
 - `SITE_URL` — domínio canônico (assumido `presencial.abeak9adestramento.com.br`,
   **confirmar antes do deploy**)
 
@@ -113,3 +114,12 @@ Ver `.env.example`. Principais:
 - CNPJ real nas páginas legais (`politica-de-privacidade.astro`, `termos-de-uso.astro`)
   — hoje marcado como "a confirmar"
 - OG image dedicada (hoje usa a foto real da Beatriz como fallback)
+- `AvaliacoesSection.astro`: 5 depoimentos são placeholders de exemplo — substituir
+  pelos reais assim que a Beatriz enviar (nome, texto, nota)
+- `GaleriaSection.astro`: hoje só tem 2 fotos reais confirmadas (reaproveitadas do
+  Hero/Sobre); trocar pelo layout em grade quando houver mais fotos reais de
+  atendimentos em campo
+- Ícones customizados de `ServicosSection.astro`: os 9 cards usam ícones placeholder
+  em SVG inline; a Beatriz vai gerar um set próprio (ver prompt no histórico do chat)
+  — trocar o campo `icon` de cada item pelo SVG final usando o `slug` como referência
+  de nome de arquivo

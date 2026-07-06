@@ -149,7 +149,7 @@ const siteUrl = 'https://presencial.abeak9adestramento.com.br';
     data-tracking="click-whatsapp-flutuante"
     data-section="floating"
     class="
-      fixed bottom-6 right-6 z-40
+      fixed bottom-24 right-4 sm:right-6 lg:bottom-6 z-40
       w-14 h-14 md:w-16 md:h-16
       flex items-center justify-center
       rounded-full
@@ -186,8 +186,8 @@ const siteUrl = 'https://presencial.abeak9adestramento.com.br';
       gsap.utils.toArray('.gsap-fade-up').forEach((el) => {
         gsap.from(el, {
           opacity: 0,
-          y: 24,
-          duration: 0.7,
+          y: 16,
+          duration: 0.5,
           ease: 'power3.out',
           scrollTrigger: { trigger: el, start: 'top 85%' },
         });

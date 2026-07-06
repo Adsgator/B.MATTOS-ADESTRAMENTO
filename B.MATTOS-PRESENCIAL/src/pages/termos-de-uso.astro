@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+import logoBranca from '../assets/logo-branca.svg';
 const currentYear = new Date().getFullYear();
 ---
 
@@ -17,7 +19,8 @@ const currentYear = new Date().getFullYear();
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Inter', sans-serif; background-color: #F6EFE4; color: #2B2621; font-size: 1.0625rem; line-height: 1.8; -webkit-font-smoothing: antialiased; }
     .header-legal { background-color: #24211D; padding: 1rem 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
-    .header-legal .logo { font-family: 'Fraunces', serif; font-size: 1.4rem; color: #fff; text-decoration: none; }
+    .header-legal .logo { display: flex; align-items: center; }
+    .header-legal .logo img { height: 2.75rem; width: auto; display: block; }
     .header-legal .back { font-family: 'Inter', sans-serif; font-size: 0.875rem; color: rgba(255,255,255,0.6); text-decoration: none; display: flex; align-items: center; gap: 0.4rem; }
     .header-legal .back:hover { color: #DE7440; }
     .content { max-width: 720px; margin: 0 auto; padding: 3rem 1.5rem 6rem; }
@@ -32,7 +35,9 @@ const currentYear = new Date().getFullYear();
 </head>
 <body>
   <header class="header-legal">
-    <a href="/" class="logo">Bea Mattos</a>
+    <a href="/" class="logo" aria-label="Bea Mattos Adestramento — voltar ao site">
+      <Image src={logoBranca} alt="Bea Mattos Adestramento" width={160} height={50} />
+    </a>
     <a href="/" class="back">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
       Voltar ao site

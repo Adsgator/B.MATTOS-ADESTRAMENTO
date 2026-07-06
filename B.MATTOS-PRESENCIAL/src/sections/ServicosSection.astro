@@ -3,19 +3,71 @@ import SectionHeader from '../components/global/SectionHeader.astro';
 import FeatureCard from '../components/global/FeatureCard.astro';
 import Button from '../components/global/Button.astro';
 
+// Ícones personalizados da marca — vêm com fill="black" e dimensões fixas;
+// normaliza para currentColor (o card aplica o terracota) e tamanho fluido
+import iconCaoPuxaGuia from '../assets/icons/cao-puxa-guia.svg?raw';
+import iconReatividade from '../assets/icons/reatividade.svg?raw';
+import iconAnsiedade from '../assets/icons/ansiedade-adaptacao.svg?raw';
+import iconSocializacao from '../assets/icons/socializacao.svg?raw';
+import iconComunicacao from '../assets/icons/comunicacao.svg?raw';
+import iconChegadaFilhotes from '../assets/icons/chegada-filhotes.svg?raw';
+import iconCaesTrabalho from '../assets/icons/caes-trabalho.svg?raw';
+import iconGuardaProtecao from '../assets/icons/guarda-protecao.svg?raw';
+import iconConsultoriaRaca from '../assets/icons/consultoria-raca.svg?raw';
+
+const normalizarIcone = (svg: string) =>
+  svg
+    .replace(/fill="black"/g, 'fill="currentColor"')
+    .replace(/<svg([^>]*?)\swidth="\d+"\sheight="\d+"/, '<svg$1');
+
 const whatsappHref = 'https://wa.me/5511918952921?text=Ol%C3%A1%21%20Vi%20o%20site%20e%20quero%20saber%20mais.';
 
 const itens = [
-  { title: 'Cão que puxa na guia', icon: 'M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3M8 12h8' },
-  { title: 'Reatividade com pessoas ou outros cães', icon: 'M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z M12 9v4 M12 17h.01' },
-  { title: 'Ansiedade e dificuldades de adaptação', icon: 'M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7Z' },
-  { title: 'Socialização', icon: 'M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2 M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8 M22 21v-2a4 4 0 0 0-3-3.87 M16 3.13a4 4 0 0 1 0 7.75' },
-  { title: 'Comunicação entre você e o seu cão', icon: 'M7.9 20A9 9 0 1 0 4 16.1L2 22Z' },
-  { title: 'Preparação para a chegada de filhotes', icon: 'M12 8v8 M8 12h8 M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20Z' },
-  { title: 'Estruturação de rotina e manejo', icon: 'M8 2v4 M16 2v4 M3 10h18 M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z' },
-  { title: 'Desenvolvimento de cães de trabalho', icon: 'M20 7h-3V5a2 2 0 0 0-2-2h-6a2 2 0 0 0-2 2v2H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2Z M9 5h6v2H9Z' },
-  { title: 'Guarda e proteção esportiva', icon: 'M12 2 4 5v6c0 5.5 3.8 10.7 8 12 4.2-1.3 8-6.5 8-12V5Z' },
-  { title: 'Consultoria para escolha de raça e perfil de cão', icon: 'M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20Z M16.24 7.76l-2.12 6.36-6.36 2.12 2.12-6.36 6.36-2.12Z' },
+  {
+    title: 'Cão que puxa na guia',
+    description: 'Ensino você a conduzir seu cão com segurança, sem puxões e sem estresse para os dois.',
+    svg: normalizarIcone(iconCaoPuxaGuia),
+  },
+  {
+    title: 'Reatividade com pessoas ou outros cães',
+    description: 'Estratégias práticas para reduzir reações de medo ou agressividade do seu cão.',
+    svg: normalizarIcone(iconReatividade),
+  },
+  {
+    title: 'Ansiedade e dificuldades de adaptação',
+    description: 'Trabalho a segurança emocional do seu cão para reduzir a ansiedade no dia a dia.',
+    svg: normalizarIcone(iconAnsiedade),
+  },
+  {
+    title: 'Socialização',
+    description: 'Desenvolvo a capacidade do seu cão de conviver bem com pessoas e outros animais.',
+    svg: normalizarIcone(iconSocializacao),
+  },
+  {
+    title: 'Comunicação entre você e o seu cão',
+    description: 'Ajusto a forma como vocês se comunicam para o seu cão realmente te entender.',
+    svg: normalizarIcone(iconComunicacao),
+  },
+  {
+    title: 'Preparação para a chegada de filhotes',
+    description: 'Organizo a rotina do seu cão antes da chegada de um bebê ou outro pet.',
+    svg: normalizarIcone(iconChegadaFilhotes),
+  },
+  {
+    title: 'Desenvolvimento de cães de trabalho',
+    description: 'Treinamento técnico que respeita o perfil e o propósito de cada cão de trabalho.',
+    svg: normalizarIcone(iconCaesTrabalho),
+  },
+  {
+    title: 'Guarda e proteção esportiva',
+    description: 'Trabalho técnico de guarda e proteção, com segurança em cada etapa.',
+    svg: normalizarIcone(iconGuardaProtecao),
+  },
+  {
+    title: 'Consultoria para escolha de raça e perfil de cão',
+    description: 'Te ajudo a escolher o cão certo para a sua rotina, antes mesmo de ele chegar.',
+    svg: normalizarIcone(iconConsultoriaRaca),
+  },
 ];
 ---
 
@@ -30,7 +82,7 @@ const itens = [
 
     <!-- Card de destaque -->
     <div class="bg-dark text-bg rounded-card p-8 sm:p-10 lg:p-12 mb-8 sm:mb-10 relative overflow-hidden gsap-stagger-item">
-      <div class="glow-orb w-64 h-64 -top-16 -right-16 animate-glow-pulse" aria-hidden="true"></div>
+      <div class="glow-orb w-40 h-40 sm:w-64 sm:h-64 -top-10 -right-10 sm:-top-16 sm:-right-16 animate-glow-pulse" aria-hidden="true"></div>
       <div class="relative z-10 max-w-2xl">
         <h3 class="font-display text-2xl sm:text-display-md text-bg mb-4">Obediência básica e avançada</h3>
         <p class="font-sans text-body-md text-bg/70 leading-relaxed">
@@ -45,7 +97,7 @@ const itens = [
     <!-- Grid de serviços específicos -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-10 sm:mb-14">
       {itens.map((item, i) => (
-        <FeatureCard icon={item.icon} description={item.title} index={i} />
+        <FeatureCard svg={item.svg} title={item.title} description={item.description} index={i} />
       ))}
     </div>
 
@@ -70,10 +122,10 @@ const itens = [
     gsap.from('#servicos .gsap-stagger-item', {
       scrollTrigger: { trigger: '#servicos', start: 'top 70%' },
       opacity: 0,
-      y: 24,
-      duration: 0.7,
+      y: 16,
+      duration: 0.45,
       ease: 'power3.out',
-      stagger: 0.08,
+      stagger: 0.05,
     });
   });
 </script>

@@ -18,8 +18,10 @@ const trustPoints = [
   aria-label="Apresentação principal"
 >
   <!-- Glow orbs — motivo visual recorrente desta LP -->
-  <div class="glow-orb w-[420px] h-[420px] -top-24 -right-24 animate-glow-pulse" aria-hidden="true"></div>
-  <div class="glow-orb w-[280px] h-[280px] bottom-0 left-[-6rem] animate-glow-pulse" style="animation-delay:1.5s" aria-hidden="true"></div>
+  <!-- O primeiro orb começa abaixo da linha do header fixo (~80px) para o brilho não
+       "nascer" atrás dele — isso criava uma linha dura onde o header (opaco) o cortava. -->
+  <div class="glow-orb w-[240px] h-[240px] sm:w-[420px] sm:h-[420px] top-16 -right-16 sm:-right-24 animate-glow-pulse" aria-hidden="true"></div>
+  <div class="glow-orb w-[160px] h-[160px] sm:w-[280px] sm:h-[280px] bottom-0 left-[-3rem] sm:left-[-6rem] animate-glow-pulse" style="animation-delay:1.5s" aria-hidden="true"></div>
 
   <div class="container-content relative z-10">
     <div class="grid grid-cols-1 lg:grid-cols-[54%_46%] gap-12 lg:gap-16 items-center">
@@ -31,7 +33,7 @@ const trustPoints = [
           <p class="section-label !text-primary/90 !mb-0">Atendimento Presencial · São José dos Campos</p>
         </div>
 
-        <h1 id="hero-title" class="font-display text-4xl sm:text-display-xl text-bg mb-6 max-w-xl leading-[1.1]">
+        <h1 id="hero-title" class="font-display text-4xl sm:text-display-2xl text-bg mb-6 max-w-xl leading-[1.1]">
           Cão reativo, puxando na guia ou difícil de controlar?
           <span class="relative inline-block text-primary">
             Isso tem solução
@@ -86,17 +88,19 @@ const trustPoints = [
       <!-- Coluna imagem -->
       <div class="relative" id="hero-image-wrapper">
         <div class="absolute -inset-4 border border-primary/15 rounded-card translate-x-3 translate-y-3 hidden lg:block" aria-hidden="true"></div>
-        <div class="relative w-full aspect-[4/5] rounded-card shadow-2xl overflow-hidden" id="hero-image-parallax">
-          <Image
-            src={heroImage}
-            alt="Beatriz Mattos conduzindo um atendimento presencial de adestramento"
-            width={800}
-            height={1000}
-            loading="eager"
-            fetchpriority="high"
-            class="w-full h-full object-cover"
-          />
-          <div class="absolute inset-0 bg-gradient-to-t from-dark/50 via-transparent to-transparent"></div>
+        <div class="relative w-full aspect-[4/5] rounded-card shadow-2xl" id="hero-image-parallax">
+          <div class="relative w-full h-full rounded-card overflow-hidden">
+            <Image
+              src={heroImage}
+              alt="Beatriz Mattos, treinadora comportamental canina"
+              width={800}
+              height={1000}
+              loading="eager"
+              fetchpriority="high"
+              class="w-full h-full object-cover"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-dark/50 via-transparent to-transparent"></div>
+          </div>
         </div>
       </div>
 

@@ -26,8 +26,8 @@ const complementos = [
   <div class="container-content">
 
     <SectionHeader
-      label="Sobre a Beatriz"
-      title="Quem vai te ensinar a conduzir o seu cão"
+      label="Sobre mim"
+      title={`Quem vai te ensinar a <br class="hidden lg:block" />conduzir o seu cão`}
       subtitle="Sou treinadora comportamental há mais de seis anos, com experiência em cães de companhia, cães de trabalho e casos de agressividade, reatividade e problemas de convivência."
       align="left"
     />
@@ -38,14 +38,16 @@ const complementos = [
       <div class="lg:col-span-5 lg:sticky lg:top-32">
         <div class="relative" id="sobre-foto-wrapper">
           <div class="absolute -inset-3 border border-primary/15 rounded-card -translate-x-2 translate-y-2 hidden lg:block" aria-hidden="true"></div>
-          <div class="relative aspect-[4/5] rounded-card overflow-hidden shadow-card" id="sobre-foto-mask">
-            <Image
-              src={beatrizImage}
-              alt="Beatriz Mattos, treinadora comportamental canina"
-              width={640}
-              height={800}
-              class="w-full h-full object-cover"
-            />
+          <div class="relative aspect-[4/5] rounded-card shadow-card">
+            <div class="w-full h-full rounded-card overflow-hidden" id="sobre-foto-mask">
+              <Image
+                src={beatrizImage}
+                alt="Beatriz Mattos, treinadora comportamental canina"
+                width={640}
+                height={800}
+                class="w-full h-full object-cover"
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -124,9 +126,9 @@ const complementos = [
 
     gsap.from('.sobre-paragrafo', {
       opacity: 0,
-      y: 20,
-      duration: 0.6,
-      stagger: 0.08,
+      y: 14,
+      duration: 0.45,
+      stagger: 0.05,
       ease: 'power2.out',
       scrollTrigger: { trigger: '#sobre-timeline', start: 'top 70%' },
     });

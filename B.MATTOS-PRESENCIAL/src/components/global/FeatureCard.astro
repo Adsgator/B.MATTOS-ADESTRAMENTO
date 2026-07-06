@@ -1,13 +1,13 @@
 ---
 interface Props {
-  icon:        string;    // SVG path string
+  svg:         string;    // markup SVG completo (inline, com fill="currentColor")
   title?:      string;
   description: string;
   dark?:       boolean;
   index?:      number;    // para stagger GSAP
 }
 
-const { icon, title, description, dark = false, index = 0 } = Astro.props;
+const { svg, title, description, dark = false, index = 0 } = Astro.props;
 ---
 
 <div
@@ -20,21 +20,14 @@ const { icon, title, description, dark = false, index = 0 } = Astro.props;
   ]}
   data-index={index}
 >
-  <!-- Ícone monocromático -->
-  <div class:list={['flex-shrink-0 w-11 h-11 rounded-pill flex items-center justify-center', dark ? 'bg-primary/20' : 'bg-primary/10']}>
-    <svg
-      width="20" height="20"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      class="text-primary"
-      aria-hidden="true"
-    >
-      <path d={icon} />
-    </svg>
+  <!-- Ícone monocromático — herda a cor via currentColor -->
+  <div
+    class:list={[
+      'flex-shrink-0 w-11 h-11 rounded-pill flex items-center justify-center text-primary',
+      dark ? 'bg-primary/20' : 'bg-primary/10',
+    ]}
+  >
+    <span class="w-6 h-6 flex items-center justify-center [&>svg]:w-full [&>svg]:h-full" aria-hidden="true" set:html={svg} />
   </div>
 
   <!-- Conteúdo -->
