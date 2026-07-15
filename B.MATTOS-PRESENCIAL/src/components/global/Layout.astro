@@ -45,15 +45,21 @@ const siteUrl = 'https://presencial.abeak9adestramento.com.br';
   <!-- GTM Head — imediatamente após charset, conforme padrão Adsgator -->
   <GTM id={gtmId} />
 
-  <!-- Google Consent Mode v2 — antes de qualquer tag de analytics -->
+  <!-- Google Consent Mode v2 — antes de qualquer tag de analytics.
+       O default lê a escolha salva: quem já aceitou volta com consentimento
+       concedido desde o primeiro hit (senão toda visita recomeçaria negada
+       e as conversões do Google Ads ficariam só em modelagem). -->
   <script is:inline>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
+    var consentimentoSalvo = null;
+    try { consentimentoSalvo = localStorage.getItem('bmattos_presencial_consent'); } catch (e) {}
+    var statusConsentimento = consentimentoSalvo === 'granted' ? 'granted' : 'denied';
     gtag('consent', 'default', {
-      'ad_storage':            'denied',
-      'ad_user_data':          'denied',
-      'ad_personalization':    'denied',
-      'analytics_storage':     'denied',
+      'ad_storage':            statusConsentimento,
+      'ad_user_data':          statusConsentimento,
+      'ad_personalization':    statusConsentimento,
+      'analytics_storage':     statusConsentimento,
       'wait_for_update':       500,
     });
   </script>
@@ -282,19 +288,37 @@ const siteUrl = 'https://presencial.abeak9adestramento.com.br';
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({ event: 'view_content' });
 
+    // Origem paga — visita vinda de anúncio do Google (gclid/gbraid/wbraid) fica
+    // marcada na sessão pra ajustar a mensagem do WhatsApp no clique.
+    try {
+      const parametros = new URLSearchParams(location.search);
+      if (parametros.has('gclid') || parametros.has('gbraid') || parametros.has('wbraid') || parametros.get('utm_medium') === 'cpc') {
+        sessionStorage.setItem('bmattos_presencial_origem', 'google-ads');
+      }
+    } catch (e) {}
+
     // Conversão de contato — qualquer clique em link do WhatsApp dispara o evento
     // que o trigger "trigger.contato_wpp" do container GTM padrão da Adsgator espera.
     // Checa pelo href (robusto a qualquer CTA) em vez do data-tracking conter "whatsapp",
     // já que os botões principais são nomeados por seção (hero-cta, sobre-cta etc.).
     document.addEventListener('click', (e) => {
       const link = e.target.closest('a[href^="https://wa.me/"]');
-      if (link) {
-        window.dataLayer.push({
-          event: 'contato_wpp',
-          click_action: link.getAttribute('data-tracking') || 'unknown',
-          click_section: link.getAttribute('data-section') || 'unknown',
-        });
-      }
+      if (!link) return;
+
+      // Visita de anúncio: troca "Vi o site" por "Vi o anúncio no Google" na mensagem
+      // pré-preenchida — a Beatriz identifica na própria conversa que o lead veio da
+      // campanha. Feito no clique (não no load) pra cobrir links de islands hidratados.
+      try {
+        if (sessionStorage.getItem('bmattos_presencial_origem') === 'google-ads') {
+          link.href = link.href.replace('Vi%20o%20site', 'Vi%20o%20an%C3%BAncio%20no%20Google');
+        }
+      } catch (err) {}
+
+      window.dataLayer.push({
+        event: 'contato_wpp',
+        click_action: link.getAttribute('data-tracking') || 'unknown',
+        click_section: link.getAttribute('data-section') || 'unknown',
+      });
     });
   </script>
 

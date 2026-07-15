@@ -5,6 +5,19 @@ interface Props {
   gtmId: string;
 }
 
+// Consent Mode v2 exige gtag('consent', 'update', ...) — um push comum de evento
+// no dataLayer NÃO atualiza o estado de consentimento das tags do Google.
+// O gtag global vem do snippet inline do Layout.astro (head).
+const aplicarConsentimento = (value: 'granted' | 'denied') => {
+  if (typeof window.gtag !== 'function') return;
+  window.gtag('consent', 'update', {
+    ad_storage:         value,
+    ad_user_data:       value,
+    ad_personalization: value,
+    analytics_storage:  value,
+  });
+};
+
 export default function CookieBanner({ gtmId }: Props) {
   const [visible, setVisible] = useState(false);
   const prefersReduced        = useReducedMotion();
@@ -13,6 +26,9 @@ export default function CookieBanner({ gtmId }: Props) {
     try {
       const consent = localStorage.getItem('bmattos_presencial_consent');
       if (!consent) setVisible(true);
+      // Reaplica a escolha em visitas seguintes — o default do Layout já cobre
+      // isso no primeiro hit, este update é redundância defensiva.
+      else if (consent === 'granted') aplicarConsentimento('granted');
     } catch {
       setVisible(true);
     }
@@ -20,19 +36,13 @@ export default function CookieBanner({ gtmId }: Props) {
 
   const grantConsent = () => {
     try { localStorage.setItem('bmattos_presencial_consent', 'granted'); } catch {}
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
-      event: 'consent_update',
-      ad_storage:          'granted',
-      ad_user_data:        'granted',
-      ad_personalization:  'granted',
-      analytics_storage:   'granted',
-    });
+    aplicarConsentimento('granted');
     setVisible(false);
   };
 
   const denyConsent = () => {
     try { localStorage.setItem('bmattos_presencial_consent', 'denied'); } catch {}
+    aplicarConsentimento('denied');
     setVisible(false);
   };
 
@@ -90,4 +100,11 @@ export default function CookieBanner({ gtmId }: Props) {
       )}
     </AnimatePresence>
   );
+}
+
+declare global {
+  interface Window {
+    dataLayer: unknown[];
+    gtag?: (...args: unknown[]) => void;
+  }
 }
