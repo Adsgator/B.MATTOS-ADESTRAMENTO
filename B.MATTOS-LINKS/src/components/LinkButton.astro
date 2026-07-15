@@ -5,18 +5,19 @@ export interface Props {
   href: string;
   newTab?: boolean;
   iconSVG?: string; // SVG inline
+  destaque?: boolean;
 }
 
 
 
-const { label, href, newTab = false, iconSVG } = Astro.props;
+const { label, href, newTab = false, iconSVG, destaque = false } = Astro.props;
 ---
 
 <a
   href={href}
   target={newTab ? '_blank' : '_self'}
   rel={newTab ? 'noopener noreferrer' : undefined}
-  class="link-btn"
+  class={`link-btn ${destaque ? 'link-btn--destaque' : ''}`}
 >
   {iconSVG && (
     <span class="link-btn-icon" aria-hidden="true" set:html={iconSVG}></span>
@@ -55,6 +56,15 @@ const { label, href, newTab = false, iconSVG } = Astro.props;
   .link-btn:active {
     transform: translateY(0);
     box-shadow: 0 1px 4px rgba(0,0,0,0.10);
+  }
+
+  .link-btn--destaque {
+    background-color: #C6541F;
+    color: #FFFFFF;
+  }
+
+  .link-btn--destaque:hover {
+    background-color: #A8451A;
   }
 
   .link-btn-icon {

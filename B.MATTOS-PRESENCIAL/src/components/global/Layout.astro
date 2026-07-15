@@ -281,6 +281,21 @@ const siteUrl = 'https://presencial.abeak9adestramento.com.br';
 
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({ event: 'view_content' });
+
+    // Conversão de contato — qualquer clique em link do WhatsApp dispara o evento
+    // que o trigger "trigger.contato_wpp" do container GTM padrão da Adsgator espera.
+    // Checa pelo href (robusto a qualquer CTA) em vez do data-tracking conter "whatsapp",
+    // já que os botões principais são nomeados por seção (hero-cta, sobre-cta etc.).
+    document.addEventListener('click', (e) => {
+      const link = e.target.closest('a[href^="https://wa.me/"]');
+      if (link) {
+        window.dataLayer.push({
+          event: 'contato_wpp',
+          click_action: link.getAttribute('data-tracking') || 'unknown',
+          click_section: link.getAttribute('data-section') || 'unknown',
+        });
+      }
+    });
   </script>
 
   <Analytics />
