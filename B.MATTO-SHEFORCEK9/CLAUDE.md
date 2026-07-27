@@ -78,7 +78,7 @@ Ver `.env.example`. Principais:
 ## Informações do Produto
 
 - **Curso:** She ForceK9 — Guarda e Proteção para Mulheres
-- **Datas:** 9–12 de julho de 2026, São José dos Campos/SP
-- **Preço:** a partir de R$ 1.747,00 (inclui refeições)
-- **Pagamento:** 5% desconto Pix; parcelamento no cartão com juros
+- **Datas:** 19–22 de novembro de 2026, São José dos Campos/SP
+- **Preço:** valor fixo, sem lotes — R$ 2.047,00 (sem cão) / R$ 2.347,00 (com cão), refeições inclusas
+- **Pagamento:** à vista no cartão ou Pix (confirmado pela cliente em 27/07/2026)
 - **Checkout:** aguardando definição de gateway (não configurado ainda)
