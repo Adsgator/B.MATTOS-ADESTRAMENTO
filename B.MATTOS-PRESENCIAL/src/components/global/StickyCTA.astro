@@ -28,6 +28,12 @@ const whatsappHref = 'https://wa.me/5511918952921?text=Ol%C3%A1%21%20Vi%20o%20si
 
     if (!stickyCta || !heroCta || typeof gsap === 'undefined') return;
 
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) {
+      gsap.set(stickyCta, { y: 0 });
+      return;
+    }
+
     gsap.registerPlugin(ScrollTrigger);
 
     // Aparece após um pequeno atraso no carregamento

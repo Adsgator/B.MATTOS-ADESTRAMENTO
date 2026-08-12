@@ -18,6 +18,7 @@ export default {
                 text: '#2B2621', // marrom muito escuro, aconchegante
                 muted: '#79695A', // marrom acinzentado médio
                 'primary-hover': '#A8451A',
+                whatsapp: '#25D366', // cor oficial de marca — botão flutuante de WhatsApp
             },
             backgroundImage: {
                 'gold-gradient': 'linear-gradient(135deg, #C6541F 0%, #DE7440 50%, #A8451A 100%)',

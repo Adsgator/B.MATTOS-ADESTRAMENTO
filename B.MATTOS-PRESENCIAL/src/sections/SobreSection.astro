@@ -3,6 +3,10 @@ import SectionHeader from '../components/global/SectionHeader.astro';
 import Button from '../components/global/Button.astro';
 import { Image } from 'astro:assets';
 import beatrizImage from '../assets/images/beatriz_mattos.webp';
+import beatrizImage1 from '../assets/images/beatriz_mattos_1.webp';
+import beatrizImage2 from '../assets/images/beatriz_mattos_2.webp';
+
+const sobreSlides = [beatrizImage, beatrizImage1, beatrizImage2];
 
 const whatsappHref = 'https://wa.me/5511918952921?text=Ol%C3%A1%21%20Vi%20o%20site%20e%20quero%20saber%20mais.';
 
@@ -40,13 +44,19 @@ const complementos = [
           <div class="absolute -inset-3 border border-primary/15 rounded-card -translate-x-2 translate-y-2 hidden lg:block" aria-hidden="true"></div>
           <div class="relative aspect-[4/5] rounded-card shadow-card">
             <div class="w-full h-full rounded-card overflow-hidden" id="sobre-foto-mask">
-              <Image
-                src={beatrizImage}
-                alt="Beatriz Mattos, treinadora comportamental canina"
-                width={640}
-                height={800}
-                class="w-full h-full object-cover"
-              />
+              <div class="relative w-full h-full" id="sobre-foto-slide">
+                {sobreSlides.map((slide, index) => (
+                  <Image
+                    src={slide}
+                    alt="Beatriz Mattos, treinadora comportamental canina"
+                    width={640}
+                    height={800}
+                    class="sobre-foto-slide-item absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out"
+                    style={`opacity: ${index === 0 ? '1' : '0'}`}
+                    loading={index === 0 ? 'eager' : 'lazy'}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -112,17 +122,27 @@ const complementos = [
       },
     });
 
-    // Reveal em clip-path da foto
-    gsap.fromTo(
-      '#sobre-foto-mask',
-      { clipPath: 'inset(0 0 100% 0)' },
-      {
-        clipPath: 'inset(0 0 0% 0)',
-        duration: 1.1,
-        ease: 'power3.out',
-        scrollTrigger: { trigger: '#sobre-foto-wrapper', start: 'top 75%' },
-      }
-    );
+    // Reveal em clip-path da foto — só começa depois que a imagem principal
+    // estiver decodificada, evitando o efeito "scanner" de pintura em faixas
+    const runFotoReveal = () => {
+      gsap.fromTo(
+        '#sobre-foto-mask',
+        { clipPath: 'inset(0 0 100% 0)' },
+        {
+          clipPath: 'inset(0 0 0% 0)',
+          duration: 1.1,
+          ease: 'power3.out',
+          scrollTrigger: { trigger: '#sobre-foto-wrapper', start: 'top 75%' },
+        }
+      );
+    };
+
+    const fotoPrincipal = document.querySelector<HTMLImageElement>('#sobre-foto-slide img');
+    if (fotoPrincipal && !fotoPrincipal.complete) {
+      fotoPrincipal.addEventListener('load', runFotoReveal, { once: true });
+    } else {
+      runFotoReveal();
+    }
 
     gsap.from('.sobre-paragrafo', {
       opacity: 0,
@@ -132,5 +152,22 @@ const complementos = [
       ease: 'power2.out',
       scrollTrigger: { trigger: '#sobre-timeline', start: 'top 70%' },
     });
+  });
+
+  // Slide com crossfade entre as fotos da seção Sobre
+  document.addEventListener('DOMContentLoaded', () => {
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) return;
+
+    const slides = document.querySelectorAll<HTMLElement>('.sobre-foto-slide-item');
+    if (slides.length < 2) return;
+
+    let current = 0;
+    setInterval(() => {
+      const next = (current + 1) % slides.length;
+      slides[current].style.opacity = '0';
+      slides[next].style.opacity = '1';
+      current = next;
+    }, 5000);
   });
 </script>
