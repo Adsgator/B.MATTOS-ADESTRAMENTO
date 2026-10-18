@@ -13,9 +13,10 @@ próprio projeto na Vercel, mas todas vivem neste mesmo repositório git:
 - `B.MATTOS-IMERSAO`
 - `B.MATTOS-LINKS`
 - `B.MATTOS-MENTORIA`
+- `B.MATTOS-PRESENCIAL`
 
 A suspensão injeta um redirect no `vercel.json` de cada projeto, mandando todo
-o tráfego para `/suspenso.html`. Como são 4 projetos, isso é feito de uma vez
+o tráfego para `/suspenso.html`. Como são 5 projetos, isso é feito de uma vez
 pelo script `suspender.mjs` na raiz.
 
 Por que redirect e não middleware/env var: middleware do Astro exige `output:
@@ -26,12 +27,17 @@ hora.
 
 ## Comandos
 
-Na raiz do repositório:
+Atalhos no Claude Code (fazem o script, commit e push de uma vez):
+
+- `/suspender` — suspende todos os sites
+- `/reativar` — devolve todos ao ar
+
+Ou, na raiz do repositório, manualmente:
 
 ```bash
 node suspender.mjs status   # mostra o estado de cada site
-node suspender.mjs on        # SUSPENDE os 4 sites
-node suspender.mjs off       # REATIVA os 4 sites
+node suspender.mjs on        # SUSPENDE os 5 sites
+node suspender.mjs off       # REATIVA os 5 sites
 ```
 
 O script só altera o que precisa: preserva a configuração existente de cada
