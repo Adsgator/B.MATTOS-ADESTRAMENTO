@@ -38,10 +38,15 @@ const PROJETOS = [
 // por manipulação TEXTUAL — não re-serializa o arquivo, então a formatação da
 // config existente de cada projeto fica intacta. O bloco é uma string literal
 // fixa: a remoção casa exatamente esse mesmo texto.
+//
+// O `source` usa só uma lista literal de exclusões separada por "|". A Vercel
+// rejeita grupo opcional dentro do lookahead (ex.: `suspenso(.html)?/?`) com
+// "invalid route source pattern" e o deploy falha. "suspenso" (sem .html) cobre
+// também /suspenso/ do IMERSAO, que usa cleanUrls + trailingSlash.
 const BLOCO =
   '  "redirects": [\n' +
   '    {\n' +
-  '      "source": "/((?!suspenso(.html)?/?|logo-suspenso.svg|favicon.svg).*)",\n' +
+  '      "source": "/((?!suspenso|logo-suspenso.svg|favicon.svg).*)",\n' +
   '      "destination": "/suspenso.html",\n' +
   '      "permanent": false\n' +
   '    }\n' +
