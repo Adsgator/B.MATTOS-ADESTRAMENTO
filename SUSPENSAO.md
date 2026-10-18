@@ -77,6 +77,20 @@ Os 4 sites voltam ao ar.
 - `<projeto>/public/logo-suspenso.svg` — logo usada na página de suspensão.
 - `<projeto>/vercel.json` — config do projeto; recebe/perde o bloco `redirects`.
 
+## Cuidados (aprendidos em 18/10/2026)
+
+- **Padrão do `source` do redirect:** a Vercel rejeita grupo opcional dentro do
+  lookahead (ex.: `suspenso(.html)?/?`) com `invalid-route-source-pattern` e o
+  deploy dos projetos falha — o site continua no ar com a versão antiga. Use só a
+  lista literal separada por `|`, como está em `suspender.mjs`.
+- **Node:** a Vercel descontinuou o Node 20.x. Se algum `package.json` tiver
+  `"engines": {"node": "20.x"}`, o deploy falha antes do build. LINKS e MENTORIA
+  foram para `24.x`.
+- **Sempre confira em produção** depois do push: `curl -I https://<dominio>/` deve
+  dar `307` para `/suspenso.html` (no IMERSAO, que usa `cleanUrls`, termina em
+  `/suspenso/`). Se o site não caiu, veja o status dos deploys:
+  `gh api repos/Adsgator/B.MATTOS-ADESTRAMENTO/commits/<sha>/status`.
+
 ## Replicar para um novo cliente / projeto
 
 1. Copie `public/suspenso.html` e `public/logo-suspenso.svg` para o novo
