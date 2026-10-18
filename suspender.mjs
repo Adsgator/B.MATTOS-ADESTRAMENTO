@@ -27,6 +27,7 @@ const PROJETOS = [
   "B.MATTOS-IMERSAO",
   "B.MATTOS-LINKS",
   "B.MATTOS-MENTORIA",
+  "B.MATTOS-PRESENCIAL",
 ];
 
 // Bloco de suspensão inserido logo após a "{" de abertura do vercel.json.
